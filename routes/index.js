@@ -19,6 +19,11 @@ module.exports = function(io) {
   var USERS = [];
   var playersID = [];
 
+  io.configure(function () {
+    io.set("transports", ["xhr-polling"]);
+    io.set("polling duration", 10);
+  });
+
   io.on('connection', function (client) {
     client.id = Math.random();
 
@@ -34,9 +39,10 @@ module.exports = function(io) {
 
 
     client.on('disconnect', function () {
+      playersID.splice(playersID.indexOf(client.id) , 1);
       console.log('Client disconnected with id: ' + USERS[client.id].id);
       delete USERS[client.id];
-      playersID.splice(playersID.indexOf(client.id) , 1);
+
     });
 
 

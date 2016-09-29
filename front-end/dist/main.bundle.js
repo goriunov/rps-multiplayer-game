@@ -65388,7 +65388,7 @@ module.exports = "<h1>\n  {{title}}\n</h1>\n\n\n<router-outlet></router-outlet>\
 /* 676 */
 /***/ function(module, exports) {
 
-module.exports = "\n<div class=\"col-xs-6 col-xs-offset-3\" *ngFor=\"let chose of playersChose\">\n  {{chose}}\n</div>\n\n\n<div class=\"col-xs-6 col-xs-offset-3\" *ngFor=\"let player of players ; let i = index\">\n  <a (click)=\"chooseOpponent(player)\">Player {{i}}</a>\n</div>\n\n\n<section class=\"row\">\n  <div class=\"col-xs-12 col-sm-4\">\n    <button class=\"btn btn-default\" (click)=\"onRock()\"> Rock</button>\n  </div>\n  <div class=\"col-xs-12 col-sm-4\">\n    <button class=\"btn btn-default\" (click)=\"onScissors()\"> Scissors</button>\n  </div>\n  <div class=\"col-xs-12 col-sm-4\">\n    <button class=\"btn btn-default\" (click)=\"onPaper()\"> Paper</button>\n  </div>\n</section>\n";
+module.exports = "\n<div class=\"col-xs-6 col-xs-offset-3\" *ngFor=\"let chose of playersChose\">\n  {{chose}}\n</div>\n\n\n<div class=\"col-xs-6 col-xs-offset-3\" *ngFor=\"let player of players ; let i = index\">\n  <a (click)=\"chooseOpponent(player)\">Player {{i}}</a> : {{player}}\n</div>\n\n\n<section class=\"row\">\n  <div class=\"col-xs-12 col-sm-4\">\n    <button class=\"btn btn-default\" (click)=\"onRock()\"> Rock</button>\n  </div>\n  <div class=\"col-xs-12 col-sm-4\">\n    <button class=\"btn btn-default\" (click)=\"onScissors()\"> Scissors</button>\n  </div>\n  <div class=\"col-xs-12 col-sm-4\">\n    <button class=\"btn btn-default\" (click)=\"onPaper()\"> Paper</button>\n  </div>\n</section>\n";
 
 /***/ },
 /* 677 */
