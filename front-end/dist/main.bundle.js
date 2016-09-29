@@ -46561,7 +46561,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 var GameFieldComponent = (function () {
     function GameFieldComponent() {
-        this.socket = io.connect('http://localhost:3001');
+        this.socket = io.connect('http://rps-game.azurewebsites.net:3001/');
         this.playersChose = [];
     }
     GameFieldComponent.prototype.ngOnInit = function () {

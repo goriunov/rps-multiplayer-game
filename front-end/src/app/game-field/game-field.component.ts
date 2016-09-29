@@ -13,7 +13,7 @@ declare var io : any;
 
 
 export class GameFieldComponent implements OnInit{
-  socket = io.connect('http://localhost:3001');
+  socket = io.connect('http://rps-game.azurewebsites.net:3001/');
   playersChose =[];
 
 
