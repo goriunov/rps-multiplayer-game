@@ -1,5 +1,5 @@
 import {Component , OnInit} from '@angular/core';
-import { Observable } from 'rxjs/Observable';
+
 import 'rxjs/Rx';
 
 declare var io : any;
@@ -13,7 +13,7 @@ declare var io : any;
 
 
 export class GameFieldComponent implements OnInit{
-  socket = io.connect('http://rps-game.azurewebsites.net:3001/');
+  socket = io.connect('http://rps-game.azurewebsites.net/');
   playersChose =[];
 
 
