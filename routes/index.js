@@ -11,28 +11,47 @@ module.exports = function(io) {
 
   function newUser(client, clientID) {
     USERS[clientID] = client;
+    playersID.push(client.id);
+
   }
 
 
   var USERS = [];
+  var playersID = [];
+
   io.on('connection', function (client) {
     client.id = Math.random();
-    var user = new newUser(client, client.id);
+
+
+    client.emit('newClient' , client.id);
+    user = new newUser(client, client.id);
     console.log('Client connected with id: ' + USERS[client.id].id);
+
+    for (var i in USERS) {
+      USERS[i].emit('all-users' , playersID);
+    }
+
+
+
     client.on('disconnect', function () {
-      console.log('Client disconnected with id: ' + USERS[client.id].id)
+      console.log('Client disconnected with id: ' + USERS[client.id].id);
+      delete USERS[client.id];
+      playersID.splice(playersID.indexOf(client.id) , 1);
     });
 
 
     client.on('chose', function (str) {
-      console.log(str);
-      for (var i in USERS) {
-        var socket = USERS[i];
-        socket.emit('chose', str);
-      }
-    })
+        client.emit('chose', str.chose);
+        console.log(USERS[str.opponentID]);
+        USERS[str.opponentID].emit('chose', str.chose);
+    });
+
+
+    client.on('opponentID' , function(id){
+      USERS[id.receiver].emit('opponentID' , id.opponentID);
+    });
 
   });
 
   return router;
-}
+};

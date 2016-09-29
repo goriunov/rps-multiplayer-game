@@ -13,32 +13,54 @@ declare var io : any;
 
 
 export class GameFieldComponent implements OnInit{
-  socket = io.connect('http://rps-game.azurewebsites.net/');
-  playersChose =[];
+  socket = io.connect('/');
+
+  playersChose: string[] = [];
+  players: number[] = [];
 
 
   ngOnInit(){
-    this.socket.on('connect', function(data) {
+    localStorage.clear();
 
+    this.socket.on('newClient' , (id) =>{
+      localStorage.setItem('playerID', id);
     });
 
-      this.socket.on('chose', (chose) => {
+    this.socket.on('all-users' , (users)=>{
+      this.players = users;
+      console.log(users);
+      console.log(this.players);
+    });
+
+    this.socket.on('chose', (chose) => {
         console.log('got it');
         this.playersChose.push(chose);
       });
 
+    this.socket.on('opponentID' , function(id){
+      localStorage.setItem('opponentID' , id);
+    });
   }
 
+
+
+
+  chooseOpponent(id){
+    localStorage.setItem('opponentID' , id);
+    this.socket.emit( 'opponentID', { receiver: localStorage.getItem('opponentID') , opponentID :localStorage.getItem('playerID')});
+  }
+
+
   onRock(){
-    this.socket.emit('chose' , 'rock');
+    this.socket.emit('chose' , {chose: 'Rock' , playerID: localStorage.getItem('playerID') ,opponentID : localStorage.getItem('opponentID')});
   }
 
   onScissors(){
-    this.socket.emit('chose' , 'scissors');
+    this.socket.emit('chose' ,  {chose: 'scissors' , playerID: localStorage.getItem('playerID') ,opponentID : localStorage.getItem('opponentID')});
   }
 
   onPaper(){
-    this.socket.emit('chose' , 'paper');
+    this.socket.emit('chose' ,{chose: 'paper' ,playerID: localStorage.getItem('playerID') ,opponentID : localStorage.getItem('opponentID')});
   }
 
 

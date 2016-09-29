@@ -2,6 +2,13 @@
 <div class="col-xs-6 col-xs-offset-3" *ngFor="let chose of playersChose">
   {{chose}}
 </div>
+
+
+<div class="col-xs-6 col-xs-offset-3" *ngFor="let player of players ; let i = index">
+  <a (click)="chooseOpponent(player)">Player {{i}}</a>
+</div>
+
+
 <section class="row">
   <div class="col-xs-12 col-sm-4">
     <button class="btn btn-default" (click)="onRock()"> Rock</button>
@@ -12,5 +19,4 @@
   <div class="col-xs-12 col-sm-4">
     <button class="btn btn-default" (click)="onPaper()"> Paper</button>
   </div>
-  <h1>I am working well</h1>
 </section>

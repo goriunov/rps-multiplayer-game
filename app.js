@@ -9,12 +9,14 @@ var bodyParser = require('body-parser');
 var socket_io = require( "socket.io" );
 var io = socket_io();
 
-var routes = require('./routes/index')(io);
-var users = require('./routes/users');
+
 
 var app = express();
 
 app.io = io;
+
+var routes = require('./routes/index')(io);
+var users = require('./routes/users');
 
 
 // view engine setup
@@ -46,6 +48,8 @@ app.use(function (req, res, next) {
   // Pass to next layer of middleware
   next();
 });
+
+
 
 app.use('/', routes);
 app.use('/users', users);

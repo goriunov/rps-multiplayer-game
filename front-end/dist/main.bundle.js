@@ -46561,26 +46561,41 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 var GameFieldComponent = (function () {
     function GameFieldComponent() {
-        this.socket = io.connect('http://rps-game.azurewebsites.net/');
+        this.socket = io.connect('/');
         this.playersChose = [];
+        this.players = [];
     }
     GameFieldComponent.prototype.ngOnInit = function () {
         var _this = this;
-        this.socket.on('connect', function (data) {
+        localStorage.clear();
+        this.socket.on('newClient', function (id) {
+            localStorage.setItem('playerID', id);
+        });
+        this.socket.on('all-users', function (users) {
+            _this.players = users;
+            console.log(users);
+            console.log(_this.players);
         });
         this.socket.on('chose', function (chose) {
             console.log('got it');
             _this.playersChose.push(chose);
         });
+        this.socket.on('opponentID', function (id) {
+            localStorage.setItem('opponentID', id);
+        });
+    };
+    GameFieldComponent.prototype.chooseOpponent = function (id) {
+        localStorage.setItem('opponentID', id);
+        this.socket.emit('opponentID', { receiver: localStorage.getItem('opponentID'), opponentID: localStorage.getItem('playerID') });
     };
     GameFieldComponent.prototype.onRock = function () {
-        this.socket.emit('chose', 'rock');
+        this.socket.emit('chose', { chose: 'Rock', playerID: localStorage.getItem('playerID'), opponentID: localStorage.getItem('opponentID') });
     };
     GameFieldComponent.prototype.onScissors = function () {
-        this.socket.emit('chose', 'scissors');
+        this.socket.emit('chose', { chose: 'scissors', playerID: localStorage.getItem('playerID'), opponentID: localStorage.getItem('opponentID') });
     };
     GameFieldComponent.prototype.onPaper = function () {
-        this.socket.emit('chose', 'paper');
+        this.socket.emit('chose', { chose: 'paper', playerID: localStorage.getItem('playerID'), opponentID: localStorage.getItem('opponentID') });
     };
     GameFieldComponent = __decorate([
         __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["G" /* Component */])({
@@ -65373,7 +65388,7 @@ module.exports = "<h1>\n  {{title}}\n</h1>\n\n\n<router-outlet></router-outlet>\
 /* 676 */
 /***/ function(module, exports) {
 
-module.exports = "\n<div class=\"col-xs-6 col-xs-offset-3\" *ngFor=\"let chose of playersChose\">\n  {{chose}}\n</div>\n<section class=\"row\">\n  <div class=\"col-xs-12 col-sm-4\">\n    <button class=\"btn btn-default\" (click)=\"onRock()\"> Rock</button>\n  </div>\n  <div class=\"col-xs-12 col-sm-4\">\n    <button class=\"btn btn-default\" (click)=\"onScissors()\"> Scissors</button>\n  </div>\n  <div class=\"col-xs-12 col-sm-4\">\n    <button class=\"btn btn-default\" (click)=\"onPaper()\"> Paper</button>\n  </div>\n  <h1>I am working well</h1>\n</section>\n";
+module.exports = "\n<div class=\"col-xs-6 col-xs-offset-3\" *ngFor=\"let chose of playersChose\">\n  {{chose}}\n</div>\n\n\n<div class=\"col-xs-6 col-xs-offset-3\" *ngFor=\"let player of players ; let i = index\">\n  <a (click)=\"chooseOpponent(player)\">Player {{i}}</a>\n</div>\n\n\n<section class=\"row\">\n  <div class=\"col-xs-12 col-sm-4\">\n    <button class=\"btn btn-default\" (click)=\"onRock()\"> Rock</button>\n  </div>\n  <div class=\"col-xs-12 col-sm-4\">\n    <button class=\"btn btn-default\" (click)=\"onScissors()\"> Scissors</button>\n  </div>\n  <div class=\"col-xs-12 col-sm-4\">\n    <button class=\"btn btn-default\" (click)=\"onPaper()\"> Paper</button>\n  </div>\n</section>\n";
 
 /***/ },
 /* 677 */
