@@ -19,10 +19,6 @@ module.exports = function(io) {
   var USERS = [];
   var playersID = [];
 
-  io.configure(function () {
-    io.set("transports", ["xhr-polling"]);
-    io.set("polling duration", 10);
-  });
 
   io.on('connection', function (client) {
     client.id = Math.random();
