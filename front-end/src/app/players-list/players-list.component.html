@@ -1,0 +1,29 @@
+<section class="col-xs-12 col-sm-8 col-sm-offset-2">
+
+  <div *ngIf="invitationList" class="blackout">
+    <ul class=" list-group">
+      <h1 class="close-invitation-window-btn" (click)="invitationList = false">X</h1>
+      <li class="list-group-item invitations first-invitation" *ngFor="let callOnDuel of allCallsOnDuel">
+        <h4>{{callOnDuel}}</h4>
+        <button class="btn btn-danger" (click)="decline(callOnDuel)">-</button>
+        <button class="btn btn-primary" (click)="accept(callOnDuel)" >+</button>
+      </li>
+    </ul>
+  </div>
+
+  <ul class="list-group invitations-btn">
+    <button type="button" class="list-group-item" (click)="invitationList = true">Invitations to play <span class="badge">{{allCallsOnDuel.length}}</span></button>
+  </ul>
+
+  <div class="spacing">
+    <h1>Available players</h1>
+  </div>
+  <hr>
+  <div  class="list-group" >
+    <div class="spacing" *ngFor="let player of available_players; let i = index">
+      <a class="list-group-item active" (click)="chooseOpponent(player.id)">
+        <h4 class="list-group-item-heading">{{player.name}} ({{i+1}}):  {{player.id}}</h4>
+      </a>
+    </div>
+  </div>
+</section>

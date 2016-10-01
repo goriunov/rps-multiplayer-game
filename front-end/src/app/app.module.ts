@@ -4,21 +4,25 @@ import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 
 import { AppComponent } from './app.component';
-import { FrontEndRoutingModule } from "./app-routing.module";
-import { GameFieldComponent } from "./game-field/game-field.component";
+import { AppRoutingModule } from "./app-routing.module";
+import { PlayersListComponent } from "./players-list/players-list.component";
+import {GameBoardComponent} from "./game-board/game-board.component";
+import {SocketService} from "./socket.service";
+
 
 @NgModule({
   declarations: [
     AppComponent,
-    GameFieldComponent
+    PlayersListComponent,
+    GameBoardComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
     HttpModule,
-    FrontEndRoutingModule
+    AppRoutingModule
   ],
-  providers: [],
+  providers: [ SocketService ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
