@@ -60,6 +60,12 @@ app.get('/*' , function(req ,res ,next){
 //Create server
 var server = http.createServer(app);
 
+var port = 3000;
+
+if (process.env.PORT) {
+    port = process.env.PORT;
+}
+
 // Import Socket IO
 var IO = require('socket.io')(server);
 // Router for SocketIo external file
@@ -71,10 +77,10 @@ app.use('/' , function(){
 
 
 //Listen on port 3000
-server.listen(3000);
-server.on('listening' , function(){
-    console.log('Server running on localhost:3000');
+server.listen(port , function(){
+    console.log('Server listening on http://localhost:' + port);
 });
+
 
 
 
