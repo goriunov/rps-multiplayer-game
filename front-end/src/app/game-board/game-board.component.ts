@@ -16,6 +16,17 @@ export class GameBoardComponent implements OnInit{
   opponentDecision: string;
   finalResult: string;
 
+
+  waiting:boolean = false;
+  final:boolean = false;
+  paper:boolean  =false;
+  rock:boolean =false;
+  scissors:boolean =false;
+  opponentPaper:boolean =false;
+  opponentRock:boolean =false;
+  opponentScissors:boolean =false;
+
+
   constructor(private socketService: SocketService){}
 
 
@@ -30,39 +41,78 @@ export class GameBoardComponent implements OnInit{
     this.sockets.on('final decision' , (result)=>{
       this.opponentDecision = result.opponentDecision;
       this.myDesition = result.myDecision;
+      this.waiting = false;
 
       //Experimental logic
       if(this.opponentDecision == 'Rock' && this.myDesition == 'Paper'){
+        this.final = true;
+        this.paper = true;
+        this.opponentRock = true;
         this.finalResult = 'You won';
       }else if (this.opponentDecision == 'Rock' && this.myDesition == 'Scissors'){
+        this.final = true;
+        this.scissors = true;
+        this.opponentRock = true;
         this.finalResult = 'You lost';
       }else if (this.opponentDecision == 'Rock' && this.myDesition == 'Rock'){
-        this.finalResult = 'It is draw';
+        this.final = true;
+        this.rock = true;
+        this.opponentRock = true;
+        this.finalResult = 'Draw';
       }
 
       if(this.opponentDecision == 'Paper' && this.myDesition == 'Paper'){
-        this.finalResult = 'It is draw';
+        this.final = true;
+        this.paper = true;
+        this.opponentPaper = true;
+        this.finalResult = 'Draw';
       }else if (this.opponentDecision == 'Paper' && this.myDesition == 'Scissors'){
-        this.finalResult = 'You lost';
-      }else if (this.opponentDecision == 'Paper' && this.myDesition == 'Rock'){
+        this.final = true;
+        this.scissors = true;
+        this.opponentPaper = true;
         this.finalResult = 'You won';
+      }else if (this.opponentDecision == 'Paper' && this.myDesition == 'Rock'){
+        this.final = true;
+        this.rock = true;
+        this.opponentPaper = true;
+        this.finalResult = 'You lost';
       }
 
       if(this.opponentDecision == 'Scissors' && this.myDesition == 'Paper'){
+        this.final = true;
+        this.paper = true;
+        this.opponentScissors = true;
         this.finalResult = 'You lost';
       }else if (this.opponentDecision == 'Scissors' && this.myDesition == 'Scissors'){
-        this.finalResult = 'It is draw';
+        this.final = true;
+        this.scissors = true;
+        this.opponentScissors = true;
+        this.finalResult = 'Draw';
       }else if (this.opponentDecision == 'Scissors' && this.myDesition == 'Rock'){
+        this.final = true;
+        this.rock = true;
+        this.opponentScissors = true;
         this.finalResult = 'You won';
       }
-
     //  *************
+
+
 
     });
   }
 
 
   onDecision(decision){
+    this.final = false;
+    this.paper =false;
+    this.rock=false;
+    this.scissors=false;
+    this.opponentPaper=false;
+    this.opponentRock=false;
+    this.opponentScissors=false;
+    this.myDesition = '';
+    this.finalResult = '';
+    this.opponentDecision = '';
     this.sockets.emit('game decision' , {myID: this.myID , opponentID: this.opponentId , decision: decision});
   }
 

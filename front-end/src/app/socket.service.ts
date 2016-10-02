@@ -7,14 +7,16 @@ export class SocketService{
   sockets: any;
   opponentID: number;
   myID: EventEmitter<any> = new EventEmitter();
+  myName: EventEmitter<any> = new EventEmitter();
 
   runSocket(){
     this.sockets = io('/');
-    this.sockets.emit('create user' , 'My Name');
+    this.sockets.emit('create user' , 'Some name');
 
 
-    this.sockets.on('id' , (id) => {
-      this.myID.emit(id);
+    this.sockets.on('id' , (userInfo) => {
+      this.myID.emit(userInfo.id);
+      this.myName.emit(userInfo.name);
     });
   }
 

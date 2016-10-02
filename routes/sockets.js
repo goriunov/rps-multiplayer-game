@@ -35,7 +35,7 @@ module.exports = function(io){
             client.decision = '';
             createPlayer(client.id, client , client.name);
             emitter();
-            client.emit('id' , client.id);
+            client.emit('id' , {id: client.id , name: client.name});
         });
 
 
@@ -53,7 +53,7 @@ module.exports = function(io){
             if(ALL_PLAYERS[client.id] != null){
                 if(myIndexOf({name: client.name , id: client.id}) == -1){
                     AVILABLE_PLAYERS.push({name: client.name , id: client.id});
-                    client.emit('id' , client.id);
+                    client.emit('id' , {id: client.id , name: client.name});
                     emitter();
                 }
             }
@@ -61,7 +61,7 @@ module.exports = function(io){
 
 
         client.on('call duel' , function(call){
-            ALL_PLAYERS[call.opponent].emit('called on duel' , call.sender);
+            ALL_PLAYERS[call.opponent].emit('called on duel' , {id: call.senderID , name: call.senderName});
         });
 
 
@@ -75,7 +75,13 @@ module.exports = function(io){
             }
             emitter();
         });
-    //    ****************
+
+        client.on('decline duel' , function(id){
+            ALL_PLAYERS[id.receiver].emit('declined duel' , id.myID);
+        });
+    //****************
+
+
 
     //Game process
 
@@ -85,6 +91,9 @@ module.exports = function(io){
             if(client.decision != '' && ALL_PLAYERS[userDecision.opponentID].decision != ''){
                 client.emit('final decision' , {myDecision: client.decision , opponentDecision: ALL_PLAYERS[userDecision.opponentID].decision});
                 ALL_PLAYERS[userDecision.opponentID].emit('final decision' , {myDecision: ALL_PLAYERS[userDecision.opponentID].decision, opponentDecision: client.decision });
+
+                client.decision = '';
+                ALL_PLAYERS[userDecision.opponentID].decision = '';
             }
 
         });

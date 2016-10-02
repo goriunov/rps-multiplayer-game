@@ -1,0 +1,86 @@
+
+.chose{
+  margin-bottom: 5px;
+  text-align: center;
+  div{
+    display: table;
+    margin: 0 auto;
+  }
+}
+
+
+.divider{
+  min-height: 60px;
+}
+
+.mainResult{
+  background: white;
+}
+
+
+
+
+.forAllPictures{
+  color: black;
+  height: 144px;
+  width: 144px;
+  border-radius: 72px;
+}
+
+.pictures{
+  background: #337ab7;
+  &:hover{
+    cursor: pointer;
+    background:#2e6da4;
+  }
+}
+
+
+.opponent{
+  margin-bottom: 5px;
+  text-align: center;
+  div{
+    display: table;
+    margin: 0 auto;
+  }
+}
+
+.opponentPictures{
+  background: red;
+}
+
+
+.resultMy{
+  background: #337ab7;
+}
+
+
+@media screen and(max-width: 480px){
+
+  .forAllPictures{
+    height: 100px;
+    width: 100px;
+    border-radius: 50px;
+    img{
+      height: 90px;
+      width: 90px;
+    }
+  }
+
+
+}
+
+@media screen and(max-width: 340px){
+
+  .forAllPictures{
+    height: 80px;
+    width: 80px;
+    border-radius: 40px;
+    img{
+      height: 70px;
+      width: 70px;
+    }
+  }
+
+
+}

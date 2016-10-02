@@ -13,9 +13,11 @@ import {UserInformation} from "./userInformation";
 export class PlayersListComponent implements OnInit , OnDestroy{
   available_players: UserInformation[] = [];
   myID: number;
+  myName: string;
   invitationList: boolean = false;
-  allCallsOnDuel: number[] = [];
+  allCallsOnDuel: UserInformation[] = [];
   opponentID: number;
+  invaitedPeople: number[] = [];
 
   constructor( private router: Router , public socketService: SocketService){}
 
@@ -39,10 +41,15 @@ export class PlayersListComponent implements OnInit , OnDestroy{
       this.myID = id;
     });
 
+    this.socketService.myName.subscribe((name)=>{
+      this.myName = name;
+    });
+
 
     //If some one called you
-    this.sockets.on('called on duel' , (opponentID) =>{
-      this.allCallsOnDuel.push(opponentID);
+    this.sockets.on('called on duel' , (opponent) =>{
+      let caller : UserInformation = new UserInformation( opponent.name , opponent.id );
+      this.allCallsOnDuel.push(caller);
     });
 
     //If you called some one
@@ -51,14 +58,20 @@ export class PlayersListComponent implements OnInit , OnDestroy{
       this.socketService.sendOpponentID(this.opponentID);
       this.sockets.emit('on unavailable' , this.myID);
       this.router.navigate(['/game']);
-    })
+    });
+
+    this.sockets.on('declined duel' , (id)=>{
+      this.invaitedPeople.splice(this.invaitedPeople.indexOf(id) , 1);
+    });
   }
 
 
-  decline(declinedId){
-    this.allCallsOnDuel.splice(this.allCallsOnDuel.indexOf(declinedId) , 1);
-    this.opponentID = null;
+  decline(declinedUser){
+    this.sockets.emit('decline duel' , {myID: this.myID , receiver: declinedUser.id});
+    this.allCallsOnDuel.splice(this.myIndexOf(declinedUser) , 1);
   }
+
+
 
   accept(acceptedId){
     this.opponentID = acceptedId;
@@ -68,7 +81,17 @@ export class PlayersListComponent implements OnInit , OnDestroy{
   }
 
   chooseOpponent(opponentID){
-    this.sockets.emit('call duel' , {sender: this.myID , opponent: opponentID})
+    let permitToInvite:boolean = false;
+
+    if (this.invaitedPeople.indexOf(opponentID) == -1) {
+      permitToInvite = true;
+    }
+
+    if(permitToInvite) {
+      this.sockets.emit('call duel', {senderID: this.myID  ,senderName: this.myName, opponent: opponentID});
+      this.invaitedPeople.push(opponentID);
+    }
+
   }
 
   ngOnDestroy(){
@@ -77,4 +100,20 @@ export class PlayersListComponent implements OnInit , OnDestroy{
 
 
 
+
+
+
+  myIndexOf(obj) {
+    for (var i = 0; i < this.allCallsOnDuel.length; i++) {
+      if (this.allCallsOnDuel[i].name == obj.name && this.allCallsOnDuel[i].id == obj.id) {
+        return i;
+      }
+    }
+    return -1;
+  }
+
+
+
 }
+
+

@@ -1,12 +1,83 @@
-<section class="xol-xs-12 col-sm-6">
-  <button class="btn btn-default" (click)="onDecision('Rock')">Rock</button>
-  <button class="btn btn-default" (click)="onDecision('Paper')">Paper</button>
-  <button class="btn btn-default" (click)="onDecision('Scissors')">Scissors</button>
+
+<section class="col-xs-4 col-sm-4 chose">
+  <div (click)="onDecision('Rock'); waiting= true" class="pictures forAllPictures">
+    <img  src="/assets/pictures/rock.png">
+  </div>
+</section>
+
+<section class="col-xs-4 col-sm-4 chose">
+  <div (click)="onDecision('Paper'); waiting= true" class="pictures forAllPictures">
+    <img   src ="/assets/pictures/paper.png">
+  </div>
+</section>
+
+<section class="col-xs-4 col-sm-4 chose">
+  <div (click)="onDecision('Scissors'); waiting= true" class="pictures forAllPictures">
+    <img  src="/assets/pictures/scissors.png">
+  </div>
 </section>
 
 
-<section class="xol-xs-12 col-sm-6">
-  <div>
-    {{myDesition}} , {{opponentDecision}} Final result: {{finalResult}}
+
+
+
+<div class="col-xs-12 divider">
+</div>
+
+
+<section *ngIf="waiting" class="col-xs-12 chose">
+  <div class="mainResult">
+    <h1>Waiting for opponent !</h1>
+  </div>
+</section>
+
+
+
+
+<section *ngIf="rock" class="col-xs-12 col-sm-4 chose">
+  <div  class="resultMy forAllPictures">
+    <img  src="/assets/pictures/rock.png">
+  </div>
+</section>
+
+<section  *ngIf="paper" class="col-xs-12 col-sm-4 chose">
+  <div class="resultMy forAllPictures">
+    <img   src ="/assets/pictures/paper.png">
+  </div>
+</section>
+
+<section *ngIf="scissors" class="col-xs-12 col-sm-4 chose">
+  <div  class="resultMy forAllPictures">
+    <img  src="/assets/pictures/scissors.png">
+  </div>
+</section>
+
+
+
+
+<section *ngIf="final" class="col-xs-12 col-sm-4 chose">
+  <div class="mainResult forAllPictures">
+    <h2>-VS-</h2>
+    <h2>{{finalResult}}</h2>
+  </div>
+</section>
+
+
+
+<section *ngIf="opponentRock"  class="col-xs-12 col-sm-4 opponent">
+  <div class="opponentPictures forAllPictures">
+    <img  src="/assets/pictures/rock.png">
+  </div>
+</section>
+
+<section *ngIf="opponentPaper" class="col-xs-12 col-sm-4 opponent">
+  <div class="opponentPictures forAllPictures">
+    <img   src ="/assets/pictures/paper.png">
+  </div>
+</section>
+
+<section *ngIf="opponentScissors" class="col-xs-12 col-sm-4 opponent">
+  <div  class="opponentPictures forAllPictures">
+    <img  src="/assets/pictures/scissors.png">
   </div>
 </section>
