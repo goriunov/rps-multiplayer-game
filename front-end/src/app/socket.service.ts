@@ -10,7 +10,7 @@ export class SocketService{
   myName: EventEmitter<any> = new EventEmitter();
 
   runSocket(){
-    this.sockets = io('/');
+    this.sockets = io.connect();
     this.sockets.emit('create user' , 'Some name');
 
 

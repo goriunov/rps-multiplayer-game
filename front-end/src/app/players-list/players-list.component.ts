@@ -1,4 +1,4 @@
-import {Component, OnInit, OnDestroy ,Input} from '@angular/core';
+import {Component, OnInit, OnDestroy , NgZone} from '@angular/core';
 import {Router} from "@angular/router";
 import {SocketService} from "../socket.service";
 import {UserInformation} from "./userInformation";
@@ -19,7 +19,7 @@ export class PlayersListComponent implements OnInit , OnDestroy{
   opponentID: number;
   invaitedPeople: number[] = [];
 
-  constructor( private router: Router , public socketService: SocketService){}
+  constructor( private router: Router , public socketService: SocketService , private zone:NgZone){}
 
   sockets = this.socketService.getSocket();
 
@@ -29,6 +29,7 @@ export class PlayersListComponent implements OnInit , OnDestroy{
 
     this.sockets.on('players in' , (available)=>{
       this.available_players = available;
+      this.zone.run(()=>console.log('Done'));
     });
 
 
@@ -48,8 +49,12 @@ export class PlayersListComponent implements OnInit , OnDestroy{
 
     //If some one called you
     this.sockets.on('called on duel' , (opponent) =>{
+      console.log('got duel');
       let caller : UserInformation = new UserInformation( opponent.name , opponent.id );
+      // this.allCallsOnDuel = [...this.allCallsOnDuel, caller];
       this.allCallsOnDuel.push(caller);
+      this.zone.run(()=>console.log('Done'));
+
     });
 
     //If you called some one
@@ -62,6 +67,7 @@ export class PlayersListComponent implements OnInit , OnDestroy{
 
     this.sockets.on('declined duel' , (id)=>{
       this.invaitedPeople.splice(this.invaitedPeople.indexOf(id) , 1);
+      this.zone.run(()=>console.log('Done'));
     });
   }
 
@@ -81,6 +87,7 @@ export class PlayersListComponent implements OnInit , OnDestroy{
   }
 
   chooseOpponent(opponentID){
+    console.log('Send');
     let permitToInvite:boolean = false;
 
     if (this.invaitedPeople.indexOf(opponentID) == -1) {

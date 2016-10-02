@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit, NgZone} from '@angular/core';
 import {SocketService} from "../socket.service";
 
 @Component({
@@ -27,7 +27,8 @@ export class GameBoardComponent implements OnInit{
   opponentScissors:boolean =false;
 
 
-  constructor(private socketService: SocketService){}
+
+  constructor(private socketService: SocketService , private zone:NgZone){}
 
 
   ngOnInit(){
@@ -96,7 +97,7 @@ export class GameBoardComponent implements OnInit{
       }
     //  *************
 
-
+      this.zone.run(()=>console.log('Done'));
 
     });
   }
@@ -114,6 +115,7 @@ export class GameBoardComponent implements OnInit{
     this.finalResult = '';
     this.opponentDecision = '';
     this.sockets.emit('game decision' , {myID: this.myID , opponentID: this.opponentId , decision: decision});
+    this.zone.run(()=>console.log('Done'));
   }
 
 }
