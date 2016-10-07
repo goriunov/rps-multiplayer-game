@@ -1,4 +1,4 @@
-import {Component, OnInit, NgZone, OnDestroy} from '@angular/core';
+import {Component, OnInit, NgZone, OnDestroy, ChangeDetectorRef} from '@angular/core';
 import {SocketService} from "../socket.service";
 import {Router} from "@angular/router";
 
@@ -38,7 +38,7 @@ export class GameBoardComponent implements OnInit,OnDestroy{
   interval: any;
 
 
-  constructor(private socketService: SocketService , private zone:NgZone , private router:Router){}
+  constructor(private socketService: SocketService , private ref: ChangeDetectorRef , private zone:NgZone , private router:Router){}
 
 
   ngOnInit(){
@@ -61,8 +61,7 @@ export class GameBoardComponent implements OnInit,OnDestroy{
 
           this.interval = setInterval(()=> {
             this.timing = this.timing - 1;
-            this.zone.run(()=> {
-            });
+            this.ref.detectChanges()
           }, 1000)
         }
 
@@ -140,7 +139,7 @@ export class GameBoardComponent implements OnInit,OnDestroy{
       }
     //  *************
 
-      this.zone.run(()=>{});
+      this.ref.detectChanges()
 
     });
 
@@ -148,14 +147,14 @@ export class GameBoardComponent implements OnInit,OnDestroy{
       this.finalResult = 'Your opponent left the game';
       this.final = true;
 
-      this.zone.run(()=>{});
+      this.ref.detectChanges()
 
     });
 
     this.sockets.on('replay' , ()=>{
       this.final = false;
       this.waitingReplay = false;
-      this.zone.run(()=>{});
+      this.ref.detectChanges()
     })
   }
 
@@ -174,7 +173,7 @@ export class GameBoardComponent implements OnInit,OnDestroy{
     this.sockets.emit('waiting' , this.opponentId);
     this.sockets.emit('game decision' , {myID: this.myID , opponentID: this.opponentId , decision: decision});
 
-    this.zone.run(()=>{});
+    this.ref.detectChanges()
   }
 
 
