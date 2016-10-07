@@ -59,74 +59,88 @@ export const GameBoardComponentNgFactory:import12.ComponentFactory<import3.GameB
 const styles_GameBoardComponent:any[] = [import13.styles];
 var renderType_GameBoardComponent:import0.RenderComponentType = (null as any);
 class _View_GameBoardComponent0 extends import1.AppView<import3.GameBoardComponent> {
-  _text_0:any;
-  _el_1:any;
-  _text_2:any;
-  _el_3:any;
-  _text_4:any;
-  _el_5:any;
+  _el_0:any;
+  _text_1:any;
+  _el_2:any;
+  _text_3:any;
+  _el_4:any;
+  _text_5:any;
   _text_6:any;
   _text_7:any;
-  _text_8:any;
-  _el_9:any;
-  _text_10:any;
-  _el_11:any;
+  _el_8:any;
+  _text_9:any;
+  _el_10:any;
+  _text_11:any;
   _text_12:any;
-  _el_13:any;
+  _text_13:any;
   _text_14:any;
-  _text_15:any;
+  _el_15:any;
   _text_16:any;
   _el_17:any;
   _text_18:any;
   _el_19:any;
   _text_20:any;
-  _el_21:any;
+  _text_21:any;
   _text_22:any;
-  _text_23:any;
+  _el_23:any;
   _text_24:any;
   _el_25:any;
   _text_26:any;
-  _text_27:any;
-  _anchor_28:any;
-  /*private*/ _appEl_28:import2.AppElement;
-  _TemplateRef_28_5:any;
-  _NgIf_28_6:import14.NgIf;
+  _el_27:any;
+  _text_28:any;
   _text_29:any;
-  _anchor_30:any;
-  /*private*/ _appEl_30:import2.AppElement;
-  _TemplateRef_30_5:any;
-  _NgIf_30_6:import14.NgIf;
-  _text_31:any;
-  _anchor_32:any;
-  /*private*/ _appEl_32:import2.AppElement;
-  _TemplateRef_32_5:any;
-  _NgIf_32_6:import14.NgIf;
-  _text_33:any;
-  _anchor_34:any;
-  /*private*/ _appEl_34:import2.AppElement;
-  _TemplateRef_34_5:any;
-  _NgIf_34_6:import14.NgIf;
-  _text_35:any;
-  _anchor_36:any;
-  /*private*/ _appEl_36:import2.AppElement;
-  _TemplateRef_36_5:any;
-  _NgIf_36_6:import14.NgIf;
+  _text_30:any;
+  _el_31:any;
+  _text_32:any;
+  _el_33:any;
+  _text_34:any;
+  _el_35:any;
+  _text_36:any;
   _text_37:any;
-  _anchor_38:any;
-  /*private*/ _appEl_38:import2.AppElement;
-  _TemplateRef_38_5:any;
-  _NgIf_38_6:import14.NgIf;
-  _text_39:any;
-  _anchor_40:any;
-  /*private*/ _appEl_40:import2.AppElement;
-  _TemplateRef_40_5:any;
-  _NgIf_40_6:import14.NgIf;
+  _text_38:any;
+  _el_39:any;
+  _text_40:any;
   _text_41:any;
   _anchor_42:any;
   /*private*/ _appEl_42:import2.AppElement;
   _TemplateRef_42_5:any;
   _NgIf_42_6:import14.NgIf;
   _text_43:any;
+  _anchor_44:any;
+  /*private*/ _appEl_44:import2.AppElement;
+  _TemplateRef_44_5:any;
+  _NgIf_44_6:import14.NgIf;
+  _text_45:any;
+  _anchor_46:any;
+  /*private*/ _appEl_46:import2.AppElement;
+  _TemplateRef_46_5:any;
+  _NgIf_46_6:import14.NgIf;
+  _text_47:any;
+  _anchor_48:any;
+  /*private*/ _appEl_48:import2.AppElement;
+  _TemplateRef_48_5:any;
+  _NgIf_48_6:import14.NgIf;
+  _text_49:any;
+  _anchor_50:any;
+  /*private*/ _appEl_50:import2.AppElement;
+  _TemplateRef_50_5:any;
+  _NgIf_50_6:import14.NgIf;
+  _text_51:any;
+  _anchor_52:any;
+  /*private*/ _appEl_52:import2.AppElement;
+  _TemplateRef_52_5:any;
+  _NgIf_52_6:import14.NgIf;
+  _text_53:any;
+  _anchor_54:any;
+  /*private*/ _appEl_54:import2.AppElement;
+  _TemplateRef_54_5:any;
+  _NgIf_54_6:import14.NgIf;
+  _text_55:any;
+  _anchor_56:any;
+  /*private*/ _appEl_56:import2.AppElement;
+  _TemplateRef_56_5:any;
+  _NgIf_56_6:import14.NgIf;
+  _text_57:any;
   /*private*/ _expr_3:any;
   /*private*/ _expr_4:any;
   /*private*/ _expr_5:any;
@@ -140,87 +154,106 @@ class _View_GameBoardComponent0 extends import1.AppView<import3.GameBoardCompone
   }
   createInternal(rootSelector:string):import2.AppElement {
     const parentRenderNode:any = this.renderer.createViewRoot(this.declarationAppElement.nativeElement);
-    this._text_0 = this.renderer.createText(parentRenderNode,'\n',(null as any));
-    this._el_1 = this.renderer.createElement(parentRenderNode,'section',(null as any));
-    this.renderer.setElementAttribute(this._el_1,'class','col-xs-4 col-sm-4 chose');
-    this._text_2 = this.renderer.createText(this._el_1,'\n  ',(null as any));
-    this._el_3 = this.renderer.createElement(this._el_1,'div',(null as any));
-    this.renderer.setElementAttribute(this._el_3,'class','pictures forAllPictures');
-    this._text_4 = this.renderer.createText(this._el_3,'\n    ',(null as any));
-    this._el_5 = this.renderer.createElement(this._el_3,'img',(null as any));
-    this.renderer.setElementAttribute(this._el_5,'src','/assets/pictures/rock.png');
-    this._text_6 = this.renderer.createText(this._el_3,'\n  ',(null as any));
-    this._text_7 = this.renderer.createText(this._el_1,'\n',(null as any));
-    this._text_8 = this.renderer.createText(parentRenderNode,'\n\n',(null as any));
-    this._el_9 = this.renderer.createElement(parentRenderNode,'section',(null as any));
-    this.renderer.setElementAttribute(this._el_9,'class','col-xs-4 col-sm-4 chose');
-    this._text_10 = this.renderer.createText(this._el_9,'\n  ',(null as any));
-    this._el_11 = this.renderer.createElement(this._el_9,'div',(null as any));
-    this.renderer.setElementAttribute(this._el_11,'class','pictures forAllPictures');
-    this._text_12 = this.renderer.createText(this._el_11,'\n    ',(null as any));
-    this._el_13 = this.renderer.createElement(this._el_11,'img',(null as any));
-    this.renderer.setElementAttribute(this._el_13,'src','/assets/pictures/paper.png');
-    this._text_14 = this.renderer.createText(this._el_11,'\n  ',(null as any));
-    this._text_15 = this.renderer.createText(this._el_9,'\n',(null as any));
-    this._text_16 = this.renderer.createText(parentRenderNode,'\n\n',(null as any));
-    this._el_17 = this.renderer.createElement(parentRenderNode,'section',(null as any));
-    this.renderer.setElementAttribute(this._el_17,'class','col-xs-4 col-sm-4 chose');
-    this._text_18 = this.renderer.createText(this._el_17,'\n  ',(null as any));
-    this._el_19 = this.renderer.createElement(this._el_17,'div',(null as any));
-    this.renderer.setElementAttribute(this._el_19,'class','pictures forAllPictures');
-    this._text_20 = this.renderer.createText(this._el_19,'\n    ',(null as any));
-    this._el_21 = this.renderer.createElement(this._el_19,'img',(null as any));
-    this.renderer.setElementAttribute(this._el_21,'src','/assets/pictures/scissors.png');
-    this._text_22 = this.renderer.createText(this._el_19,'\n  ',(null as any));
-    this._text_23 = this.renderer.createText(this._el_17,'\n',(null as any));
-    this._text_24 = this.renderer.createText(parentRenderNode,'\n\n\n\n\n\n',(null as any));
-    this._el_25 = this.renderer.createElement(parentRenderNode,'div',(null as any));
-    this.renderer.setElementAttribute(this._el_25,'class','col-xs-12 divider');
-    this._text_26 = this.renderer.createText(this._el_25,'\n',(null as any));
-    this._text_27 = this.renderer.createText(parentRenderNode,'\n\n\n',(null as any));
-    this._anchor_28 = this.renderer.createTemplateAnchor(parentRenderNode,(null as any));
-    this._appEl_28 = new import2.AppElement(28,(null as any),this,this._anchor_28);
-    this._TemplateRef_28_5 = new import15.TemplateRef_(this._appEl_28,viewFactory_GameBoardComponent1);
-    this._NgIf_28_6 = new import14.NgIf(this._appEl_28.vcRef,this._TemplateRef_28_5);
-    this._text_29 = this.renderer.createText(parentRenderNode,'\n\n\n\n\n',(null as any));
-    this._anchor_30 = this.renderer.createTemplateAnchor(parentRenderNode,(null as any));
-    this._appEl_30 = new import2.AppElement(30,(null as any),this,this._anchor_30);
-    this._TemplateRef_30_5 = new import15.TemplateRef_(this._appEl_30,viewFactory_GameBoardComponent2);
-    this._NgIf_30_6 = new import14.NgIf(this._appEl_30.vcRef,this._TemplateRef_30_5);
-    this._text_31 = this.renderer.createText(parentRenderNode,'\n\n',(null as any));
-    this._anchor_32 = this.renderer.createTemplateAnchor(parentRenderNode,(null as any));
-    this._appEl_32 = new import2.AppElement(32,(null as any),this,this._anchor_32);
-    this._TemplateRef_32_5 = new import15.TemplateRef_(this._appEl_32,viewFactory_GameBoardComponent3);
-    this._NgIf_32_6 = new import14.NgIf(this._appEl_32.vcRef,this._TemplateRef_32_5);
-    this._text_33 = this.renderer.createText(parentRenderNode,'\n\n',(null as any));
-    this._anchor_34 = this.renderer.createTemplateAnchor(parentRenderNode,(null as any));
-    this._appEl_34 = new import2.AppElement(34,(null as any),this,this._anchor_34);
-    this._TemplateRef_34_5 = new import15.TemplateRef_(this._appEl_34,viewFactory_GameBoardComponent4);
-    this._NgIf_34_6 = new import14.NgIf(this._appEl_34.vcRef,this._TemplateRef_34_5);
-    this._text_35 = this.renderer.createText(parentRenderNode,'\n\n\n\n\n',(null as any));
-    this._anchor_36 = this.renderer.createTemplateAnchor(parentRenderNode,(null as any));
-    this._appEl_36 = new import2.AppElement(36,(null as any),this,this._anchor_36);
-    this._TemplateRef_36_5 = new import15.TemplateRef_(this._appEl_36,viewFactory_GameBoardComponent5);
-    this._NgIf_36_6 = new import14.NgIf(this._appEl_36.vcRef,this._TemplateRef_36_5);
-    this._text_37 = this.renderer.createText(parentRenderNode,'\n\n\n\n',(null as any));
-    this._anchor_38 = this.renderer.createTemplateAnchor(parentRenderNode,(null as any));
-    this._appEl_38 = new import2.AppElement(38,(null as any),this,this._anchor_38);
-    this._TemplateRef_38_5 = new import15.TemplateRef_(this._appEl_38,viewFactory_GameBoardComponent6);
-    this._NgIf_38_6 = new import14.NgIf(this._appEl_38.vcRef,this._TemplateRef_38_5);
-    this._text_39 = this.renderer.createText(parentRenderNode,'\n\n',(null as any));
-    this._anchor_40 = this.renderer.createTemplateAnchor(parentRenderNode,(null as any));
-    this._appEl_40 = new import2.AppElement(40,(null as any),this,this._anchor_40);
-    this._TemplateRef_40_5 = new import15.TemplateRef_(this._appEl_40,viewFactory_GameBoardComponent7);
-    this._NgIf_40_6 = new import14.NgIf(this._appEl_40.vcRef,this._TemplateRef_40_5);
-    this._text_41 = this.renderer.createText(parentRenderNode,'\n\n',(null as any));
+    this._el_0 = this.renderer.createElement(parentRenderNode,'section',(null as any));
+    this.renderer.setElementAttribute(this._el_0,'class','col-xs-12 spacing');
+    this._text_1 = this.renderer.createText(this._el_0,'\n  ',(null as any));
+    this._el_2 = this.renderer.createElement(this._el_0,'div',(null as any));
+    this.renderer.setElementAttribute(this._el_2,'class','col-xs-6');
+    this._text_3 = this.renderer.createText(this._el_2,'\n    ',(null as any));
+    this._el_4 = this.renderer.createElement(this._el_2,'span',(null as any));
+    this.renderer.setElementAttribute(this._el_4,'class','tag tag-pill tag-primary');
+    this._text_5 = this.renderer.createText(this._el_4,'0',(null as any));
+    this._text_6 = this.renderer.createText(this._el_2,'\n  ',(null as any));
+    this._text_7 = this.renderer.createText(this._el_0,'\n  ',(null as any));
+    this._el_8 = this.renderer.createElement(this._el_0,'div',(null as any));
+    this.renderer.setElementAttribute(this._el_8,'class','col-xs-6');
+    this._text_9 = this.renderer.createText(this._el_8,'\n    ',(null as any));
+    this._el_10 = this.renderer.createElement(this._el_8,'span',(null as any));
+    this.renderer.setElementAttribute(this._el_10,'class','tag tag-pill tag-danger');
+    this._text_11 = this.renderer.createText(this._el_10,'0',(null as any));
+    this._text_12 = this.renderer.createText(this._el_8,'\n  ',(null as any));
+    this._text_13 = this.renderer.createText(this._el_0,'\n\n',(null as any));
+    this._text_14 = this.renderer.createText(parentRenderNode,'\n\n\n',(null as any));
+    this._el_15 = this.renderer.createElement(parentRenderNode,'section',(null as any));
+    this.renderer.setElementAttribute(this._el_15,'class','col-xs-4 col-sm-4 chose');
+    this._text_16 = this.renderer.createText(this._el_15,'\n  ',(null as any));
+    this._el_17 = this.renderer.createElement(this._el_15,'div',(null as any));
+    this.renderer.setElementAttribute(this._el_17,'class','pictures forAllPictures');
+    this._text_18 = this.renderer.createText(this._el_17,'\n    ',(null as any));
+    this._el_19 = this.renderer.createElement(this._el_17,'img',(null as any));
+    this.renderer.setElementAttribute(this._el_19,'src','/assets/pictures/rock.png');
+    this._text_20 = this.renderer.createText(this._el_17,'\n  ',(null as any));
+    this._text_21 = this.renderer.createText(this._el_15,'\n',(null as any));
+    this._text_22 = this.renderer.createText(parentRenderNode,'\n\n',(null as any));
+    this._el_23 = this.renderer.createElement(parentRenderNode,'section',(null as any));
+    this.renderer.setElementAttribute(this._el_23,'class','col-xs-4 col-sm-4 chose');
+    this._text_24 = this.renderer.createText(this._el_23,'\n  ',(null as any));
+    this._el_25 = this.renderer.createElement(this._el_23,'div',(null as any));
+    this.renderer.setElementAttribute(this._el_25,'class','pictures forAllPictures');
+    this._text_26 = this.renderer.createText(this._el_25,'\n    ',(null as any));
+    this._el_27 = this.renderer.createElement(this._el_25,'img',(null as any));
+    this.renderer.setElementAttribute(this._el_27,'src','/assets/pictures/paper.png');
+    this._text_28 = this.renderer.createText(this._el_25,'\n  ',(null as any));
+    this._text_29 = this.renderer.createText(this._el_23,'\n',(null as any));
+    this._text_30 = this.renderer.createText(parentRenderNode,'\n\n',(null as any));
+    this._el_31 = this.renderer.createElement(parentRenderNode,'section',(null as any));
+    this.renderer.setElementAttribute(this._el_31,'class','col-xs-4 col-sm-4 chose');
+    this._text_32 = this.renderer.createText(this._el_31,'\n  ',(null as any));
+    this._el_33 = this.renderer.createElement(this._el_31,'div',(null as any));
+    this.renderer.setElementAttribute(this._el_33,'class','pictures forAllPictures');
+    this._text_34 = this.renderer.createText(this._el_33,'\n    ',(null as any));
+    this._el_35 = this.renderer.createElement(this._el_33,'img',(null as any));
+    this.renderer.setElementAttribute(this._el_35,'src','/assets/pictures/scissors.png');
+    this._text_36 = this.renderer.createText(this._el_33,'\n  ',(null as any));
+    this._text_37 = this.renderer.createText(this._el_31,'\n',(null as any));
+    this._text_38 = this.renderer.createText(parentRenderNode,'\n\n\n\n\n\n',(null as any));
+    this._el_39 = this.renderer.createElement(parentRenderNode,'div',(null as any));
+    this.renderer.setElementAttribute(this._el_39,'class','col-xs-12 divider');
+    this._text_40 = this.renderer.createText(this._el_39,'\n',(null as any));
+    this._text_41 = this.renderer.createText(parentRenderNode,'\n\n\n',(null as any));
     this._anchor_42 = this.renderer.createTemplateAnchor(parentRenderNode,(null as any));
     this._appEl_42 = new import2.AppElement(42,(null as any),this,this._anchor_42);
-    this._TemplateRef_42_5 = new import15.TemplateRef_(this._appEl_42,viewFactory_GameBoardComponent8);
+    this._TemplateRef_42_5 = new import15.TemplateRef_(this._appEl_42,viewFactory_GameBoardComponent1);
     this._NgIf_42_6 = new import14.NgIf(this._appEl_42.vcRef,this._TemplateRef_42_5);
-    this._text_43 = this.renderer.createText(parentRenderNode,'\n',(null as any));
-    var disposable_0:Function = this.renderer.listen(this._el_3,'click',this.eventHandler(this._handle_click_3_0.bind(this)));
-    var disposable_1:Function = this.renderer.listen(this._el_11,'click',this.eventHandler(this._handle_click_11_0.bind(this)));
-    var disposable_2:Function = this.renderer.listen(this._el_19,'click',this.eventHandler(this._handle_click_19_0.bind(this)));
+    this._text_43 = this.renderer.createText(parentRenderNode,'\n\n\n\n\n',(null as any));
+    this._anchor_44 = this.renderer.createTemplateAnchor(parentRenderNode,(null as any));
+    this._appEl_44 = new import2.AppElement(44,(null as any),this,this._anchor_44);
+    this._TemplateRef_44_5 = new import15.TemplateRef_(this._appEl_44,viewFactory_GameBoardComponent2);
+    this._NgIf_44_6 = new import14.NgIf(this._appEl_44.vcRef,this._TemplateRef_44_5);
+    this._text_45 = this.renderer.createText(parentRenderNode,'\n\n',(null as any));
+    this._anchor_46 = this.renderer.createTemplateAnchor(parentRenderNode,(null as any));
+    this._appEl_46 = new import2.AppElement(46,(null as any),this,this._anchor_46);
+    this._TemplateRef_46_5 = new import15.TemplateRef_(this._appEl_46,viewFactory_GameBoardComponent3);
+    this._NgIf_46_6 = new import14.NgIf(this._appEl_46.vcRef,this._TemplateRef_46_5);
+    this._text_47 = this.renderer.createText(parentRenderNode,'\n\n',(null as any));
+    this._anchor_48 = this.renderer.createTemplateAnchor(parentRenderNode,(null as any));
+    this._appEl_48 = new import2.AppElement(48,(null as any),this,this._anchor_48);
+    this._TemplateRef_48_5 = new import15.TemplateRef_(this._appEl_48,viewFactory_GameBoardComponent4);
+    this._NgIf_48_6 = new import14.NgIf(this._appEl_48.vcRef,this._TemplateRef_48_5);
+    this._text_49 = this.renderer.createText(parentRenderNode,'\n\n\n\n\n',(null as any));
+    this._anchor_50 = this.renderer.createTemplateAnchor(parentRenderNode,(null as any));
+    this._appEl_50 = new import2.AppElement(50,(null as any),this,this._anchor_50);
+    this._TemplateRef_50_5 = new import15.TemplateRef_(this._appEl_50,viewFactory_GameBoardComponent5);
+    this._NgIf_50_6 = new import14.NgIf(this._appEl_50.vcRef,this._TemplateRef_50_5);
+    this._text_51 = this.renderer.createText(parentRenderNode,'\n\n\n\n',(null as any));
+    this._anchor_52 = this.renderer.createTemplateAnchor(parentRenderNode,(null as any));
+    this._appEl_52 = new import2.AppElement(52,(null as any),this,this._anchor_52);
+    this._TemplateRef_52_5 = new import15.TemplateRef_(this._appEl_52,viewFactory_GameBoardComponent6);
+    this._NgIf_52_6 = new import14.NgIf(this._appEl_52.vcRef,this._TemplateRef_52_5);
+    this._text_53 = this.renderer.createText(parentRenderNode,'\n\n',(null as any));
+    this._anchor_54 = this.renderer.createTemplateAnchor(parentRenderNode,(null as any));
+    this._appEl_54 = new import2.AppElement(54,(null as any),this,this._anchor_54);
+    this._TemplateRef_54_5 = new import15.TemplateRef_(this._appEl_54,viewFactory_GameBoardComponent7);
+    this._NgIf_54_6 = new import14.NgIf(this._appEl_54.vcRef,this._TemplateRef_54_5);
+    this._text_55 = this.renderer.createText(parentRenderNode,'\n\n',(null as any));
+    this._anchor_56 = this.renderer.createTemplateAnchor(parentRenderNode,(null as any));
+    this._appEl_56 = new import2.AppElement(56,(null as any),this,this._anchor_56);
+    this._TemplateRef_56_5 = new import15.TemplateRef_(this._appEl_56,viewFactory_GameBoardComponent8);
+    this._NgIf_56_6 = new import14.NgIf(this._appEl_56.vcRef,this._TemplateRef_56_5);
+    this._text_57 = this.renderer.createText(parentRenderNode,'\n',(null as any));
+    var disposable_0:Function = this.renderer.listen(this._el_17,'click',this.eventHandler(this._handle_click_17_0.bind(this)));
+    var disposable_1:Function = this.renderer.listen(this._el_25,'click',this.eventHandler(this._handle_click_25_0.bind(this)));
+    var disposable_2:Function = this.renderer.listen(this._el_33,'click',this.eventHandler(this._handle_click_33_0.bind(this)));
     this._expr_3 = import7.UNINITIALIZED;
     this._expr_4 = import7.UNINITIALIZED;
     this._expr_5 = import7.UNINITIALIZED;
@@ -230,50 +263,64 @@ class _View_GameBoardComponent0 extends import1.AppView<import3.GameBoardCompone
     this._expr_9 = import7.UNINITIALIZED;
     this._expr_10 = import7.UNINITIALIZED;
     this.init([],[
-      this._text_0,
-      this._el_1,
-      this._text_2,
-      this._el_3,
-      this._text_4,
-      this._el_5,
+      this._el_0,
+      this._text_1,
+      this._el_2,
+      this._text_3,
+      this._el_4,
+      this._text_5,
       this._text_6,
       this._text_7,
-      this._text_8,
-      this._el_9,
-      this._text_10,
-      this._el_11,
+      this._el_8,
+      this._text_9,
+      this._el_10,
+      this._text_11,
       this._text_12,
-      this._el_13,
+      this._text_13,
       this._text_14,
-      this._text_15,
+      this._el_15,
       this._text_16,
       this._el_17,
       this._text_18,
       this._el_19,
       this._text_20,
-      this._el_21,
+      this._text_21,
       this._text_22,
-      this._text_23,
+      this._el_23,
       this._text_24,
       this._el_25,
       this._text_26,
-      this._text_27,
-      this._anchor_28,
+      this._el_27,
+      this._text_28,
       this._text_29,
-      this._anchor_30,
-      this._text_31,
-      this._anchor_32,
-      this._text_33,
-      this._anchor_34,
-      this._text_35,
-      this._anchor_36,
+      this._text_30,
+      this._el_31,
+      this._text_32,
+      this._el_33,
+      this._text_34,
+      this._el_35,
+      this._text_36,
       this._text_37,
-      this._anchor_38,
-      this._text_39,
-      this._anchor_40,
+      this._text_38,
+      this._el_39,
+      this._text_40,
       this._text_41,
       this._anchor_42,
-      this._text_43
+      this._text_43,
+      this._anchor_44,
+      this._text_45,
+      this._anchor_46,
+      this._text_47,
+      this._anchor_48,
+      this._text_49,
+      this._anchor_50,
+      this._text_51,
+      this._anchor_52,
+      this._text_53,
+      this._anchor_54,
+      this._text_55,
+      this._anchor_56,
+      this._text_57
     ]
     ,[
       disposable_0,
@@ -284,81 +331,81 @@ class _View_GameBoardComponent0 extends import1.AppView<import3.GameBoardCompone
     return (null as any);
   }
   injectorGetInternal(token:any,requestNodeIndex:number,notFoundResult:any):any {
-    if (((token === import15.TemplateRef) && (28 === requestNodeIndex))) { return this._TemplateRef_28_5; }
-    if (((token === import14.NgIf) && (28 === requestNodeIndex))) { return this._NgIf_28_6; }
-    if (((token === import15.TemplateRef) && (30 === requestNodeIndex))) { return this._TemplateRef_30_5; }
-    if (((token === import14.NgIf) && (30 === requestNodeIndex))) { return this._NgIf_30_6; }
-    if (((token === import15.TemplateRef) && (32 === requestNodeIndex))) { return this._TemplateRef_32_5; }
-    if (((token === import14.NgIf) && (32 === requestNodeIndex))) { return this._NgIf_32_6; }
-    if (((token === import15.TemplateRef) && (34 === requestNodeIndex))) { return this._TemplateRef_34_5; }
-    if (((token === import14.NgIf) && (34 === requestNodeIndex))) { return this._NgIf_34_6; }
-    if (((token === import15.TemplateRef) && (36 === requestNodeIndex))) { return this._TemplateRef_36_5; }
-    if (((token === import14.NgIf) && (36 === requestNodeIndex))) { return this._NgIf_36_6; }
-    if (((token === import15.TemplateRef) && (38 === requestNodeIndex))) { return this._TemplateRef_38_5; }
-    if (((token === import14.NgIf) && (38 === requestNodeIndex))) { return this._NgIf_38_6; }
-    if (((token === import15.TemplateRef) && (40 === requestNodeIndex))) { return this._TemplateRef_40_5; }
-    if (((token === import14.NgIf) && (40 === requestNodeIndex))) { return this._NgIf_40_6; }
     if (((token === import15.TemplateRef) && (42 === requestNodeIndex))) { return this._TemplateRef_42_5; }
     if (((token === import14.NgIf) && (42 === requestNodeIndex))) { return this._NgIf_42_6; }
+    if (((token === import15.TemplateRef) && (44 === requestNodeIndex))) { return this._TemplateRef_44_5; }
+    if (((token === import14.NgIf) && (44 === requestNodeIndex))) { return this._NgIf_44_6; }
+    if (((token === import15.TemplateRef) && (46 === requestNodeIndex))) { return this._TemplateRef_46_5; }
+    if (((token === import14.NgIf) && (46 === requestNodeIndex))) { return this._NgIf_46_6; }
+    if (((token === import15.TemplateRef) && (48 === requestNodeIndex))) { return this._TemplateRef_48_5; }
+    if (((token === import14.NgIf) && (48 === requestNodeIndex))) { return this._NgIf_48_6; }
+    if (((token === import15.TemplateRef) && (50 === requestNodeIndex))) { return this._TemplateRef_50_5; }
+    if (((token === import14.NgIf) && (50 === requestNodeIndex))) { return this._NgIf_50_6; }
+    if (((token === import15.TemplateRef) && (52 === requestNodeIndex))) { return this._TemplateRef_52_5; }
+    if (((token === import14.NgIf) && (52 === requestNodeIndex))) { return this._NgIf_52_6; }
+    if (((token === import15.TemplateRef) && (54 === requestNodeIndex))) { return this._TemplateRef_54_5; }
+    if (((token === import14.NgIf) && (54 === requestNodeIndex))) { return this._NgIf_54_6; }
+    if (((token === import15.TemplateRef) && (56 === requestNodeIndex))) { return this._TemplateRef_56_5; }
+    if (((token === import14.NgIf) && (56 === requestNodeIndex))) { return this._NgIf_56_6; }
     return notFoundResult;
   }
   detectChangesInternal(throwOnChange:boolean):void {
     const currVal_3:any = this.context.waiting;
     if (import4.checkBinding(throwOnChange,this._expr_3,currVal_3)) {
-      this._NgIf_28_6.ngIf = currVal_3;
+      this._NgIf_42_6.ngIf = currVal_3;
       this._expr_3 = currVal_3;
     }
     const currVal_4:any = this.context.rock;
     if (import4.checkBinding(throwOnChange,this._expr_4,currVal_4)) {
-      this._NgIf_30_6.ngIf = currVal_4;
+      this._NgIf_44_6.ngIf = currVal_4;
       this._expr_4 = currVal_4;
     }
     const currVal_5:any = this.context.paper;
     if (import4.checkBinding(throwOnChange,this._expr_5,currVal_5)) {
-      this._NgIf_32_6.ngIf = currVal_5;
+      this._NgIf_46_6.ngIf = currVal_5;
       this._expr_5 = currVal_5;
     }
     const currVal_6:any = this.context.scissors;
     if (import4.checkBinding(throwOnChange,this._expr_6,currVal_6)) {
-      this._NgIf_34_6.ngIf = currVal_6;
+      this._NgIf_48_6.ngIf = currVal_6;
       this._expr_6 = currVal_6;
     }
     const currVal_7:any = this.context.final;
     if (import4.checkBinding(throwOnChange,this._expr_7,currVal_7)) {
-      this._NgIf_36_6.ngIf = currVal_7;
+      this._NgIf_50_6.ngIf = currVal_7;
       this._expr_7 = currVal_7;
     }
     const currVal_8:any = this.context.opponentRock;
     if (import4.checkBinding(throwOnChange,this._expr_8,currVal_8)) {
-      this._NgIf_38_6.ngIf = currVal_8;
+      this._NgIf_52_6.ngIf = currVal_8;
       this._expr_8 = currVal_8;
     }
     const currVal_9:any = this.context.opponentPaper;
     if (import4.checkBinding(throwOnChange,this._expr_9,currVal_9)) {
-      this._NgIf_40_6.ngIf = currVal_9;
+      this._NgIf_54_6.ngIf = currVal_9;
       this._expr_9 = currVal_9;
     }
     const currVal_10:any = this.context.opponentScissors;
     if (import4.checkBinding(throwOnChange,this._expr_10,currVal_10)) {
-      this._NgIf_42_6.ngIf = currVal_10;
+      this._NgIf_56_6.ngIf = currVal_10;
       this._expr_10 = currVal_10;
     }
     this.detectContentChildrenChanges(throwOnChange);
     this.detectViewChildrenChanges(throwOnChange);
   }
-  private _handle_click_3_0($event:any):boolean {
+  private _handle_click_17_0($event:any):boolean {
     this.markPathToRootAsCheckOnce();
     this.context.onDecision('Rock');
     const pd_0:any = ((<any>(this.context.waiting = true)) !== false);
     return (true && pd_0);
   }
-  private _handle_click_11_0($event:any):boolean {
+  private _handle_click_25_0($event:any):boolean {
     this.markPathToRootAsCheckOnce();
     this.context.onDecision('Paper');
     const pd_0:any = ((<any>(this.context.waiting = true)) !== false);
     return (true && pd_0);
   }
-  private _handle_click_19_0($event:any):boolean {
+  private _handle_click_33_0($event:any):boolean {
     this.markPathToRootAsCheckOnce();
     this.context.onDecision('Scissors');
     const pd_0:any = ((<any>(this.context.waiting = true)) !== false);
@@ -547,7 +594,7 @@ class _View_GameBoardComponent5 extends import1.AppView<any> {
     this.renderer.setElementAttribute(this._el_2,'class','mainResult forAllPictures');
     this._text_3 = this.renderer.createText(this._el_2,'\n    ',(null as any));
     this._el_4 = this.renderer.createElement(this._el_2,'h2',(null as any));
-    this._text_5 = this.renderer.createText(this._el_4,'-VS-',(null as any));
+    this._text_5 = this.renderer.createText(this._el_4,'VS',(null as any));
     this._text_6 = this.renderer.createText(this._el_2,'\n    ',(null as any));
     this._el_7 = this.renderer.createElement(this._el_2,'h2',(null as any));
     this._text_8 = this.renderer.createText(this._el_7,'',(null as any));

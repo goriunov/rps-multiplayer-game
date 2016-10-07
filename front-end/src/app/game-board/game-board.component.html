@@ -1,3 +1,13 @@
+<section class="col-xs-12 spacing">
+  <div class="col-xs-6">
+    <span class="tag tag-pill tag-primary">0</span>
+  </div>
+  <div class="col-xs-6">
+    <span class="tag tag-pill tag-danger">0</span>
+  </div>
+
+</section>
+
 
 <section class="col-xs-4 col-sm-4 chose">
   <div (click)="onDecision('Rock'); waiting= true" class="pictures forAllPictures">
@@ -57,7 +67,7 @@
 
 <section *ngIf="final" class="col-xs-12 col-sm-4 chose">
   <div class="mainResult forAllPictures">
-    <h2>-VS-</h2>
+    <h2>VS</h2>
     <h2>{{finalResult}}</h2>
   </div>
 </section>
