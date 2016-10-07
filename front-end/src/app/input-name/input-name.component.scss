@@ -31,7 +31,6 @@ form{
 .block {
   font-family: 'Fjalla One', sans-serif;
   text-align: center;
-  //white-space: nowrap;
 }
 
 
@@ -46,4 +45,12 @@ form{
 .padding-off{
   padding-top:0;
   margin-top: 0;
+}
+
+
+@media screen and( max-width: 307px){
+  .colors{
+    margin-top: 20px;
+  }
+
 }

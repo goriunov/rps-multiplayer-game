@@ -16,13 +16,13 @@
   </div>
 
   <ul class="list-group invitations-btn">
-    <button type="button" class="list-group-item" (click)="invitationList = true">Invitations <span class="tag tag-pill tag-default">{{allCallsOnDuel.length}}</span></button>
+    <button type="button" class="list-group-item" (click)="invitationList = true">Invitations <span class="tag tag-pill tag-default">{{allCallsOnDuel.length > 0 ? '0' : allCallsOnDuel.length }}</span></button>
   </ul>
 
 
   <div class="content">
     <div class="spacing">
-      <h2>Available players <span class="tag tag-pill tag-primary">{{available_players.length - 1}}</span></h2>
+      <h2>Available players <span *ngIf="available_players.length > 0" class="tag tag-pill tag-primary">{{available_players.length - 1}}</span> <span *ngIf="available_players.length < 1" class="tag tag-pill tag-primary">0</span></h2>
     </div>
     <hr>
     <div  class="list-group" >
