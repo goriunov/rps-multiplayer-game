@@ -63284,7 +63284,7 @@ module.exports = ".col-sm-6 {\n  text-align: center;\n  font-size: 40px; }\n\n.c
 /* 667 */
 /***/ function(module, exports) {
 
-module.exports = "form {\n  margin-top: 30px; }\n\n.centring {\n  text-align: center; }\n\n.colors {\n  color: #337ab7; }\n\n.padding-off {\n  height: 50px; }\n\n.btn-default {\n  background: #EEEEEE; }\n  .btn-default:hover {\n    background: #BDBDBD; }\n\n.btn-default:disabled:hover {\n  background: #EEEEEE; }\n\n/* This parent can be any width and height */\n.block {\n  font-family: 'Fjalla One', sans-serif;\n  text-align: center;\n  white-space: nowrap; }\n\n.centered {\n  position: absolute;\n  right: 50%;\n  top: 50%;\n  margin-top: -100px;\n  margin-right: -50%; }\n\n.padding-off {\n  padding-top: 0;\n  margin-top: 0; }\n"
+module.exports = "form {\n  margin-top: 30px; }\n\n.centring {\n  text-align: center; }\n\n.colors {\n  color: #337ab7; }\n\n.padding-off {\n  height: 50px; }\n\n.btn-default {\n  background: #EEEEEE; }\n  .btn-default:hover {\n    background: #BDBDBD; }\n\n.btn-default:disabled:hover {\n  background: #EEEEEE; }\n\n/* This parent can be any width and height */\n.block {\n  font-family: 'Fjalla One', sans-serif;\n  text-align: center; }\n\n.centered {\n  position: absolute;\n  right: 50%;\n  top: 50%;\n  margin-top: -100px;\n  margin-right: -50%; }\n\n.padding-off {\n  padding-top: 0;\n  margin-top: 0; }\n"
 
 /***/ },
 /* 668 */
