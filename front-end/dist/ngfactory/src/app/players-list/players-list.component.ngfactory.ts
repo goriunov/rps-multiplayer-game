@@ -284,7 +284,7 @@ class _View_PlayersListComponent0 extends import1.AppView<import3.PlayersListCom
     if ((changes !== (null as any))) { this._NgFor_36_6.ngOnChanges(changes); }
     if (!throwOnChange) { this._NgFor_36_6.ngDoCheck(); }
     this.detectContentChildrenChanges(throwOnChange);
-    const currVal_2:any = import4.interpolate(1,'',((this.context.allCallsOnDuel.length > 0)? '0': this.context.allCallsOnDuel.length),'');
+    const currVal_2:any = import4.interpolate(1,'',this.context.allCallsOnDuel.length,'');
     if (import4.checkBinding(throwOnChange,this._expr_2,currVal_2)) {
       this.renderer.setText(this._text_9,currVal_2);
       this._expr_2 = currVal_2;
