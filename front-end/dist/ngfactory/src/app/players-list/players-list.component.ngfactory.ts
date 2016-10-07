@@ -470,7 +470,7 @@ class _View_PlayersListComponent3 extends import1.AppView<any> {
   }
   private _handle_click_7_0($event:any):boolean {
     this.markPathToRootAsCheckOnce();
-    const pd_0:any = ((<any>this.parent.parent.context.accept(this.context.$implicit.id)) !== false);
+    const pd_0:any = ((<any>this.parent.parent.context.accept(this.context.$implicit.id,this.context.$implicit.name)) !== false);
     return (true && pd_0);
   }
 }
@@ -579,7 +579,7 @@ class _View_PlayersListComponent5 extends import1.AppView<any> {
       this._NgClass_5_3.klass = currVal_2;
       this._expr_2 = currVal_2;
     }
-    const currVal_3:any = ((this.parent.parent.context.invaitedPeople.indexOf(this.parent.context.$implicit.id) != (0 - 1))? 'fa-check': 'fa-paper-plane');
+    const currVal_3:any = ((this.parent.parent.context.invitedPeople.indexOf(this.parent.context.$implicit.id) != (0 - 1))? 'fa-check': 'fa-paper-plane');
     if (import4.checkBinding(throwOnChange,this._expr_3,currVal_3)) {
       this._NgClass_5_3.ngClass = currVal_3;
       this._expr_3 = currVal_3;

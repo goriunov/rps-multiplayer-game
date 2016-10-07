@@ -1,7 +1,10 @@
-.col-xs-6{
+.col-sm-6{
   text-align: center;
-  font-size: 50px;
+  font-size: 40px;
 
+}
+.col-sm-6 span{
+  font-size: 20px;
 }
 
 .spacing{
@@ -22,7 +25,27 @@
   min-height: 60px;
 }
 
+.box{
+  .alert{
+    min-height: 130px;
+    position: fixed;
+    top: 50%;
+
+    left:10px;
+    right:10px;
+    margin-top: -60px;
+  }
+  position: fixed;
+  top: 0;
+  text-align: center;
+  bottom:0;
+  left:0;
+  right:0;
+  z-index: 100;
+}
+
 .mainResult{
+  text-align: center;
   padding-top: 5px;
 }
 
@@ -38,9 +61,11 @@
 
 .pictures{
   background: #337ab7;
+  transition: transform 0.3s;
   &:hover{
     cursor: pointer;
     background:#2e6da4;
+    transform: scale(1.1);
   }
 }
 

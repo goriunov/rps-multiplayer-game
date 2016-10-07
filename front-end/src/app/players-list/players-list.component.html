@@ -10,7 +10,7 @@
         <h4>{{callOnDuel.name}}</h4>
 
         <span class="fa fa-times" aria-hidden="true" (click)="decline(callOnDuel)"></span>
-        <span  class="fa fa-check" aria-hidden="true" (click)="accept(callOnDuel.id)" ></span>
+        <span  class="fa fa-check" aria-hidden="true" (click)="accept(callOnDuel.id , callOnDuel.name)" ></span>
       </li>
     </ul>
   </div>
@@ -37,7 +37,7 @@
 
 
         <a *ngIf="player.id != myID" class="list-group-item active">
-          <h4 class="list-group-item-heading">{{player.name}}</h4> <span (click)="chooseOpponent(player.id); " [ngClass]="invaitedPeople.indexOf(player.id) != -1 ? 'fa-check' : 'fa-paper-plane'" class="fa "></span>
+          <h4 class="list-group-item-heading">{{player.name}}</h4> <span (click)="chooseOpponent(player.id); " [ngClass]="invitedPeople.indexOf(player.id) != -1 ? 'fa-check' : 'fa-paper-plane'" class="fa "></span>
         </a>
 
       </div>

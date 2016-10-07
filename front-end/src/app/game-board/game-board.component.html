@@ -1,9 +1,9 @@
 <section class="col-xs-12 spacing">
-  <div class="col-xs-6">
-    <span class="tag tag-pill tag-primary">0</span>
+  <div class="col-xs-12 col-sm-6">
+    <span>{{myName}}</span> <div class="tag tag-pill tag-primary">{{myScore}}</div>
   </div>
-  <div class="col-xs-6">
-    <span class="tag tag-pill tag-danger">0</span>
+  <div class="col-xs-12 col-sm-6">
+    <div class="tag tag-pill tag-danger">{{opponentScore}}</div> <span>{{opponentName}}</span>
   </div>
 
 </section>
@@ -37,57 +37,61 @@
 
 <section *ngIf="waiting" class="col-xs-12 chose">
   <div class="mainResult">
-    <h1>Waiting for opponent !</h1>
+    <h1>Waiting for opponent chose </h1>
+    <i class="fa fa-spinner fa-pulse fa-3x fa-fw"></i>
+  </div>
+</section>
+
+<section *ngIf="opponentWaiting" class="col-xs-12 chose">
+  <div class="mainResult">
+    <h1>Choose within {{timing}} sec</h1>
   </div>
 </section>
 
 
+<div *ngIf="final" class="box">
+
+        <div *ngIf="finalResult == 'You won'" class="alert alert-success" role="alert">
+          <h1>{{finalResult}}</h1>
+          <div *ngIf="waitingReplay">
+            <h3>Waiting for opponent response</h3>
+            <a class="btn btn-danger" [routerLink]="['/players-list']"><i class="fa fa-sign-out" aria-hidden="true"></i></a>
+          </div>
+          <div *ngIf="!waitingReplay">
+            <button class="btn btn-primary" (click)="replay()"><i class="fa fa-repeat" aria-hidden="true"></i></button>
+            <a class="btn btn-danger" [routerLink]="['/players-list']"><i class="fa fa-sign-out" aria-hidden="true"></i></a>
+          </div>
+        </div>
+
+        <div  *ngIf="finalResult == 'Draw'"  class="alert alert-warning" role="alert">
+          <h1>{{finalResult}}</h1>
+          <div *ngIf="waitingReplay">
+            <h3>Waiting for opponent response</h3>
+            <a class="btn btn-danger" [routerLink]="['/players-list']"><i class="fa fa-sign-out" aria-hidden="true"></i></a>
+          </div>
+          <div *ngIf="!waitingReplay">
+            <button class="btn btn-primary" (click)="replay()"><i class="fa fa-repeat" aria-hidden="true"></i></button>
+            <a class="btn btn-danger" [routerLink]="['/players-list']"><i class="fa fa-sign-out" aria-hidden="true"></i></a>
+          </div>
+        </div>
+
+        <div *ngIf="finalResult == 'You lost'"  class="alert alert-danger" role="alert">
+          <h1>{{finalResult}}</h1>
+          <div *ngIf="waitingReplay">
+            <h3>Waiting for opponent response</h3>
+            <a class="btn btn-danger" [routerLink]="['/players-list']"><i class="fa fa-sign-out" aria-hidden="true"></i></a>
+          </div>
+          <div *ngIf="!waitingReplay">
+            <button class="btn btn-primary" (click)="replay()"><i class="fa fa-repeat" aria-hidden="true"></i></button>
+            <a class="btn btn-danger" [routerLink]="['/players-list']"><i class="fa fa-sign-out" aria-hidden="true"></i></a>
+          </div>
+        </div>
+
+        <div *ngIf="finalResult == 'Your opponent left the game'"  class="alert alert-info" role="alert">
+          <h1>{{finalResult}}</h1>
+          <a class="btn btn-primary" [routerLink]="['/players-list']"><i class="fa fa-sign-out" aria-hidden="true"></i></a>
+        </div>
+
+</div>
 
 
-<section *ngIf="rock" class="col-xs-12 col-sm-4 chose">
-  <div  class="resultMy forAllPictures">
-    <img  src="/assets/pictures/rock.png">
-  </div>
-</section>
-
-<section  *ngIf="paper" class="col-xs-12 col-sm-4 chose">
-  <div class="resultMy forAllPictures">
-    <img   src ="/assets/pictures/paper.png">
-  </div>
-</section>
-
-<section *ngIf="scissors" class="col-xs-12 col-sm-4 chose">
-  <div  class="resultMy forAllPictures">
-    <img  src="/assets/pictures/scissors.png">
-  </div>
-</section>
-
-
-
-
-<section *ngIf="final" class="col-xs-12 col-sm-4 chose">
-  <div class="mainResult forAllPictures">
-    <h2>VS</h2>
-    <h2>{{finalResult}}</h2>
-  </div>
-</section>
-
-
-
-<section *ngIf="opponentRock"  class="col-xs-12 col-sm-4 opponent">
-  <div class="opponentPictures forAllPictures">
-    <img  src="/assets/pictures/rock.png">
-  </div>
-</section>
-
-<section *ngIf="opponentPaper" class="col-xs-12 col-sm-4 opponent">
-  <div class="opponentPictures forAllPictures">
-    <img   src ="/assets/pictures/paper.png">
-  </div>
-</section>
-
-<section *ngIf="opponentScissors" class="col-xs-12 col-sm-4 opponent">
-  <div  class="opponentPictures forAllPictures">
-    <img  src="/assets/pictures/scissors.png">
-  </div>
-</section>

@@ -41,8 +41,10 @@ module.exports = function(io){
 
 
         client.on('disconnect' , function(){
-            if(ALL_PLAYERS[client.id].opponent) {
-                ALL_PLAYERS[ALL_PLAYERS[client.id].opponent].emit('leaved');
+            if(ALL_PLAYERS[client.id]) {
+                if (ALL_PLAYERS[client.id].opponent > 0) {
+                    ALL_PLAYERS[ALL_PLAYERS[client.id].opponent].emit('leaved');
+                }
             }
             ALL_PLAYERS.splice(ALL_PLAYERS.indexOf(client.id) ,1);
             if(myIndexOf({name: client.name , id: client.id}) != -1) {
@@ -71,7 +73,7 @@ module.exports = function(io){
         client.on('accepted duel' , function(accept){
             ALL_PLAYERS[accept.caller].opponent = accept.whoIsAgree;
             ALL_PLAYERS[accept.whoIsAgree].opponent = accept.caller;
-            ALL_PLAYERS[accept.caller].emit('accepted duel' , accept.whoIsAgree);
+            ALL_PLAYERS[accept.caller].emit('accepted duel' , {id:accept.whoIsAgree , name: ALL_PLAYERS[accept.whoIsAgree].name});
         });
 
         client.on('on unavailable' , function(id){
@@ -106,7 +108,26 @@ module.exports = function(io){
 
         client.on('leaved' , function(users){
             ALL_PLAYERS[users.opponentID].emit('leaved');
-        })
+        });
+
+        client.on('waiting' , function( id){
+            if(ALL_PLAYERS[id]) {
+                ALL_PLAYERS[id].emit('waiting');
+            }
+        });
+
+        client.on('replay' , function(replay){
+            client.replay = true;
+
+            if(client.replay && ALL_PLAYERS[replay.opponentID].replay ){
+                client.emit('replay');
+                ALL_PLAYERS[replay.opponentID].emit('replay');
+
+                client.replay = false;
+                ALL_PLAYERS[replay.opponentID].replay = false;
+            }
+
+        });
 
 
 

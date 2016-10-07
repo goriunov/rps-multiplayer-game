@@ -8,15 +8,22 @@ export class SocketService{
   opponentID: number;
   myID: EventEmitter<any> = new EventEmitter();
   myName: EventEmitter<any> = new EventEmitter();
-  name: string;
+  setingName: string;
+  opponentName: string;
 
   setName(name){
-    this.name = name;
+    this.setingName = name;
   }
+
+  setOppenentName(name){
+    this.opponentName = name;
+  }
+
+
 
   runSocket(){
     this.sockets = io.connect();
-    this.sockets.emit('create user' , this.name);
+    this.sockets.emit('create user' , this.setingName);
 
 
     this.sockets.on('id' , (userInfo) => {
@@ -28,6 +35,12 @@ export class SocketService{
 
   sendOpponentID(opponentID){
     this.opponentID = opponentID;
+  }
+  returnOpponentName(){
+    return this.opponentName;
+  }
+  returnMyName(){
+    return this.setingName;
   }
 
 

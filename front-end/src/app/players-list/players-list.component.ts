@@ -17,7 +17,7 @@ export class PlayersListComponent implements OnInit , OnDestroy{
   invitationList: boolean = false;
   allCallsOnDuel: UserInformation[] = [];
   opponentID: number;
-  invaitedPeople: number[] = [];
+  invitedPeople: number[] = [];
 
   constructor( private router: Router , public socketService: SocketService , private zone:NgZone){}
 
@@ -49,23 +49,23 @@ export class PlayersListComponent implements OnInit , OnDestroy{
     this.sockets.on('called on duel' , (opponent) =>{
       console.log('got duel');
       let caller : UserInformation = new UserInformation( opponent.name , opponent.id );
-      // this.allCallsOnDuel = [...this.allCallsOnDuel, caller];
       this.allCallsOnDuel.push(caller);
-      this.zone.run(()=>console.log('Done'));
+      this.zone.run(()=>{});
 
     });
 
     //If you called some one
-    this.sockets.on('accepted duel' , (id) => {
-      this.opponentID = id;
+    this.sockets.on('accepted duel' , (opponent) => {
+      this.opponentID = opponent.id;
+      this.socketService.setOppenentName(opponent.name);
       this.socketService.sendOpponentID(this.opponentID);
       this.sockets.emit('on unavailable' , this.myID);
       this.router.navigate(['/game']);
     });
 
     this.sockets.on('declined duel' , (id)=>{
-      this.invaitedPeople.splice(this.invaitedPeople.indexOf(id) , 1);
-      this.zone.run(()=>console.log('Done'));
+      this.invitedPeople.splice(this.invitedPeople.indexOf(id) , 1);
+      this.zone.run(()=>{});
     });
   }
 
@@ -77,8 +77,9 @@ export class PlayersListComponent implements OnInit , OnDestroy{
 
 
 
-  accept(acceptedId){
+  accept(acceptedId  , name){
     this.opponentID = acceptedId;
+    this.socketService.setOppenentName(name);
     this.socketService.sendOpponentID(this.opponentID);
     this.sockets.emit('accepted duel' ,{whoIsAgree: this.myID , caller: this.opponentID});
     this.router.navigate(['/game']);
@@ -88,13 +89,13 @@ export class PlayersListComponent implements OnInit , OnDestroy{
     console.log('Send');
     let permitToInvite:boolean = false;
 
-    if (this.invaitedPeople.indexOf(opponentID) == -1) {
+    if (this.invitedPeople.indexOf(opponentID) == -1) {
       permitToInvite = true;
     }
 
     if(permitToInvite) {
       this.sockets.emit('call duel', {senderID: this.myID  ,senderName: this.myName, opponent: opponentID});
-      this.invaitedPeople.push(opponentID);
+      this.invitedPeople.push(opponentID);
     }
 
   }

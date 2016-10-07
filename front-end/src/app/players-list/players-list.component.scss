@@ -71,10 +71,16 @@
 .invitations-btn{
   position: fixed;
   top: 0;
-  right: 0;
-  min-width: 130px;
+  right: 50%;
+  margin-right: -73px;
 
+  text-align: center;
+  min-width: 130px;
+  a h3{
+    font-size: 25px;
+  }
   z-index: 50;
+
 }
 
 .blackout{
