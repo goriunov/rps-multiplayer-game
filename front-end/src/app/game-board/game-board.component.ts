@@ -1,5 +1,6 @@
-import {Component, OnInit, NgZone} from '@angular/core';
+import {Component, OnInit, NgZone, OnDestroy} from '@angular/core';
 import {SocketService} from "../socket.service";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'my-game-board',
@@ -8,7 +9,7 @@ import {SocketService} from "../socket.service";
 
 })
 
-export class GameBoardComponent implements OnInit{
+export class GameBoardComponent implements OnInit,OnDestroy{
   sockets : any;
   opponentId : number;
   myID: number;
@@ -28,7 +29,7 @@ export class GameBoardComponent implements OnInit{
 
 
 
-  constructor(private socketService: SocketService , private zone:NgZone){}
+  constructor(private socketService: SocketService , private zone:NgZone , private router:Router){}
 
 
   ngOnInit(){
@@ -100,6 +101,10 @@ export class GameBoardComponent implements OnInit{
       this.zone.run(()=>console.log('Done'));
 
     });
+
+    this.sockets.on('leaved' , ()=>{
+        this.router.navigate(['/players-list'])
+    });
   }
 
 
@@ -117,5 +122,11 @@ export class GameBoardComponent implements OnInit{
     this.sockets.emit('game decision' , {myID: this.myID , opponentID: this.opponentId , decision: decision});
     this.zone.run(()=>console.log('Done'));
   }
+
+
+  ngOnDestroy(){
+    this.sockets.emit('leaved' , {opponentID: this.opponentId })
+  }
+
 
 }

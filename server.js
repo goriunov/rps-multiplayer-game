@@ -45,9 +45,18 @@ app.use(function (req, res, next) {
 });
 
 
+
+
+app.get('/players-list/' , function(req ,res ,next){
+    res.redirect(req.protocol + '://' + req.get('host') +'/');
+});
+
+app.get('/game/' , function(req ,res ,next){
+    res.redirect(req.protocol + '://' + req.get('host') +'/');
+});
+
 // Routes to use
 app.get('/' , router);
-
 
 // If no such route display error
 app.get('/*' , function(req ,res ,next){

@@ -21,9 +21,12 @@ export class PlayersListComponent implements OnInit , OnDestroy{
 
   constructor( private router: Router , public socketService: SocketService , private zone:NgZone){}
 
-  sockets = this.socketService.getSocket();
+  sockets: any;
 
   ngOnInit(){
+    this.socketService.runSocket();
+
+    this.sockets = this.socketService.getSocket();
 
     this.sockets.emit('on available');
 
@@ -32,11 +35,6 @@ export class PlayersListComponent implements OnInit , OnDestroy{
       this.zone.run(()=>console.log('Done'));
     });
 
-
-    // this.sockets.on('id' , (id)=>{
-    //   this.myID = id;
-    //   console.log(this.myID);
-    // });
 
     this.socketService.myID.subscribe((id)=>{
       this.myID = id;

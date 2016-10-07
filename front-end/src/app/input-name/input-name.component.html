@@ -1,0 +1,34 @@
+
+  <div class="block">
+
+
+   <div class="centered">
+
+
+
+
+    <div class="col-xs-12 ">
+      <div class="col-xs-12 padding-off ">
+        <h2>Rock Paper Scissors</h2>
+      </div>
+
+      <div class="col-xs-12 colors">
+        <h4>Multilplayer game</h4>
+      </div>
+    </div>
+
+    <form  [formGroup]="myForm" (ngSubmit)="onSubmit()" class="col-xs-12 col-sm-6 offset-sm-3 centring">
+      <div class="input-group ">
+        <input type="text" class="form-control" placeholder="Write your name" formControlName="name" maxlength="15">
+        <span class="input-group-btn">
+        <button class="btn btn-primary" type="submit" [disabled]="!myForm.valid">Continue</button>
+      </span>
+      </div><!-- /input-group -->
+    </form>
+
+
+
+
+      </div>
+
+    </div>

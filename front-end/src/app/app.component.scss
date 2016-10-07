@@ -1,0 +1,24 @@
+.game-header{
+  position:relative;
+  top: 0;
+  left:0;
+  right: 0;
+
+}
+
+
+
+.wrapper {
+  min-height: 100%;
+  height: auto !important; /* This line and the next line are not necessary unless you need IE6 support */
+  height: 100%;
+  margin: 0 auto -30px; /* the bottom margin is the negative value of the footer's height */
+}
+
+
+.footer {
+  font-size: 12px;
+  text-align: center;
+  color:#424242;
+  height: 30px; /* .push must be the same height as .footer */
+}

@@ -1,39 +1,47 @@
-<section class="col-xs-12 col-sm-8 col-sm-offset-2">
+<section class="col-xs-12 col-sm-8 offset-sm-2">
 
   <div *ngIf="invitationList" class="blackout">
     <ul class=" list-group">
-      <h1  (click)="invitationList = false"><span class="close-invitation-window-btn glyphicon glyphicon-remove"></span></h1>
+      <h1  (click)="invitationList = false"><span class="close-invitation-window-btn fa fa-times"  aria-hidden="true"></span></h1>
       <h2 *ngIf="allCallsOnDuel.length < 1">
-        You do not have any invitation
+        You do not have any invitations
       </h2>
       <li class="list-group-item invitations first-invitation" *ngFor="let callOnDuel of allCallsOnDuel">
         <h4>{{callOnDuel.name}}</h4>
 
-        <span class="glyphicon glyphicon-remove" (click)="decline(callOnDuel)"></span>
-        <span class="glyphicon glyphicon-ok" (click)="accept(callOnDuel.id)" ></span>
+        <span class="fa fa-times" aria-hidden="true" (click)="decline(callOnDuel)"></span>
+        <span  class="fa fa-check" aria-hidden="true" (click)="accept(callOnDuel.id)" ></span>
       </li>
     </ul>
   </div>
 
   <ul class="list-group invitations-btn">
-    <button type="button" class="list-group-item" (click)="invitationList = true">Invitations <span class="badge">{{allCallsOnDuel.length}}</span></button>
+    <button type="button" class="list-group-item" (click)="invitationList = true">Invitations <span class="tag tag-pill tag-default">{{allCallsOnDuel.length}}</span></button>
   </ul>
 
-  <div class="spacing">
-    <h1>Available players</h1>
-  </div>
-  <hr>
-  <div  class="list-group" >
-    <div class="spacing" *ngFor="let player of available_players; let i = index" >
 
-      <a *ngIf="player.id == myID" class="list-group-item ">
-        <h4 class="list-group-item-heading">{{player.name}}</h4>
-      </a>
-
-      <a *ngIf="player.id != myID" class="list-group-item active">
-        <h4 class="list-group-item-heading">{{player.name}}</h4> <span (click)="chooseOpponent(player.id); " [ngClass]="invaitedPeople.indexOf(player.id) != -1 ? 'glyphicon-ok' : 'glyphicon-send'" class="glyphicon "></span>
-      </a>
-
+  <div class="content">
+    <div class="spacing">
+      <h2>Available players <span class="tag tag-pill tag-primary">{{available_players.length - 1}}</span></h2>
     </div>
+    <hr>
+    <div  class="list-group" >
+      <div class="spacing">
+        <a class="list-group-item ">
+          <h4 class="list-group-item-heading">{{myName}}</h4>
+        </a>
+      </div>
+
+      <div class="spacing" *ngFor="let player of available_players; let i = index" >
+
+
+
+        <a *ngIf="player.id != myID" class="list-group-item active">
+          <h4 class="list-group-item-heading">{{player.name}}</h4> <span (click)="chooseOpponent(player.id); " [ngClass]="invaitedPeople.indexOf(player.id) != -1 ? 'fa-check' : 'fa-paper-plane'" class="fa "></span>
+        </a>
+
+      </div>
+    </div>
+
   </div>
 </section>

@@ -4,6 +4,20 @@
 
 }
 
+
+.content{
+  margin-top: 100px;
+}
+
+.list-group-item.active{
+
+  color: white !important;
+}
+
+.list-group-item{
+  height: 50px;
+}
+
 .active{
   min-height: 45px;
   h4{
@@ -56,8 +70,8 @@
 
 .invitations-btn{
   position: fixed;
-  top:0;
-  right: 0px;
+  top: 0;
+  right: 0;
   min-width: 130px;
 
   z-index: 50;
@@ -77,8 +91,15 @@
 }
 
 
+@media screen and(max-width: 450px) {
+  .list-group-item h4{
+    font-size: 20px !important;
+  }
+}
+
 
 @media screen and ( min-width: 450px){
+
   .invitations{
     margin-right: 30px;
     margin-left: 30px;

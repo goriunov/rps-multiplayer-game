@@ -41,6 +41,9 @@ module.exports = function(io){
 
 
         client.on('disconnect' , function(){
+            if(ALL_PLAYERS[client.id].opponent) {
+                ALL_PLAYERS[ALL_PLAYERS[client.id].opponent].emit('leaved');
+            }
             ALL_PLAYERS.splice(ALL_PLAYERS.indexOf(client.id) ,1);
             if(myIndexOf({name: client.name , id: client.id}) != -1) {
                 AVILABLE_PLAYERS.splice(myIndexOf({name: client.name , id: client.id}), 1);
@@ -66,6 +69,8 @@ module.exports = function(io){
 
 
         client.on('accepted duel' , function(accept){
+            ALL_PLAYERS[accept.caller].opponent = accept.whoIsAgree;
+            ALL_PLAYERS[accept.whoIsAgree].opponent = accept.caller;
             ALL_PLAYERS[accept.caller].emit('accepted duel' , accept.whoIsAgree);
         });
 
@@ -97,6 +102,11 @@ module.exports = function(io){
             }
 
         });
+
+
+        client.on('leaved' , function(users){
+            ALL_PLAYERS[users.opponentID].emit('leaved');
+        })
 
 
 

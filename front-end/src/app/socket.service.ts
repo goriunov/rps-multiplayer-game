@@ -8,10 +8,15 @@ export class SocketService{
   opponentID: number;
   myID: EventEmitter<any> = new EventEmitter();
   myName: EventEmitter<any> = new EventEmitter();
+  name: string;
+
+  setName(name){
+    this.name = name;
+  }
 
   runSocket(){
     this.sockets = io.connect();
-    this.sockets.emit('create user' , 'Some name');
+    this.sockets.emit('create user' , this.name);
 
 
     this.sockets.on('id' , (userInfo) => {
@@ -24,6 +29,7 @@ export class SocketService{
   sendOpponentID(opponentID){
     this.opponentID = opponentID;
   }
+
 
 
 
