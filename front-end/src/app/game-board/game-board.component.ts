@@ -1,4 +1,4 @@
-import {Component, OnInit, NgZone, OnDestroy, ChangeDetectorRef} from '@angular/core';
+import {Component, OnInit, NgZone, OnDestroy} from '@angular/core';
 import {SocketService} from "../socket.service";
 import {Router} from "@angular/router";
 
@@ -34,11 +34,13 @@ export class GameBoardComponent implements OnInit,OnDestroy{
   opponentScissors:boolean =false;
   timing : number = 30;
   opponentWaiting : boolean = false;
+
+
   timer: any;
   interval: any;
 
 
-  constructor(private socketService: SocketService , private ref: ChangeDetectorRef , private zone:NgZone , private router:Router){}
+  constructor(private socketService: SocketService , private zone:NgZone , private router:Router){}
 
 
   ngOnInit(){
@@ -61,7 +63,8 @@ export class GameBoardComponent implements OnInit,OnDestroy{
 
           this.interval = setInterval(()=> {
             this.timing = this.timing - 1;
-            this.ref.detectChanges()
+            this.zone.run(()=> {
+            });
           }, 1000)
         }
 
@@ -72,13 +75,16 @@ export class GameBoardComponent implements OnInit,OnDestroy{
        clearInterval(this.interval);
         this.timing = 30;
 
-      }      if(this.timer){
+      }
+      if(this.timer){
         clearTimeout(this.timer);
       }
+
       this.opponentWaiting = false;
+      this.waiting = false;
       this.opponentDecision = result.opponentDecision;
       this.myDesition = result.myDecision;
-      this.waiting = false;
+
 
       //Experimental logic
       if(this.opponentDecision == 'Rock' && this.myDesition == 'Paper'){
@@ -139,7 +145,8 @@ export class GameBoardComponent implements OnInit,OnDestroy{
       }
     //  *************
 
-      this.ref.detectChanges()
+
+      this.zone.run(()=>{});
 
     });
 
@@ -147,14 +154,14 @@ export class GameBoardComponent implements OnInit,OnDestroy{
       this.finalResult = 'Your opponent left the game';
       this.final = true;
 
-      this.ref.detectChanges()
-
+      this.zone.run(()=>{});
     });
 
     this.sockets.on('replay' , ()=>{
       this.final = false;
       this.waitingReplay = false;
-      this.ref.detectChanges()
+
+      this.zone.run(()=>{});
     })
   }
 
@@ -173,7 +180,8 @@ export class GameBoardComponent implements OnInit,OnDestroy{
     this.sockets.emit('waiting' , this.opponentId);
     this.sockets.emit('game decision' , {myID: this.myID , opponentID: this.opponentId , decision: decision});
 
-    this.ref.detectChanges()
+
+    this.zone.run(()=>{});
   }
 
 
