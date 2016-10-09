@@ -43,7 +43,7 @@ app.use(function (req, res, next) {
 });
 
 
-// app.use('/' , router);
+app.use('/' , router);
 
 //Create server and connect socket io
 var server = http.createServer(app);
