@@ -9,15 +9,15 @@ var engines = require('consolidate');
 
 var app = express();
 
-app.use(compression());
-app.use(express.static(path.join(__dirname , 'front-end/dist')));
-
 var router = require(path.join(__dirname , '/routes/index'));
 
 // Views Engine
 app.set('views' , path.join(__dirname,'front-end/dist' ));
 app.engine('html', engines.handlebars);
 app.set('view engine', 'html');
+
+app.use(compression());
+app.use(express.static(path.join(__dirname , 'front-end/dist')));
 
 
 app.use(bodyParser.json());
