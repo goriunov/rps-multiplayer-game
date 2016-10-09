@@ -19,7 +19,7 @@ app.set('views' , path.join(__dirname,'front-end/dist' ));
 app.engine('html', engines.handlebars);
 app.set('view engine', 'hbs');
 
-app.use(express.static(__dirname + '/front-end/dist'));
+
 
 
 app.use(bodyParser.json());
@@ -42,6 +42,8 @@ app.use(function (req, res, next) {
 
 
 app.use('/' , router);
+
+app.use(express.static(__dirname + '/front-end/dist'));
 
 //Create server and connect socket io
 var server = http.createServer(app);
