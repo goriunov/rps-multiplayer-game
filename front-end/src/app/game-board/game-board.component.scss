@@ -6,6 +6,11 @@
   }
 }
 
+
+.col-xs-3 i{
+  font-size: 60px;
+}
+
 .spacing{
   margin-bottom: 10px;
 }
@@ -64,6 +69,13 @@
   }
 }
 
+.displayBottom{
+  bottom: 20px;
+}
+.displayTop{
+  top: 20px;
+}
+
 
 
 
@@ -80,6 +92,9 @@
 }
 
 @media screen and(max-width: 340px){
+  .col-xs-3 i{
+    font-size: 40px;
+  }
   .forAllPictures{
     height: 80px;
     width: 80px;
@@ -88,5 +103,11 @@
       height: 70px;
       width: 70px;
     }
+  }
+}
+
+@media screen and(min-width: 1000px){
+  .col-xs-3 i {
+    font-size: 80px;
   }
 }

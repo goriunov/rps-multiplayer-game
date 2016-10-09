@@ -16,7 +16,7 @@ module.exports = function(io){
         client.on('disconnect' , function(){
             if(connectedPlayers[client.id]) {
                 if (connectedPlayers[client.id].opponentID > 0) {
-                    connectedPlayers[connectedPlayers[client.id].opponentID].emit('leaved');
+                    connectedPlayers[connectedPlayers[client.id].opponentID].emit('left');
                 }
             }
             connectedPlayers.splice(connectedPlayers.indexOf(client.id) ,1);

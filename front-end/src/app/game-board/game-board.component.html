@@ -47,61 +47,156 @@
 
 
 <div *ngIf="final" class="box">
+
   <div *ngIf="finalResult == 'You won'" class="alert alert-success" role="alert">
-    <h1>{{finalResult}}</h1>
-
-    <div *ngIf="waitingReplay">
-      <h3>Waiting for opponent response</h3>
-      <a class="btn btn-danger" [routerLink]="['/players-list']">
-        <i class="fa fa-sign-out" aria-hidden="true"></i>
-      </a>
+    <div *ngIf="myDecision == 'Scissors'">
+      <h3 class="col-xs-3">
+        <i class="fa fa-hand-scissors-o" aria-hidden="true"></i>
+      </h3>
+      <h2 class="col-xs-6">-VS-</h2>
+      <h3 class="col-xs-3">
+        <i class="fa fa-hand-paper-o" aria-hidden="true"></i>
+      </h3>
+    </div>
+    <div *ngIf="myDecision == 'Paper'">
+      <h3 class="col-xs-3">
+        <i class="fa fa-hand-paper-o" aria-hidden="true"></i>
+      </h3>
+      <h2 class="col-xs-6">-VS-</h2>
+      <h3 class="col-xs-3">
+        <i class="fa fa-hand-rock-o" aria-hidden="true"></i>
+      </h3>
+    </div>
+    <div *ngIf="myDecision == 'Rock'">
+      <h3 class="col-xs-3">
+        <i class="fa fa-hand-rock-o" aria-hidden="true"></i>
+      </h3>
+      <h2 class="col-xs-6">-VS-</h2>
+      <h3 class="col-xs-3">
+        <i class="fa fa-hand-scissors-o" aria-hidden="true"></i>
+      </h3>
     </div>
 
-    <div *ngIf="!waitingReplay">
-      <button class="btn btn-primary" (click)="replay()"><i class="fa fa-repeat" aria-hidden="true"></i></button>
-      <a class="btn btn-danger" [routerLink]="['/players-list']">
-        <i class="fa fa-sign-out" aria-hidden="true"></i>
-      </a>
+
+    <div class="col-xs-12">
+      <h1>{{finalResult}}</h1>
+
+      <div *ngIf="waitingReplay">
+        <h3>Waiting for opponent response</h3>
+        <a class="btn btn-danger" [routerLink]="['/players-list']">
+          <i class="fa fa-sign-out" aria-hidden="true"></i>
+        </a>
+      </div>
+
+      <div *ngIf="!waitingReplay">
+        <button class="btn btn-primary" (click)="replay()"><i class="fa fa-repeat" aria-hidden="true"></i></button>
+        <a class="btn btn-danger" [routerLink]="['/players-list']">
+          <i class="fa fa-sign-out" aria-hidden="true"></i>
+        </a>
+      </div>
     </div>
+
   </div>
 
   <div  *ngIf="finalResult == 'Draw'"  class="alert alert-warning" role="alert">
-    <h1>{{finalResult}}</h1>
 
-    <div *ngIf="waitingReplay">
-      <h3>Waiting for opponent response</h3>
-      <a class="btn btn-danger" [routerLink]="['/players-list']">
-        <i class="fa fa-sign-out" aria-hidden="true"></i>
-      </a>
+    <div *ngIf="myDecision == 'Scissors'">
+      <h3 class="col-xs-3">
+        <i class="fa fa-hand-scissors-o" aria-hidden="true"></i>
+      </h3>
+      <h2 class="col-xs-6">-VS-</h2>
+      <h3 class="col-xs-3">
+        <i class="fa fa-hand-scissors-o" aria-hidden="true"></i>
+      </h3>
+    </div>
+    <div *ngIf="myDecision == 'Paper'">
+      <h3 class="col-xs-3">
+        <i class="fa fa-hand-paper-o" aria-hidden="true"></i>
+      </h3>
+      <h2 class="col-xs-6">-VS-</h2>
+      <h3 class="col-xs-3">
+        <i class="fa fa-hand-paper-o" aria-hidden="true"></i>
+      </h3>
+    </div>
+    <div *ngIf="myDecision == 'Rock'">
+      <h3 class="col-xs-3">
+        <i class="fa fa-hand-rock-o" aria-hidden="true"></i>
+      </h3>
+      <h2 class="col-xs-6">-VS-</h2>
+      <h3 class="col-xs-3">
+        <i class="fa fa-hand-rock-o" aria-hidden="true"></i>
+      </h3>
     </div>
 
-    <div *ngIf="!waitingReplay">
-      <button class="btn btn-primary" (click)="replay()">
-        <i class="fa fa-repeat" aria-hidden="true"></i>
-      </button>
-      <a class="btn btn-danger" [routerLink]="['/players-list']">
-        <i class="fa fa-sign-out" aria-hidden="true"></i>
-      </a>
+    <div class="col-xs-12">
+      <h1>{{finalResult}}</h1>
+
+      <div *ngIf="waitingReplay">
+        <h3>Waiting for opponent response</h3>
+        <a class="btn btn-danger" [routerLink]="['/players-list']">
+          <i class="fa fa-sign-out" aria-hidden="true"></i>
+        </a>
+      </div>
+
+      <div *ngIf="!waitingReplay">
+        <button class="btn btn-primary" (click)="replay()">
+          <i class="fa fa-repeat" aria-hidden="true"></i>
+        </button>
+        <a class="btn btn-danger" [routerLink]="['/players-list']">
+          <i class="fa fa-sign-out" aria-hidden="true"></i>
+        </a>
+      </div>
     </div>
   </div>
 
   <div *ngIf="finalResult == 'You lost'"  class="alert alert-danger" role="alert">
-    <h1>{{finalResult}}</h1>
 
-    <div *ngIf="waitingReplay">
-      <h3>Waiting for opponent response</h3>
-      <a class="btn btn-danger" [routerLink]="['/players-list']">
-        <i class="fa fa-sign-out" aria-hidden="true"></i>
-      </a>
+    <div *ngIf="myDecision == 'Scissors'">
+      <h3 class="col-xs-3">
+        <i class="fa fa-hand-scissors-o" aria-hidden="true"></i>
+      </h3>
+      <h2 class="col-xs-6">-VS-</h2>
+      <h3 class="col-xs-3">
+        <i class="fa fa-hand-rock-o" aria-hidden="true"></i>
+      </h3>
+    </div>
+    <div *ngIf="myDecision == 'Paper'">
+      <h3 class="col-xs-3">
+        <i class="fa fa-hand-paper-o" aria-hidden="true"></i>
+      </h3>
+      <h2 class="col-xs-6">-VS-</h2>
+      <h3 class="col-xs-3">
+        <i class="fa fa-hand-scissors-o" aria-hidden="true"></i>
+      </h3>
+    </div>
+    <div *ngIf="myDecision == 'Rock'">
+      <h3 class="col-xs-3">
+        <i class="fa fa-hand-rock-o" aria-hidden="true"></i>
+      </h3>
+      <h2 class="col-xs-6">-VS-</h2>
+      <h3 class="col-xs-3">
+        <i class="fa fa-hand-paper-o" aria-hidden="true"></i>
+      </h3>
     </div>
 
-    <div *ngIf="!waitingReplay">
-      <button class="btn btn-primary" (click)="replay()">
-        <i class="fa fa-repeat" aria-hidden="true"></i>
-      </button>
-      <a class="btn btn-danger" [routerLink]="['/players-list']">
-        <i class="fa fa-sign-out" aria-hidden="true"></i>
-      </a>
+    <div class="col-xs-12">
+      <h1>{{finalResult}}</h1>
+
+      <div *ngIf="waitingReplay">
+        <h3>Waiting for opponent response</h3>
+        <a class="btn btn-danger" [routerLink]="['/players-list']">
+          <i class="fa fa-sign-out" aria-hidden="true"></i>
+        </a>
+      </div>
+
+      <div *ngIf="!waitingReplay">
+        <button class="btn btn-primary" (click)="replay()">
+          <i class="fa fa-repeat" aria-hidden="true"></i>
+        </button>
+        <a class="btn btn-danger" [routerLink]="['/players-list']">
+          <i class="fa fa-sign-out" aria-hidden="true"></i>
+        </a>
+      </div>
     </div>
   </div>
 
@@ -111,6 +206,7 @@
       <i class="fa fa-sign-out" aria-hidden="true"></i>
     </a>
   </div>
+
 </div>
 
 
