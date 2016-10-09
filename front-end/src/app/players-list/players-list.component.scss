@@ -1,16 +1,13 @@
 .spacing{
   text-align: center;
   margin-bottom: 5px;
-
 }
-
 
 .content{
   margin-top: 100px;
 }
 
 .list-group-item.active{
-
   color: white !important;
 }
 
@@ -41,7 +38,6 @@
   }
 }
 
-
 .first-invitation{
   margin-top: 5px;
 }
@@ -66,35 +62,33 @@
   }
 }
 
-
-
 .invitations-btn{
   position: fixed;
   top: 0;
   right: 50%;
   margin-right: -73px;
-
   text-align: center;
   min-width: 130px;
   a h3{
     font-size: 25px;
   }
   z-index: 50;
-
 }
 
 .blackout{
-  text-align: center;
-  overflow: auto;
-  background: rgba(230, 230, 230, 0.9);
-  z-index: 80;
   position: fixed;
   top:0;
   left: 0;
   right: 0;
   bottom: 0;
-
+  text-align: center;
+  overflow: auto;
+  background: rgba(230, 230, 230, 0.9);
+  z-index: 80;
 }
+
+
+
 
 
 @media screen and(max-width: 450px) {
@@ -103,9 +97,7 @@
   }
 }
 
-
 @media screen and ( min-width: 450px){
-
   .invitations{
     margin-right: 30px;
     margin-left: 30px;

@@ -1,48 +1,45 @@
 <section class="col-xs-12 spacing">
   <div class="col-xs-12 col-sm-6">
-    <span>{{myName}}</span> <div class="tag tag-pill tag-primary">{{myScore}}</div>
-  </div>
-  <div class="col-xs-12 col-sm-6">
-    <div class="tag tag-pill tag-danger">{{opponentScore}}</div> <span>{{opponentName}}</span>
+    <span>{{myName}}</span>
+    <div class="tag tag-pill tag-primary">{{myScore}}</div>
   </div>
 
+  <div class="col-xs-12 col-sm-6">
+    <div class="tag tag-pill tag-danger">{{opponentScore}}</div>
+    <span>{{opponentName}}</span>
+  </div>
 </section>
 
 
 <section class="col-xs-4 col-sm-4 chose">
-  <div (click)="onDecision('Rock'); waiting= true" class="pictures forAllPictures">
+  <div (click)="onDecision('Rock'); " class="pictures forAllPictures">
     <img  src="/assets/pictures/rock.png">
   </div>
 </section>
 
 <section class="col-xs-4 col-sm-4 chose">
-  <div (click)="onDecision('Paper'); waiting= true" class="pictures forAllPictures">
+  <div (click)="onDecision('Paper'); " class="pictures forAllPictures">
     <img   src ="/assets/pictures/paper.png">
   </div>
 </section>
 
 <section class="col-xs-4 col-sm-4 chose">
-  <div (click)="onDecision('Scissors'); waiting= true" class="pictures forAllPictures">
+  <div (click)="onDecision('Scissors');" class="pictures forAllPictures">
     <img  src="/assets/pictures/scissors.png">
   </div>
 </section>
 
-
-
-
-
 <div class="col-xs-12 divider">
 </div>
 
-
-<section *ngIf="waiting" class="col-xs-12 chose">
+<section *ngIf="waitingForOpponent" class="col-xs-12 chose">
   <div class="mainResult">
     <h1>Waiting for opponent chose </h1>
     <i class="fa fa-spinner fa-pulse fa-3x fa-fw"></i>
   </div>
 </section>
 
-<section *ngIf="opponentWaiting" class="col-xs-12 chose">
+<section *ngIf="opponentIsWaiting" class="col-xs-12 chose">
   <div class="mainResult">
     <h1>Choose within {{timing}} sec</h1>
   </div>
@@ -50,48 +47,70 @@
 
 
 <div *ngIf="final" class="box">
+  <div *ngIf="finalResult == 'You won'" class="alert alert-success" role="alert">
+    <h1>{{finalResult}}</h1>
 
-        <div *ngIf="finalResult == 'You won'" class="alert alert-success" role="alert">
-          <h1>{{finalResult}}</h1>
-          <div *ngIf="waitingReplay">
-            <h3>Waiting for opponent response</h3>
-            <a class="btn btn-danger" [routerLink]="['/players-list']"><i class="fa fa-sign-out" aria-hidden="true"></i></a>
-          </div>
-          <div *ngIf="!waitingReplay">
-            <button class="btn btn-primary" (click)="replay()"><i class="fa fa-repeat" aria-hidden="true"></i></button>
-            <a class="btn btn-danger" [routerLink]="['/players-list']"><i class="fa fa-sign-out" aria-hidden="true"></i></a>
-          </div>
-        </div>
+    <div *ngIf="waitingReplay">
+      <h3>Waiting for opponent response</h3>
+      <a class="btn btn-danger" [routerLink]="['/players-list']">
+        <i class="fa fa-sign-out" aria-hidden="true"></i>
+      </a>
+    </div>
 
-        <div  *ngIf="finalResult == 'Draw'"  class="alert alert-warning" role="alert">
-          <h1>{{finalResult}}</h1>
-          <div *ngIf="waitingReplay">
-            <h3>Waiting for opponent response</h3>
-            <a class="btn btn-danger" [routerLink]="['/players-list']"><i class="fa fa-sign-out" aria-hidden="true"></i></a>
-          </div>
-          <div *ngIf="!waitingReplay">
-            <button class="btn btn-primary" (click)="replay()"><i class="fa fa-repeat" aria-hidden="true"></i></button>
-            <a class="btn btn-danger" [routerLink]="['/players-list']"><i class="fa fa-sign-out" aria-hidden="true"></i></a>
-          </div>
-        </div>
+    <div *ngIf="!waitingReplay">
+      <button class="btn btn-primary" (click)="replay()"><i class="fa fa-repeat" aria-hidden="true"></i></button>
+      <a class="btn btn-danger" [routerLink]="['/players-list']">
+        <i class="fa fa-sign-out" aria-hidden="true"></i>
+      </a>
+    </div>
+  </div>
 
-        <div *ngIf="finalResult == 'You lost'"  class="alert alert-danger" role="alert">
-          <h1>{{finalResult}}</h1>
-          <div *ngIf="waitingReplay">
-            <h3>Waiting for opponent response</h3>
-            <a class="btn btn-danger" [routerLink]="['/players-list']"><i class="fa fa-sign-out" aria-hidden="true"></i></a>
-          </div>
-          <div *ngIf="!waitingReplay">
-            <button class="btn btn-primary" (click)="replay()"><i class="fa fa-repeat" aria-hidden="true"></i></button>
-            <a class="btn btn-danger" [routerLink]="['/players-list']"><i class="fa fa-sign-out" aria-hidden="true"></i></a>
-          </div>
-        </div>
+  <div  *ngIf="finalResult == 'Draw'"  class="alert alert-warning" role="alert">
+    <h1>{{finalResult}}</h1>
 
-        <div *ngIf="finalResult == 'Your opponent left the game'"  class="alert alert-info" role="alert">
-          <h1>{{finalResult}}</h1>
-          <a class="btn btn-primary" [routerLink]="['/players-list']"><i class="fa fa-sign-out" aria-hidden="true"></i></a>
-        </div>
+    <div *ngIf="waitingReplay">
+      <h3>Waiting for opponent response</h3>
+      <a class="btn btn-danger" [routerLink]="['/players-list']">
+        <i class="fa fa-sign-out" aria-hidden="true"></i>
+      </a>
+    </div>
 
+    <div *ngIf="!waitingReplay">
+      <button class="btn btn-primary" (click)="replay()">
+        <i class="fa fa-repeat" aria-hidden="true"></i>
+      </button>
+      <a class="btn btn-danger" [routerLink]="['/players-list']">
+        <i class="fa fa-sign-out" aria-hidden="true"></i>
+      </a>
+    </div>
+  </div>
+
+  <div *ngIf="finalResult == 'You lost'"  class="alert alert-danger" role="alert">
+    <h1>{{finalResult}}</h1>
+
+    <div *ngIf="waitingReplay">
+      <h3>Waiting for opponent response</h3>
+      <a class="btn btn-danger" [routerLink]="['/players-list']">
+        <i class="fa fa-sign-out" aria-hidden="true"></i>
+      </a>
+    </div>
+
+    <div *ngIf="!waitingReplay">
+      <button class="btn btn-primary" (click)="replay()">
+        <i class="fa fa-repeat" aria-hidden="true"></i>
+      </button>
+      <a class="btn btn-danger" [routerLink]="['/players-list']">
+        <i class="fa fa-sign-out" aria-hidden="true"></i>
+      </a>
+    </div>
+  </div>
+
+  <div *ngIf="finalResult == 'Your opponent left the game'"  class="alert alert-info" role="alert">
+    <h1>{{finalResult}}</h1>
+    <a class="btn btn-primary" [routerLink]="['/players-list']">
+      <i class="fa fa-sign-out" aria-hidden="true"></i>
+    </a>
+  </div>
 </div>
 
 

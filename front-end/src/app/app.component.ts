@@ -1,16 +1,10 @@
-import {Component, OnInit} from '@angular/core';
-import {SocketService} from "./socket.service";
-
+import {Component} from '@angular/core';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent implements OnInit{
-  title = 'app works!';
 
-  constructor(public socketService : SocketService){}
-  ngOnInit(){
-  }
+export class AppComponent{
 }

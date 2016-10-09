@@ -1,8 +1,7 @@
-import {Component, OnInit} from "@angular/core";
-import {FormGroup, FormControl, Validators} from "@angular/forms";
-import {SocketService} from "../socket.service";
-import {Router} from "@angular/router";
-
+import { Component, OnInit } from "@angular/core";
+import { FormGroup, FormControl, Validators } from "@angular/forms";
+import { SocketService } from "../shared/socket.service";
+import { Router } from "@angular/router";
 
 @Component({
   selector: 'my-input-name',
@@ -10,11 +9,11 @@ import {Router} from "@angular/router";
   styleUrls : ['./input-name.component.scss']
 })
 
-
-export class  InputNameComponent implements OnInit {
+export class InputNameComponent implements OnInit {
   myForm: FormGroup;
 
-  constructor( private socketService: SocketService , private router: Router){}
+  constructor( private socketService: SocketService,
+               private router: Router){}
 
 
   ngOnInit(){
@@ -25,7 +24,7 @@ export class  InputNameComponent implements OnInit {
 
 
   onSubmit(){
-    this.socketService.setName(this.myForm.controls['name'].value);
+    this.socketService.setMyNameInGame(this.myForm.controls['name'].value);
     this.router.navigate(['/players-list']);
   }
 
@@ -38,7 +37,5 @@ export class  InputNameComponent implements OnInit {
     }
   }
 
-
-
-
 }
+

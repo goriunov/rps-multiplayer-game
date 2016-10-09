@@ -1,6 +1,6 @@
-import {Component, OnInit, NgZone, OnDestroy} from '@angular/core';
-import {SocketService} from "../socket.service";
-import {Router} from "@angular/router";
+import { Component, OnInit, NgZone, OnDestroy } from '@angular/core';
+import { SocketService } from "../shared/socket.service";
+import { Router } from "@angular/router";
 
 @Component({
   selector: 'my-game-board',
@@ -10,191 +10,147 @@ import {Router} from "@angular/router";
 })
 
 export class GameBoardComponent implements OnInit,OnDestroy{
-  sockets : any;
-  opponentId : number;
+  socket: any;
+
+  opponentId: number;
+  opponentName: string ='';
+  opponentDecision: string;
+  opponentScore: number =0;
+
   myID: number;
   myName: string ='';
-  opponentName: string ='';
-  myDesition: string;
-  opponentDecision: string;
-  finalResult: string;
-  opponentScore : number =0;
-  myScore : number = 0;
+  myDecision: string;
+  myScore: number = 0;
 
-
-
-  waiting:boolean = false;
+  waitingForOpponent:boolean = false;
   waitingReplay: boolean = false;
+  opponentIsWaiting : boolean = false;
+
   final:boolean = false;
-  paper:boolean  =false;
-  rock:boolean =false;
-  scissors:boolean =false;
-  opponentPaper:boolean =false;
-  opponentRock:boolean =false;
-  opponentScissors:boolean =false;
+  finalResult: string;
+
   timing : number = 30;
-  opponentWaiting : boolean = false;
-
-
   timer: any;
   interval: any;
 
-
-  constructor(private socketService: SocketService , private zone:NgZone , private router:Router){}
+  constructor(private socketService: SocketService,
+              private zone:NgZone,
+              private router:Router){}
 
 
   ngOnInit(){
-    this.myName = this.socketService.returnMyName();
+    this.socket = this.socketService.returnSocket();
     this.opponentName = this.socketService.returnOpponentName();
-    this.sockets = this.socketService.getSocket();
-    this.opponentId = this.socketService.getOpponentId();
-    this.socketService.myID.subscribe(
-      (id)=> this.myID = id);
+    this.opponentId = this.socketService.returnOpponentId();
+    this.myName = this.socketService.returnMyName();
+    this.socketService.myID.subscribe((id)=> this.myID = id);
 
-    this.sockets.on('waiting'  , ()=>{
+    this.socket.on('final decision' , (result) =>{
+      this.opponentIsWaiting = false;
+      this.waitingForOpponent = false;
+      this.opponentDecision = result.opponentDecision;
+      this.myDecision = result.myDecision;
 
-        if (!this.final) {
-          this.opponentWaiting = true;
-          this.timer = setTimeout(()=> {
-            if (this.opponentWaiting == true) {
-              this.router.navigate(['/']);
-            }
-          }, 30000);
-
-          this.interval = setInterval(()=> {
-            this.timing = this.timing - 1;
-            this.zone.run(()=> {
-            });
-          }, 1000)
-        }
-
-    });
-
-    this.sockets.on('final decision' , (result)=>{
       if(this.interval){
-       clearInterval(this.interval);
+        clearInterval(this.interval);
         this.timing = 30;
-
       }
+
       if(this.timer){
         clearTimeout(this.timer);
       }
 
-      this.opponentWaiting = false;
-      this.waiting = false;
-      this.opponentDecision = result.opponentDecision;
-      this.myDesition = result.myDecision;
-
-
-      //Experimental logic
-      if(this.opponentDecision == 'Rock' && this.myDesition == 'Paper'){
+      if(this.opponentDecision == 'Rock' && this.myDecision == 'Paper'){
         this.myScore = this.myScore + 1;
         this.final = true;
-        this.paper = true;
-        this.opponentRock = true;
         this.finalResult = 'You won';
-      }else if (this.opponentDecision == 'Rock' && this.myDesition == 'Scissors'){
+      }else if (this.opponentDecision == 'Rock' && this.myDecision == 'Scissors'){
         this.opponentScore = this.opponentScore + 1;
         this.final = true;
-        this.scissors = true;
-        this.opponentRock = true;
         this.finalResult = 'You lost';
-      }else if (this.opponentDecision == 'Rock' && this.myDesition == 'Rock'){
+      }else if (this.opponentDecision == 'Rock' && this.myDecision == 'Rock'){
         this.final = true;
-        this.rock = true;
-        this.opponentRock = true;
         this.finalResult = 'Draw';
       }
 
-      if(this.opponentDecision == 'Paper' && this.myDesition == 'Paper'){
+      if(this.opponentDecision == 'Paper' && this.myDecision == 'Paper'){
         this.final = true;
-        this.paper = true;
-        this.opponentPaper = true;
         this.finalResult = 'Draw';
-      }else if (this.opponentDecision == 'Paper' && this.myDesition == 'Scissors'){
+      }else if (this.opponentDecision == 'Paper' && this.myDecision == 'Scissors'){
         this.myScore = this.myScore + 1;
         this.final = true;
-        this.scissors = true;
-        this.opponentPaper = true;
         this.finalResult = 'You won';
-      }else if (this.opponentDecision == 'Paper' && this.myDesition == 'Rock'){
+      }else if (this.opponentDecision == 'Paper' && this.myDecision == 'Rock'){
         this.opponentScore = this.opponentScore + 1;
         this.final = true;
-        this.rock = true;
-        this.opponentPaper = true;
         this.finalResult = 'You lost';
       }
 
-      if(this.opponentDecision == 'Scissors' && this.myDesition == 'Paper'){
+      if(this.opponentDecision == 'Scissors' && this.myDecision == 'Paper'){
         this.opponentScore = this.opponentScore + 1;
         this.final = true;
-        this.paper = true;
-        this.opponentScissors = true;
         this.finalResult = 'You lost';
-      }else if (this.opponentDecision == 'Scissors' && this.myDesition == 'Scissors'){
+      }else if (this.opponentDecision == 'Scissors' && this.myDecision == 'Scissors'){
         this.final = true;
-        this.scissors = true;
-        this.opponentScissors = true;
         this.finalResult = 'Draw';
-      }else if (this.opponentDecision == 'Scissors' && this.myDesition == 'Rock'){
+      }else if (this.opponentDecision == 'Scissors' && this.myDecision == 'Rock'){
         this.myScore = this.myScore + 1;
         this.final = true;
-        this.rock = true;
-        this.opponentScissors = true;
         this.finalResult = 'You won';
       }
-    //  *************
-
 
       this.zone.run(()=>{});
-
     });
 
-    this.sockets.on('leaved' , ()=>{
+    this.socket.on('waiting', () =>{
+      if (!this.final) {
+        if(!this.waitingForOpponent){
+          this.opponentIsWaiting = true;
+          this.timer = setTimeout(()=> {
+            if (this.opponentIsWaiting == true) {
+              this.router.navigate(['/']);
+            }
+          }, 30000);
+
+          this.interval = setInterval(() =>{
+            this.timing = this.timing - 1;
+            this.zone.run(() =>{});
+          }, 1000);
+        }
+      }
+    });
+
+    this.socket.on('left' , ()=>{
       this.finalResult = 'Your opponent left the game';
       this.final = true;
-
       this.zone.run(()=>{});
     });
 
-    this.sockets.on('replay' , ()=>{
+    this.socket.on('replay' , ()=>{
       this.final = false;
+      this.myDecision = '';
+      this.finalResult = '';
+      this.opponentDecision = '';
       this.waitingReplay = false;
-
       this.zone.run(()=>{});
     })
   }
 
-
   onDecision(decision){
-    this.final = false;
-    this.paper =false;
-    this.rock = false;
-    this.scissors = false;
-    this.opponentPaper = false;
-    this.opponentRock = false;
-    this.opponentScissors = false;
-    this.myDesition = '';
-    this.finalResult = '';
-    this.opponentDecision = '';
-    this.sockets.emit('waiting' , this.opponentId);
-    this.sockets.emit('game decision' , {myID: this.myID , opponentID: this.opponentId , decision: decision});
-
-
+    if(!this.opponentIsWaiting) {
+      this.waitingForOpponent = true;
+      this.socket.emit('waiting' , this.opponentId);
+    }
+    this.socket.emit('game decision' , {myID: this.myID , opponentID: this.opponentId , decision: decision});
     this.zone.run(()=>{});
   }
 
-
   replay(){
     this.waitingReplay = true;
-    this.sockets.emit('replay' , {myID: this.myID , opponentID: this.opponentId});
-
+    this.socket.emit('replay' , {myID: this.myID , opponentID: this.opponentId});
   }
-
 
   ngOnDestroy(){
-    this.sockets.emit('leaved' , {opponentID: this.opponentId})
+    this.socket.emit('left' , {opponentID: this.opponentId});
   }
-
-
 }
