@@ -11,7 +11,7 @@ var app = express();
 
 
 app.use(compression());
-app.use(express.static(path.join(__dirname,'front-end/dist/')));
+app.use('/' ,express.static(path.join(__dirname,'front-end/dist')));
 
 var router = require(path.join(__dirname , 'routes/index'));
 console.log(path.join(__dirname,'front-end/dist/'));
