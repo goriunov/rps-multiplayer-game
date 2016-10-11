@@ -45,6 +45,11 @@ export class GameBoardComponent implements OnInit,OnDestroy{
     this.myName = this.socketService.returnMyName();
     this.socketService.myID.subscribe((id)=> this.myID = id);
 
+    this.socket.on('disconnect', ()=>{
+      console.log('You are not online !');
+      this.router.navigate(['/']);
+    });
+
     this.socket.on('final decision' , (result) =>{
       this.opponentIsWaiting = false;
       this.waitingForOpponent = false;
@@ -103,20 +108,19 @@ export class GameBoardComponent implements OnInit,OnDestroy{
     });
 
     this.socket.on('waiting', () =>{
-      if (!this.final) {
-        if(!this.waitingForOpponent){
-          this.opponentIsWaiting = true;
-          this.timer = setTimeout(()=> {
-            if (this.opponentIsWaiting == true) {
-              this.router.navigate(['/']);
-            }
-          }, 30000);
+      if (!this.final){
+        this.waitingForOpponent = false;
+        this.opponentIsWaiting = true;
+        this.timer = setTimeout(()=> {
+          if (this.opponentIsWaiting == true) {
+            this.router.navigate(['/']);
+          }
+        }, 30000);
 
-          this.interval = setInterval(() =>{
-            this.timing = this.timing - 1;
-            this.zone.run(() =>{});
-          }, 1000);
-        }
+        this.interval = setInterval(() =>{
+          this.timing = this.timing - 1;
+          this.zone.run(() =>{});
+        }, 1000);
       }
     });
 
@@ -137,6 +141,7 @@ export class GameBoardComponent implements OnInit,OnDestroy{
   }
 
   onDecision(decision){
+
     if(!this.opponentIsWaiting) {
       this.waitingForOpponent = true;
       this.socket.emit('waiting' , this.opponentId);
@@ -152,5 +157,6 @@ export class GameBoardComponent implements OnInit,OnDestroy{
 
   ngOnDestroy(){
     this.socket.emit('left' , {opponentID: this.opponentId});
+    this.socket.emit('unavailable' , this.myID);
   }
 }
