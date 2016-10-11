@@ -89,6 +89,18 @@ module.exports = function(io){
     });
 
 
+    var timer;
+    client.on('online' , function(){
+        if(timer){
+            clearTimeout(timer);
+        }
+        timer = setTimeout(function(){
+            connectedPlayers[client.opponentID].emit('left');
+        } , 2000);
+        client.emit('online');
+    });
+
+
 
 
     function createPlayer(id , client, name){
