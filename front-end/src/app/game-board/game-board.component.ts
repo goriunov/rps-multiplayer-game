@@ -46,19 +46,6 @@ export class GameBoardComponent implements OnInit,OnDestroy{
     this.myName = this.socketService.returnMyName();
     this.socketService.myID.subscribe((id)=> this.myID = id);
 
-    setInterval(()=>{
-      this.socket.emit('online');
-    }, 1000);
-
-    this.socket.on('online', ()=>{
-      if(offlineTimer){
-        clearTimeout(offlineTimer);
-      }
-      offlineTimer = setTimeout(()=>{
-        this.router.navigate(['/']);
-      }, 2000);
-    });
-
     this.socket.on('disconnect', ()=>{
       console.log('You are not online !');
       this.router.navigate(['/']);

@@ -1,4 +1,5 @@
 import {Injectable, EventEmitter} from "@angular/core";
+import {Router} from "@angular/router";
 
 declare var io: any;
 
@@ -12,6 +13,9 @@ export class SocketService{
   myID: EventEmitter<any> = new EventEmitter();
   myName: EventEmitter<any> = new EventEmitter();
   myNameInGame: string;
+  offlineTimer;
+
+  constructor(private router: Router){}
 
 
   runSocket(){
@@ -20,6 +24,20 @@ export class SocketService{
     this.socket.on('get player credential' , (userInformation) => {
       this.myID.emit(userInformation.id);
       this.myName.emit(userInformation.name);
+    });
+
+
+    setInterval(()=>{
+      this.socket.emit('online');
+    }, 1000);
+
+    this.socket.on('online', ()=>{
+      if(this.offlineTimer){
+        clearTimeout(this.offlineTimer);
+      }
+      this.offlineTimer = setTimeout(()=>{
+        this.router.navigate(['/']);
+      }, 2000);
     });
   }
 

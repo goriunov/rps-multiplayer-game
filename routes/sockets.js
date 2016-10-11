@@ -14,15 +14,7 @@ module.exports = function(io){
         });
 
         client.on('disconnect' , function(){
-            if(connectedPlayers[client.id]) {
-                if (connectedPlayers[client.id].opponentID > 0) {
-                    connectedPlayers[connectedPlayers[client.id].opponentID].emit('left');
-                }
-            }
-            connectedPlayers.splice(connectedPlayers.indexOf(client.id) ,1);
-            if(myIndexOf({name: client.name , id: client.id}) != -1) {
-                playersAvailableForGame.splice(myIndexOf({name: client.name , id: client.id}), 1);
-            }
+            disconection();
             emitter();
         });
 
@@ -94,12 +86,27 @@ module.exports = function(io){
             }
             timer = setTimeout(function(){
                 connectedPlayers[client.opponentID].emit('left');
+                disconection();
+                emitter();
             } , 2000);
             client.emit('online');
         });
     });
 
 
+
+
+    function disconection(){
+        if(connectedPlayers[client.id]) {
+            if (connectedPlayers[client.id].opponentID > 0) {
+                connectedPlayers[connectedPlayers[client.id].opponentID].emit('left');
+            }
+        }
+        connectedPlayers.splice(connectedPlayers.indexOf(client.id) ,1);
+        if(myIndexOf({name: client.name , id: client.id}) != -1) {
+            playersAvailableForGame.splice(myIndexOf({name: client.name , id: client.id}), 1);
+        }
+    }
 
 
     function createPlayer(id , client, name){
