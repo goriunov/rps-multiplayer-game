@@ -86,18 +86,17 @@ module.exports = function(io){
                 connectedPlayers[replay.opponentID].replay = false;
             }
         });
-    });
 
-
-    var timer;
-    client.on('online' , function(){
-        if(timer){
-            clearTimeout(timer);
-        }
-        timer = setTimeout(function(){
-            connectedPlayers[client.opponentID].emit('left');
-        } , 2000);
-        client.emit('online');
+        var timer;
+        client.on('online' , function(){
+            if(timer){
+                clearTimeout(timer);
+            }
+            timer = setTimeout(function(){
+                connectedPlayers[client.opponentID].emit('left');
+            } , 2000);
+            client.emit('online');
+        });
     });
 
 
