@@ -10,10 +10,12 @@ export class SocketService{
   opponentID: number;
   opponentName: string;
 
+
   myID: EventEmitter<any> = new EventEmitter();
   myName: EventEmitter<any> = new EventEmitter();
   myNameInGame: string;
   offlineTimer;
+  intervalTimer;
 
   constructor(private router: Router){}
 
@@ -25,22 +27,7 @@ export class SocketService{
       this.myID.emit(userInformation.id);
       this.myName.emit(userInformation.name);
     });
-
-
-    setInterval(()=>{
-      this.socket.emit('online');
-    }, 1000);
-
-    this.socket.on('online', ()=>{
-      if(this.offlineTimer){
-        clearTimeout(this.offlineTimer);
-      }
-      this.offlineTimer = setTimeout(()=>{
-        this.router.navigate(['/']);
-      }, 2000);
-    });
   }
-
 
   setMyNameInGame(name){
     this.myNameInGame = name;
@@ -65,6 +52,38 @@ export class SocketService{
   }
   returnMyName(){
     return this.myNameInGame;
+  }
+
+
+  isOnline(){
+    if(this.intervalTimer){
+      clearInterval(this.intervalTimer);
+    }
+    if(this.offlineTimer){
+      clearTimeout(this.offlineTimer);
+    }
+
+    this.intervalTimer = setInterval(()=>{
+      this.socket.emit('online');
+    }, 1000);
+
+    this.socket.on('online', ()=>{
+      if(this.offlineTimer){
+        clearTimeout(this.offlineTimer);
+      }
+      this.offlineTimer = setTimeout(()=>{
+        this.router.navigate(['/']);
+      }, 3000);
+    });
+  }
+
+  disableIntervals(){
+    if(this.intervalTimer){
+      clearInterval(this.intervalTimer);
+    }
+    if(this.offlineTimer){
+      clearTimeout(this.offlineTimer);
+    }
   }
 
 }

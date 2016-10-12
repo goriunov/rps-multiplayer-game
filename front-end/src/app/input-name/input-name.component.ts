@@ -1,4 +1,4 @@
-import { Component, OnInit } from "@angular/core";
+import {Component, OnInit, OnDestroy} from "@angular/core";
 import { FormGroup, FormControl, Validators } from "@angular/forms";
 import { SocketService } from "../shared/socket.service";
 import { Router } from "@angular/router";
@@ -9,7 +9,7 @@ import { Router } from "@angular/router";
   styleUrls : ['./input-name.component.scss']
 })
 
-export class InputNameComponent implements OnInit {
+export class InputNameComponent implements OnInit{
   myForm: FormGroup;
 
   constructor( private socketService: SocketService,
@@ -17,6 +17,7 @@ export class InputNameComponent implements OnInit {
 
 
   ngOnInit(){
+    this.socketService.disableIntervals();
     this.myForm = new FormGroup({
       name: new FormControl('' , [Validators.required , this.onlySpacesValidator])
     });

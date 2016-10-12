@@ -14,7 +14,7 @@ module.exports = function(io){
         });
 
         client.on('disconnect' , function(){
-            disconection();
+            disconnection();
             emitter();
         });
 
@@ -60,7 +60,11 @@ module.exports = function(io){
         });
 
         client.on('left' , function(users){
-            connectedPlayers[users.opponentID].emit('left');
+            if(client.id && users.opponentID > 0){
+                if(connectedPlayers[users.opponentID]){
+                    connectedPlayers[users.opponentID].emit('left');
+                }
+            }
         });
 
         client.on('waiting' , function(id){
@@ -85,28 +89,30 @@ module.exports = function(io){
                 clearTimeout(timer);
             }
             timer = setTimeout(function(){
-                connectedPlayers[client.opponentID].emit('left');
-                disconection();
-                emitter();
-            } , 2000);
+                if(client) {
+                    if(client.opponentID){
+                        connectedPlayers[client.opponentID].emit('left');
+                    }
+                    disconnection();
+                    emitter();
+                }
+            } , 5000);
             client.emit('online');
         });
-    });
 
-
-
-
-    function disconection(){
-        if(connectedPlayers[client.id]) {
-            if (connectedPlayers[client.id].opponentID > 0) {
-                connectedPlayers[connectedPlayers[client.id].opponentID].emit('left');
+        function disconnection(){
+            if (connectedPlayers[client.id]) {
+                if (connectedPlayers[client.id].opponentID > 0) {
+                    connectedPlayers[connectedPlayers[client.id].opponentID].emit('left');
+                }
+            }
+            connectedPlayers.splice(connectedPlayers.indexOf(client.id), 1);
+            if (myIndexOf({name: client.name, id: client.id}) != -1) {
+                playersAvailableForGame.splice(myIndexOf({name: client.name, id: client.id}), 1);
             }
         }
-        connectedPlayers.splice(connectedPlayers.indexOf(client.id) ,1);
-        if(myIndexOf({name: client.name , id: client.id}) != -1) {
-            playersAvailableForGame.splice(myIndexOf({name: client.name , id: client.id}), 1);
-        }
-    }
+
+    });
 
 
     function createPlayer(id , client, name){

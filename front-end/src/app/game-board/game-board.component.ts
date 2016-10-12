@@ -39,7 +39,6 @@ export class GameBoardComponent implements OnInit,OnDestroy{
 
 
   ngOnInit(){
-    var offlineTimer;
     this.socket = this.socketService.returnSocket();
     this.opponentName = this.socketService.returnOpponentName();
     this.opponentId = this.socketService.returnOpponentId();
