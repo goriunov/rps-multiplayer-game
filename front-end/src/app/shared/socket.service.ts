@@ -27,6 +27,20 @@ export class SocketService{
       this.myID.emit(userInformation.id);
       this.myName.emit(userInformation.name);
     });
+
+    if(this.offlineTimer){
+      clearTimeout(this.offlineTimer);
+    }
+
+    this.socket.on('online', ()=>{
+      this.socket.emit('online');
+      if(this.offlineTimer){
+        clearTimeout(this.offlineTimer);
+      }
+      this.offlineTimer = setTimeout(()=>{
+        this.router.navigate(['/']);
+      }, 5000);
+    });
   }
 
   setMyNameInGame(name){
@@ -54,28 +68,6 @@ export class SocketService{
     return this.myNameInGame;
   }
 
-
-  isOnline(){
-    if(this.intervalTimer){
-      clearInterval(this.intervalTimer);
-    }
-    if(this.offlineTimer){
-      clearTimeout(this.offlineTimer);
-    }
-
-    this.intervalTimer = setInterval(()=>{
-      this.socket.emit('online');
-    }, 1000);
-
-    this.socket.on('online', ()=>{
-      if(this.offlineTimer){
-        clearTimeout(this.offlineTimer);
-      }
-      this.offlineTimer = setTimeout(()=>{
-        this.router.navigate(['/']);
-      }, 3000);
-    });
-  }
 
   disableIntervals(){
     if(this.intervalTimer){

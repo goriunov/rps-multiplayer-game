@@ -29,8 +29,6 @@ export class PlayersListComponent implements OnInit, OnDestroy{
 
   ngOnInit(){
     this.socketService.runSocket();
-    this.socketService.isOnline();
-
     this.socket = this.socketService.returnSocket();
     this.socket.emit('on available');
 

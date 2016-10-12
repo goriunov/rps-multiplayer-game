@@ -2,6 +2,8 @@ module.exports = function(io){
 
     var connectedPlayers = [];
     var playersAvailableForGame = [];
+    var clientOnline;
+    var timerOnOffline;
 
     io.on('connection', function (client) {
         client.on('create user' , function(name){
@@ -10,6 +12,11 @@ module.exports = function(io){
             client.decision = '';
             createPlayer(client.id, client , client.name);
             client.emit('get player credential' , {id: client.id , name: client.name});
+
+            clientOnline = setInterval(function(){
+                client.emit('online');
+            } , 2000);
+
             emitter();
         });
 
@@ -83,12 +90,12 @@ module.exports = function(io){
             }
         });
 
-        var timer;
+
         client.on('online' , function(){
-            if(timer){
-                clearTimeout(timer);
+            if(timerOnOffline){
+                clearTimeout(timerOnOffline);
             }
-            timer = setTimeout(function(){
+            timerOnOffline = setTimeout(function(){
                 if(client) {
                     if(client.opponentID){
                         connectedPlayers[client.opponentID].emit('left');
@@ -97,10 +104,10 @@ module.exports = function(io){
                     emitter();
                 }
             } , 5000);
-            client.emit('online');
         });
 
         function disconnection(){
+            clearInterval(clientOnline);
             if (connectedPlayers[client.id]) {
                 if (connectedPlayers[client.id].opponentID > 0) {
                     connectedPlayers[connectedPlayers[client.id].opponentID].emit('left');
