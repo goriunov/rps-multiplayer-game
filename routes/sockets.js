@@ -13,9 +13,9 @@ module.exports = function(io){
             createPlayer(client.id, client , client.name);
             client.emit('get player credential' , {id: client.id , name: client.name});
 
-            clientOnline = setInterval(function(){
+            client.clientOnline = setInterval(function(){
                 client.emit('online');
-            } , 2000);
+            } , 1000);
 
             emitter();
         });
@@ -107,7 +107,9 @@ module.exports = function(io){
         });
 
         function disconnection(){
-            clearInterval(clientOnline);
+            if(client.clientOnline) {
+                clearInterval(client.clientOnline)
+            }
             if (connectedPlayers[client.id]) {
                 if (connectedPlayers[client.id].opponentID > 0) {
                     connectedPlayers[connectedPlayers[client.id].opponentID].emit('left');

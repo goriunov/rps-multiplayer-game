@@ -10,12 +10,10 @@ export class SocketService{
   opponentID: number;
   opponentName: string;
 
-
   myID: EventEmitter<any> = new EventEmitter();
   myName: EventEmitter<any> = new EventEmitter();
   myNameInGame: string;
   offlineTimer;
-  intervalTimer;
 
   constructor(private router: Router){}
 
@@ -32,7 +30,7 @@ export class SocketService{
       clearTimeout(this.offlineTimer);
     }
 
-    this.socket.on('online', ()=>{
+    this.socket.on('online' , ()=>{
       this.socket.emit('online');
       if(this.offlineTimer){
         clearTimeout(this.offlineTimer);
@@ -68,14 +66,9 @@ export class SocketService{
     return this.myNameInGame;
   }
 
-
-  disableIntervals(){
-    if(this.intervalTimer){
-      clearInterval(this.intervalTimer);
-    }
-    if(this.offlineTimer){
-      clearTimeout(this.offlineTimer);
+  disconnection(){
+    if(this.socket){
+      this.socket.disconnect();
     }
   }
-
 }

@@ -1,11 +1,20 @@
-import { Component, OnInit, NgZone, OnDestroy } from '@angular/core';
+import { Component, OnInit, NgZone, OnDestroy , trigger, state, animate, transition, style } from '@angular/core';
 import { SocketService } from "../shared/socket.service";
 import { Router } from "@angular/router";
 
 @Component({
   selector: 'my-game-board',
   templateUrl:'./game-board.component.html',
-  styleUrls:['./game-board.component.scss']
+  styleUrls:['./game-board.component.scss'],
+  animations: [
+    trigger('flyIn' , [
+      state('*'  , style({transform:'translate(0)'})),
+      transition('void => left' , [style({ transform: 'translateX(-70%)'}) , animate(300)]),
+      transition('void => right' , [style({ transform: 'translateX(70%)'}) , animate(300)]),
+      transition('void => bottom' , [style({ transform: 'translateY(70%)'}) , animate(300)]),
+      transition('void => result' , [style({ transform: 'translateY(-100%)'}) , animate(300)])
+    ])
+  ]
 
 })
 

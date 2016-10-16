@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy , NgZone } from '@angular/core';
+import { Component, OnInit, OnDestroy , NgZone , trigger, state, animate, transition, style} from '@angular/core';
 import { Router } from "@angular/router";
 import { SocketService } from "../shared/socket.service";
 import { UserInformation } from "./userInformation";
@@ -6,7 +6,19 @@ import { UserInformation } from "./userInformation";
 @Component({
   selector: 'my-player-list',
   templateUrl: './players-list.component.html',
-  styleUrls: ['players-list.component.scss']
+  styleUrls: ['players-list.component.scss'],
+  animations: [
+    trigger('flyInOut', [
+      state('in', style({transform: 'translateY(0)'})),
+      transition('void => *', [
+        style({transform: 'translateY(-100%)'}),
+        animate(200)
+      ]),
+      transition('* => void', [
+        animate(200, style({transform: 'translateY(-100%)'}))
+      ])
+    ])
+  ]
 })
 
 export class PlayersListComponent implements OnInit, OnDestroy{
@@ -21,6 +33,8 @@ export class PlayersListComponent implements OnInit, OnDestroy{
   opponentID: number;
 
   socket: any;
+  invitedInterval;
+  blink;
 
   constructor( private router: Router,
                private socketService: SocketService,
@@ -48,6 +62,17 @@ export class PlayersListComponent implements OnInit, OnDestroy{
     this.socket.on('called on duel' , (opponent) =>{
       let caller : UserInformation = new UserInformation( opponent.name , opponent.id );
       this.allCallsOnDuel.push(caller);
+      if(this.invitedInterval) {
+        clearInterval(this.invitedInterval);
+      }
+      this.invitedInterval = setInterval(()=>{
+        if(this.blink){
+          this.blink = false;
+        }else{
+          this.blink = true;
+        }
+        this.zone.run(()=>{});
+      }, 300);
       this.zone.run(()=>{});
     });
 
@@ -63,6 +88,18 @@ export class PlayersListComponent implements OnInit, OnDestroy{
       this.invitedPeople.splice(this.invitedPeople.indexOf(id) , 1);
       this.zone.run(()=>{});
     });
+  }
+
+  invitationListFunction(){
+    this.blink = false;
+    if(this.invitationListOpened){
+      this.invitationListOpened = false;
+    }else{
+      this.invitationListOpened = true;
+    }
+    if(this.invitedInterval) {
+      clearInterval(this.invitedInterval);
+    }
   }
 
 
@@ -97,6 +134,8 @@ export class PlayersListComponent implements OnInit, OnDestroy{
 
   ngOnDestroy(){
     this.socket.emit('unavailable' , this.myID);
+    clearInterval(this.invitedInterval);
+    this.blink = false;
   }
 
 

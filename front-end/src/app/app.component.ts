@@ -1,4 +1,5 @@
-import {Component} from '@angular/core';
+import {Component , HostListener} from '@angular/core';
+import {SocketService} from "./shared/socket.service";
 
 @Component({
   selector: 'app-root',
@@ -7,4 +8,10 @@ import {Component} from '@angular/core';
 })
 
 export class AppComponent{
+  constructor( private socketService:SocketService){}
+
+  @HostListener('window:beforeunload', ['$event'])
+  beforeUnloadHander(event) {
+    this.socketService.disconnection();
+  }
 }

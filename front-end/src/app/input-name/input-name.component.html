@@ -2,19 +2,19 @@
    <div class="centered">
     <div class="col-xs-12 ">
       <div class="col-xs-12 padding-off ">
-        <h2>Rock Paper Scissors</h2>
+        <h2 [@flyIn] ><span class="shiftingLetter">R</span><span class="shiftingLetter">o</span><span class="shiftingLetter">c</span><span class="shiftingLetter">k</span> <span class="shiftingLetter">P</span><span class="shiftingLetter">a</span><span class="shiftingLetter">p</span><span class="shiftingLetter">e</span><span class="shiftingLetter">r</span> <span class="shiftingLetter">S</span><span class="shiftingLetter">c</span><span class="shiftingLetter">i</span><span class="shiftingLetter">s</span><span class="shiftingLetter">s</span><span class="shiftingLetter">o</span><span class="shiftingLetter">r</span><span class="shiftingLetter">s</span></h2>
       </div>
 
       <div class="col-xs-12 colors">
-        <h4>Multilplayer game</h4>
+        <h4 [@flyIn]>Multilplayer game</h4>
       </div>
     </div>
 
-    <form [formGroup]="myForm" (ngSubmit)="onSubmit()" class="col-xs-12 col-sm-6 offset-sm-3 centringText">
+    <form [@drop]  [formGroup]="myForm" (ngSubmit)="onSubmit()" class="col-xs-12 col-sm-6 offset-sm-3 centringText">
       <div class="input-group ">
-        <input type="text" class="form-control" placeholder="Write your name" formControlName="name" maxlength="15">
+        <input  type="text" class="form-control" placeholder="Write your name" formControlName="name" maxlength="15">
         <span class="input-group-btn">
-          <button class="btn btn-primary" type="submit" [disabled]="!myForm.valid">Continue</button>
+          <button  class="btn btn-primary" type="submit" [disabled]="!myForm.valid">Continue</button>
         </span>
       </div>
     </form>

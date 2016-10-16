@@ -1,4 +1,4 @@
-import {Component, OnInit, OnDestroy} from "@angular/core";
+import {Component, OnInit , trigger, state, animate, transition, style} from "@angular/core";
 import { FormGroup, FormControl, Validators } from "@angular/forms";
 import { SocketService } from "../shared/socket.service";
 import { Router } from "@angular/router";
@@ -6,7 +6,17 @@ import { Router } from "@angular/router";
 @Component({
   selector: 'my-input-name',
   templateUrl: './input-name.component.html',
-  styleUrls : ['./input-name.component.scss']
+  styleUrls : ['./input-name.component.scss'],
+  animations: [
+    trigger('flyIn' , [
+      state('*' , style({transform: 'scale(1.0)'})),
+      transition('void => *' , [style({transform: 'scale(0.3)'}) , animate('0.3s ease-in')]),
+    ]),
+    trigger('drop' , [
+      state('*' , style({transform: 'translateY(0)'})),
+      transition('void => *' , [style({transform: 'translateY(-80px)'}) , animate('0.3s ease-in')]),
+    ])
+  ]
 })
 
 export class InputNameComponent implements OnInit{
@@ -15,12 +25,11 @@ export class InputNameComponent implements OnInit{
   constructor( private socketService: SocketService,
                private router: Router){}
 
-
   ngOnInit(){
-    this.socketService.disableIntervals();
     this.myForm = new FormGroup({
       name: new FormControl('' , [Validators.required , this.onlySpacesValidator])
     });
+    this.socketService.disconnection();
   }
 
 

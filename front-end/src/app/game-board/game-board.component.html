@@ -11,19 +11,19 @@
 </section>
 
 
-<section class="col-xs-4 col-sm-4 chose">
+<section class="col-xs-4 col-sm-4 chose" [@flyIn]="'left'">
   <div (click)="onDecision('Rock'); " class="pictures forAllPictures">
     <img  src="/assets/pictures/rock.png">
   </div>
 </section>
 
-<section class="col-xs-4 col-sm-4 chose">
+<section class="col-xs-4 col-sm-4 chose" [@flyIn]="'bottom'">
   <div (click)="onDecision('Paper'); " class="pictures forAllPictures">
     <img   src ="/assets/pictures/paper.png">
   </div>
 </section>
 
-<section class="col-xs-4 col-sm-4 chose">
+<section class="col-xs-4 col-sm-4 chose" [@flyIn]="'right'">
   <div (click)="onDecision('Scissors');" class="pictures forAllPictures">
     <img  src="/assets/pictures/scissors.png">
   </div>
@@ -48,7 +48,7 @@
 
 <div *ngIf="final" class="box">
 
-  <div *ngIf="finalResult == 'You won'" class="alert alert-success" role="alert">
+  <div *ngIf="finalResult == 'You won'" class="alert alert-success" role="alert" [@flyIn]="'result'">
     <div *ngIf="myDecision == 'Scissors'">
       <h3 class="col-xs-3">
         <i class="fa fa-hand-scissors-o" aria-hidden="true"></i>
@@ -98,7 +98,7 @@
 
   </div>
 
-  <div  *ngIf="finalResult == 'Draw'"  class="alert alert-warning" role="alert">
+  <div  *ngIf="finalResult == 'Draw'"  class="alert alert-warning" role="alert" [@flyIn]="'result'">
 
     <div *ngIf="myDecision == 'Scissors'">
       <h3 class="col-xs-3">
@@ -149,7 +149,7 @@
     </div>
   </div>
 
-  <div *ngIf="finalResult == 'You lost'"  class="alert alert-danger" role="alert">
+  <div *ngIf="finalResult == 'You lost'"  class="alert alert-danger" role="alert" [@flyIn]="'result'">
 
     <div *ngIf="myDecision == 'Scissors'">
       <h3 class="col-xs-3">

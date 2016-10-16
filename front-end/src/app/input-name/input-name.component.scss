@@ -29,6 +29,15 @@ form {
   margin-top: 0;
 }
 
+.shiftingLetter{
+  display: inline-block;
+  transition: all 0.3s;
+  &:hover{
+    cursor: pointer;
+    transform: rotate(180deg);
+  }
+}
+
 
 
 
