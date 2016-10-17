@@ -58,6 +58,9 @@ export class PlayersListComponent implements OnInit, OnDestroy{
     this.socketService.myName.subscribe((name) =>{
       this.myName = name;
     });
+    this.socket.on('can play' , ()=>{
+      this.router.navigate(['/game']);
+    });
 
     this.socket.on('called on duel' , (opponent) =>{
       let caller : UserInformation = new UserInformation( opponent.name , opponent.id );
@@ -81,12 +84,15 @@ export class PlayersListComponent implements OnInit, OnDestroy{
       this.socketService.setOpponentName(opponent.name);
       this.socketService.setOpponentID(this.opponentID);
       this.socket.emit('unavailable' , this.myID);
-      this.router.navigate(['/game']);
     });
 
     this.socket.on('duel declined' , (id) =>{
       this.invitedPeople.splice(this.invitedPeople.indexOf(id) , 1);
       this.zone.run(()=>{});
+    });
+
+    this.socket.on('left' , (id)=>{
+      this.decline(id);
     });
   }
 
@@ -114,7 +120,6 @@ export class PlayersListComponent implements OnInit, OnDestroy{
     this.socketService.setOpponentName(name);
     this.socketService.setOpponentID(this.opponentID);
     this.socket.emit('accept duel' ,{consentient: this.myID , caller: this.opponentID});
-    this.router.navigate(['/game']);
   }
 
 

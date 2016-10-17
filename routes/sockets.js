@@ -2,7 +2,6 @@ module.exports = function(io){
 
     var connectedPlayers = [];
     var playersAvailableForGame = [];
-    var clientOnline;
     var timerOnOffline;
 
     io.on('connection', function (client) {
@@ -10,6 +9,7 @@ module.exports = function(io){
             client.id = Math.random()*(connectedPlayers.length + 1)*Math.random()*(0.1233+connectedPlayers.length);
             client.name = name;
             client.decision = '';
+            client.calledOnDuell = [];
             createPlayer(client.id, client , client.name);
             client.emit('get player credential' , {id: client.id , name: client.name});
 
@@ -36,13 +36,20 @@ module.exports = function(io){
         });
 
         client.on('call on duel' , function(call){
+            client.calledOnDuell.push(call.opponent);
             connectedPlayers[call.opponent].emit('called on duel' , {id: call.senderID , name: call.senderName});
         });
 
         client.on('accept duel' , function(agreement){
             connectedPlayers[agreement.caller].opponentID = agreement.consentient;
             connectedPlayers[agreement.consentient].opponentID = agreement.caller;
-            connectedPlayers[agreement.caller].emit('duel accepted' , {id:agreement.consentient , name: connectedPlayers[agreement.consentient].name});
+            connectedPlayers[agreement.caller].emit('duel accepted', {
+                id: agreement.consentient,
+                name: connectedPlayers[agreement.consentient].name
+            });
+            connectedPlayers[agreement.caller].emit('can play');
+            connectedPlayers[agreement.consentient].emit('can play');
+
         });
 
         client.on('unavailable' , function(id){
@@ -53,7 +60,9 @@ module.exports = function(io){
         });
 
         client.on('decline duel' , function(declineIDs){
-            connectedPlayers[declineIDs.receiver].emit('duel declined' , declineIDs.myID);
+            if(connectedPlayers[declineIDs.receiver]) {
+                connectedPlayers[declineIDs.receiver].emit('duel declined', declineIDs.myID);
+            }
         });
 
         client.on('game decision' , function(userDecision){
@@ -69,7 +78,7 @@ module.exports = function(io){
         client.on('left' , function(users){
             if(client.id && users.opponentID > 0){
                 if(connectedPlayers[users.opponentID]){
-                    connectedPlayers[users.opponentID].emit('left');
+                    connectedPlayers[users.opponentID].emit('left' , client.id);
                 }
             }
         });
@@ -97,13 +106,10 @@ module.exports = function(io){
             }
             timerOnOffline = setTimeout(function(){
                 if(client) {
-                    if(client.opponentID){
-                        connectedPlayers[client.opponentID].emit('left');
-                    }
                     disconnection();
                     emitter();
                 }
-            } , 5000);
+            }, 5000);
         });
 
         function disconnection(){
@@ -115,10 +121,19 @@ module.exports = function(io){
                     connectedPlayers[connectedPlayers[client.id].opponentID].emit('left');
                 }
             }
+            if(client.calledOnDuell) {
+                for (var i = 0; i < client.calledOnDuell.length; i++) {
+                    if (connectedPlayers[client.calledOnDuell[i]]) {
+                        connectedPlayers[client.calledOnDuell[i]].emit('left', client.id);
+                    }
+                }
+            }
+
             connectedPlayers.splice(connectedPlayers.indexOf(client.id), 1);
             if (myIndexOf({name: client.name, id: client.id}) != -1) {
                 playersAvailableForGame.splice(myIndexOf({name: client.name, id: client.id}), 1);
             }
+
         }
 
     });
