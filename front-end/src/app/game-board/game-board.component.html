@@ -83,15 +83,17 @@
 
       <div *ngIf="waitingReplay">
         <h3>Waiting for opponent response</h3>
-        <a class="btn btn-danger" [routerLink]="['/players-list']">
-          <i class="fa fa-sign-out" aria-hidden="true"></i>
+        <a [routerLink]="['/players-list']">
+          <small>exit</small>
         </a>
       </div>
 
       <div *ngIf="!waitingReplay">
-        <button class="btn btn-primary" (click)="replay()"><i class="fa fa-repeat" aria-hidden="true"></i></button>
-        <a class="btn btn-danger" [routerLink]="['/players-list']">
-          <i class="fa fa-sign-out" aria-hidden="true"></i>
+        <button class="btn btn-primary" (click)="replay()">
+          Play again
+        </button>
+        <a [routerLink]="['/players-list']">
+          <small>exit</small>
         </a>
       </div>
     </div>
@@ -133,17 +135,17 @@
 
       <div *ngIf="waitingReplay">
         <h3>Waiting for opponent response</h3>
-        <a class="btn btn-danger" [routerLink]="['/players-list']">
-          <i class="fa fa-sign-out" aria-hidden="true"></i>
+        <a [routerLink]="['/players-list']">
+          <small>exit</small>
         </a>
       </div>
 
       <div *ngIf="!waitingReplay">
         <button class="btn btn-primary" (click)="replay()">
-          <i class="fa fa-repeat" aria-hidden="true"></i>
+          Play again
         </button>
-        <a class="btn btn-danger" [routerLink]="['/players-list']">
-          <i class="fa fa-sign-out" aria-hidden="true"></i>
+        <a [routerLink]="['/players-list']">
+          <small>exit</small>
         </a>
       </div>
     </div>
@@ -184,17 +186,17 @@
 
       <div *ngIf="waitingReplay">
         <h3>Waiting for opponent response</h3>
-        <a class="btn btn-danger" [routerLink]="['/players-list']">
-          <i class="fa fa-sign-out" aria-hidden="true"></i>
+        <a [routerLink]="['/players-list']">
+          <small>exit</small>
         </a>
       </div>
 
       <div *ngIf="!waitingReplay">
         <button class="btn btn-primary" (click)="replay()">
-          <i class="fa fa-repeat" aria-hidden="true"></i>
+          Play again
         </button>
-        <a class="btn btn-danger" [routerLink]="['/players-list']">
-          <i class="fa fa-sign-out" aria-hidden="true"></i>
+        <a [routerLink]="['/players-list']">
+          <small>exit</small>
         </a>
       </div>
     </div>
@@ -203,7 +205,7 @@
   <div *ngIf="finalResult == 'Your opponent left the game'"  class="alert alert-info" role="alert">
     <h1>{{finalResult}}</h1>
     <a class="btn btn-primary" [routerLink]="['/players-list']">
-      <i class="fa fa-sign-out" aria-hidden="true"></i>
+      Exit
     </a>
   </div>
 

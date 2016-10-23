@@ -38,6 +38,11 @@ export class InputNameComponent implements OnInit{
     this.router.navigate(['/players-list']);
   }
 
+  randomName(){
+    this.socketService.setMyNameInGame('Player: '+Math.floor((Math.random() * 1000) + 1));
+    this.router.navigate(['/players-list']);
+  }
+
 
   onlySpacesValidator(control: FormControl) : {[s: string]: boolean}{
     if(/\S/.test(control.value)){

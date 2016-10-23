@@ -13,9 +13,8 @@
     <form [@drop]  [formGroup]="myForm" (ngSubmit)="onSubmit()" class="col-xs-12 col-sm-6 offset-sm-3 centringText">
       <div class="input-group ">
         <input  type="text" class="form-control" placeholder="Write your name" formControlName="name" maxlength="15">
-        <span class="input-group-btn">
-          <button  class="btn btn-primary" type="submit" [disabled]="!myForm.valid">Continue</button>
-        </span>
+        <button  class="btn btn-primary" type="submit" [disabled]="!myForm.valid">Continue</button>
+        <button  class="btn btn-primary" type="button" (click)="randomName()">Random Name</button>
       </div>
     </form>
  </div>

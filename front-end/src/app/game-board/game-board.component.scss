@@ -7,6 +7,9 @@
   }
 }
 
+a{
+  display: block;
+}
 
 .col-xs-3 i{
   font-size: 60px;
@@ -61,13 +64,19 @@
   border-radius: 72px;
 }
 
+
 .pictures{
   background: #337ab7;
+  transition: -webkit-transform 0.3s;
+  -webkit-transition: -webkit-transform 0.3s;
   transition: transform 0.3s;
+  transition: transform 0.3s, -webkit-transform 0.3s;
   &:hover{
     cursor: pointer;
     background:#2e6da4;
-    transform: scale(1.1);
+    -ms-transform: scale(1.1);
+        -webkit-transform: scale(1.1);
+            transform: scale(1.1);
   }
 }
 

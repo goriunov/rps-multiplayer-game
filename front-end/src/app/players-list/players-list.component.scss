@@ -7,11 +7,11 @@
   font-family: 'Fjalla One', sans-serif;
 }
 
+
 .callCome{
   background: #0275d8 !important;
-  border: 1px solid #0275d8;
+  border: 1px solid #0275d8 !important;
   color:white;
-    //#0275d8;
 }
 
 .content{
@@ -42,10 +42,13 @@
 }
 
 .close-invitation-window-btn{
+  -webkit-transition: all 0.3s;
   transition: all 0.3s;
   &:hover{
     cursor: pointer;
-    transform: scale(1.2);
+    -ms-transform: scale(1.2);
+        -webkit-transform: scale(1.2);
+            transform: scale(1.2);
   }
 }
 
@@ -61,13 +64,16 @@
   margin-bottom: 5px;
   min-height: 56px;
   span{
+    -webkit-transition: all 0.3s;
     transition: all 0.3s;
     font-size: 24px;
     float:right;
     margin-right: 10px;
     margin-top: 5px;
     &:hover{
-      transform: scale(1.2);
+      -ms-transform: scale(1.2);
+          -webkit-transform: scale(1.2);
+              transform: scale(1.2);
       cursor: pointer;
     }
   }

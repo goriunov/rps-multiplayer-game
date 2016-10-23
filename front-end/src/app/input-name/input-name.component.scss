@@ -17,10 +17,16 @@ form {
 
 .centered {
   position: absolute;
+  width: 100%;
   right: 50%;
-  top: 50%;
+  top: 45%;
   margin-top: -100px;
   margin-right: -50%;
+  .input-group{
+    button{
+      margin:5px;
+    }
+  }
 }
 
 .padding-off {
@@ -31,10 +37,13 @@ form {
 
 .shiftingLetter{
   display: inline-block;
+  -webkit-transition: all 0.3s;
   transition: all 0.3s;
   &:hover{
     cursor: pointer;
-    transform: rotate(180deg);
+    -ms-transform: rotate(180deg);
+        -webkit-transform: rotate(180deg);
+            transform: rotate(180deg);
   }
 }
 
