@@ -78,18 +78,11 @@
         });
 
         function deviceMotionHandler(eventData) {
-          var accX = Math.round(event.accelerationIncludingGravity.x*10) / 10,
-            accY = Math.round(event.accelerationIncludingGravity.y*10) / 10,
-            xA = -(accX / 10) * settings.strength,
-            yA = -(accY / 10) * settings.strength,
-            newX = -(xA*2),
-            newY = -(yA*2);
-
           el.find("> .ibg-bg").css({
-            "-webkit-transform": "matrix(" + '1.10' + ",0,0," + '1.10'  + ","  + newX + "," + newY + ")",
-            "-moz-transform": "matrix(" + '1.10'  + ",0,0," + '1.10'  + "," + newX + "," + newY + ")",
-            "-o-transform": "matrix(" + '1.10'  + ",0,0," + '1.10'  + "," + newX + "," + newY + ")",
-            "transform": "matrix(" + '1.10'  + ",0,0," + '1.10'  + "," + newX + "," + newY + ")"
+            "-webkit-transform": "matrix(" + '1.10' + ",0,0," + '1.10'  + ","  + "0,0" +  ")",
+            "-moz-transform": "matrix(" + '1.10'  + ",0,0," + '1.10'  + "," +  "0,0" + ")",
+            "-o-transform": "matrix(" + '1.10'  + ",0,0," + '1.10'  + "," +  "0,0" +  ")",
+            "transform": "matrix(" + '1.10'  + ",0,0," + '1.10'  + "," +  "0,0" +  ")"
           });
 
         }
