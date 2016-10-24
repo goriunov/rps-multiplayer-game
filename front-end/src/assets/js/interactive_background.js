@@ -17,7 +17,7 @@
 
   var defaults = {
     strength: 25,
-    scale: 1.05,
+    scale: 1.10,
     animationSpeed: "100ms",
     contain: true,
     wrapContent: false
@@ -60,14 +60,22 @@
       el.find("> .ibg-bg").css({
         width: w,
         height: h
-      })
+      });
 
 
 
       if(has_touch || screen.width <= 699) {
         // For Mobile
+
         // Add support for accelerometeron mobile
         window.addEventListener('devicemotion', deviceMotionHandler, false);
+
+        $(".bg > .ibg-bg").css({
+          "-webkit-transform": "matrix(" + '1.10' + ",0,0," + '1.10'  + ","  +"0,0" + ")",
+          "-moz-transform": "matrix(" + '1.10'  + ",0,0," + '1.10'  + "," +  "0,0" + ")",
+          "-o-transform": "matrix(" + '1.10'  + ",0,0," + '1.10'  + "," + "0,0" +")",
+          "transform": "matrix(" + '1.10'  + ",0,0," + '1.10'  + "," + "0,0" +")"
+        });
 
         function deviceMotionHandler(eventData) {
           var accX = Math.round(event.accelerationIncludingGravity.x*10) / 10,
@@ -78,10 +86,10 @@
             newY = -(yA*2);
 
           el.find("> .ibg-bg").css({
-            "-webkit-transform": "matrix(" + settings.scale + ",0,0," + settings.scale + "," + newX + "," + newY + ")",
-            "-moz-transform": "matrix(" + settings.scale + ",0,0," + settings.scale + "," + newX + "," + newY + ")",
-            "-o-transform": "matrix(" + settings.scale + ",0,0," + settings.scale + "," + newX + "," + newY + ")",
-            "transform": "matrix(" + settings.scale + ",0,0," + settings.scale + "," + newX + "," + newY + ")"
+            "-webkit-transform": "matrix(" + '1.10' + ",0,0," + '1.10'  + ","  + newX + "," + newY + ")",
+            "-moz-transform": "matrix(" + '1.10'  + ",0,0," + '1.10'  + "," + newX + "," + newY + ")",
+            "-o-transform": "matrix(" + '1.10'  + ",0,0," + '1.10'  + "," + newX + "," + newY + ")",
+            "transform": "matrix(" + '1.10'  + ",0,0," + '1.10'  + "," + newX + "," + newY + ")"
           });
 
         }
