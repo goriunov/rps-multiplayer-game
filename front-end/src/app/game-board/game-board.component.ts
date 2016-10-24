@@ -41,16 +41,10 @@ export class GameBoardComponent implements OnInit,OnDestroy{
   timing : number = 30;
   timer: any;
   interval: any;
-  pagerenderer: any;
 
   constructor(private socketService: SocketService,
               private zone:NgZone,
-              private router:Router) {
-    this.pagerenderer = setInterval(()=>{
-      this.zone.run(() =>{});
-    } , 100)
-
-  }
+              private router:Router){}
 
 
   ngOnInit(){
@@ -119,6 +113,7 @@ export class GameBoardComponent implements OnInit,OnDestroy{
         this.finalResult = 'You won';
       }
 
+      this.zone.run(()=>{});
     });
 
     this.socket.on('waiting', () =>{
@@ -133,6 +128,7 @@ export class GameBoardComponent implements OnInit,OnDestroy{
 
         this.interval = setInterval(() =>{
           this.timing = this.timing - 1;
+          this.zone.run(() =>{});
         }, 1000);
       }
     });
@@ -140,6 +136,7 @@ export class GameBoardComponent implements OnInit,OnDestroy{
     this.socket.on('left' , ()=>{
       this.finalResult = 'Your opponent left the game';
       this.final = true;
+      this.zone.run(()=>{});
     });
 
     this.socket.on('replay' , ()=>{
@@ -148,6 +145,7 @@ export class GameBoardComponent implements OnInit,OnDestroy{
       this.finalResult = '';
       this.opponentDecision = '';
       this.waitingReplay = false;
+      this.zone.run(()=>{});
     })
   }
 
@@ -158,6 +156,7 @@ export class GameBoardComponent implements OnInit,OnDestroy{
       this.socket.emit('waiting' , this.opponentId);
     }
     this.socket.emit('game decision' , {myID: this.myID , opponentID: this.opponentId , decision: decision});
+    this.zone.run(()=>{});
   }
 
   replay(){
@@ -166,7 +165,6 @@ export class GameBoardComponent implements OnInit,OnDestroy{
   }
 
   ngOnDestroy(){
-    clearInterval(this.pagerenderer);
     this.socket.emit('left' , {opponentID: this.opponentId});
     this.socket.emit('unavailable' , this.myID);
   }
