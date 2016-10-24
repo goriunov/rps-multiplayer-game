@@ -57,6 +57,7 @@ export class PlayersListComponent implements OnInit, OnDestroy{
 
     this.socketService.myName.subscribe((name) =>{
       this.myName = name;
+      this.zone.run(()=>{});
     });
     this.socket.on('can play' , ()=>{
       this.router.navigate(['/game']);
@@ -109,9 +110,13 @@ export class PlayersListComponent implements OnInit, OnDestroy{
   }
 
 
-  decline(declinedUser){
-    this.socket.emit('decline duel' , {myID: this.myID , receiver: declinedUser.id});
-    this.allCallsOnDuel.splice(this.myIndexOf(declinedUser) , 1);
+  decline(id){
+    if(id) {
+      this.socket.emit('decline duel' , {myID: this.myID , receiver: id});
+      if (this.myIndexOf(id) != -1) {
+        this.allCallsOnDuel.splice(this.myIndexOf(id), 1);
+      }
+    }
   }
 
 
@@ -144,15 +149,14 @@ export class PlayersListComponent implements OnInit, OnDestroy{
   }
 
 
-  myIndexOf(obj) {
+  myIndexOf(objId) {
     for (var i = 0; i < this.allCallsOnDuel.length; i++) {
-      if (this.allCallsOnDuel[i].name == obj.name && this.allCallsOnDuel[i].id == obj.id) {
+      if (this.allCallsOnDuel[i].id == objId) {
         return i;
       }
     }
     return -1;
   }
-
 }
 
 

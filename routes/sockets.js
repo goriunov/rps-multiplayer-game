@@ -117,7 +117,8 @@ module.exports = function(io){
                 clearInterval(client.clientOnline)
             }
             if (connectedPlayers[client.id]) {
-                if (connectedPlayers[client.id].opponentID > 0) {
+                if (connectedPlayers[client.id].opponentID > 0 && connectedPlayers[connectedPlayers[client.id].opponentID]) {
+
                     connectedPlayers[connectedPlayers[client.id].opponentID].emit('left');
                 }
             }
@@ -129,7 +130,8 @@ module.exports = function(io){
                 }
             }
 
-            connectedPlayers.splice(connectedPlayers.indexOf(client.id), 1);
+
+            delete connectedPlayers[client.id];
             if (myIndexOf({name: client.name, id: client.id}) != -1) {
                 playersAvailableForGame.splice(myIndexOf({name: client.name, id: client.id}), 1);
             }
@@ -158,5 +160,7 @@ module.exports = function(io){
         }
         return -1;
     }
+
+
 
 };

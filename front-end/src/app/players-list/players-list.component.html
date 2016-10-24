@@ -9,7 +9,7 @@
 
       <li class="list-group-item invitations first-invitation" *ngFor="let callOnDuel of allCallsOnDuel">
         <h4>{{callOnDuel.name}}</h4>
-        <span class="fa fa-times" aria-hidden="true" (click)="decline(callOnDuel)"></span>
+        <span class="fa fa-times" aria-hidden="true" (click)="decline(callOnDuel.id)"></span>
         <span  class="fa fa-check" aria-hidden="true" (click)="accept(callOnDuel.id , callOnDuel.name)"></span>
       </li>
     </ul>
