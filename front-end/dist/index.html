@@ -12,14 +12,59 @@
 
   <link href="https://fonts.googleapis.com/css?family=Fjalla+One" rel="stylesheet">
 
+  <script src="assets/js/jquery.min.js"></script>
+  <script src="assets/js/interactive_background.js"></script>
   <script src="assets/js/safari.js"></script>
   <script src="assets/polyfill/main.polyfill.js"></script>
 </head>
 
 
 <body>
-  <div class="cover"></div>
-  <app-root>Loading...</app-root>
-<script type="text/javascript" src="inline.js"></script><script type="text/javascript" src="styles.caf7fc5b5fd043ce8646.bundle.js"></script><script type="text/javascript" src="scripts.95dfed13542401a78ee7.bundle.js"></script><script type="text/javascript" src="main.057098a2d623ae06f9b6.bundle.js"></script></body>
+
+
+  <div class="bg" data-ibg-bg="./assets/pictures/background.jpg">
+    <div class="cover"></div>
+    <app-root>Loading...</app-root>
+
+    <script>
+      $(document).ready(function(){
+        $(".bg").interactive_bg({
+          strength: 30,
+          scale: 1.10,
+          animationSpeed: "100ms",
+          contain: true,
+          wrapContent: false
+        });
+        $(".bg > .ibg-bg").css({
+          width: $(window).outerWidth(),
+          height: $(window).outerHeight()
+        });
+        $(".wrapper").css({
+          width: $(window).outerWidth(),
+          height: $(window).outerHeight()
+        });
+      });
+
+
+
+
+      //    // change background size on window resize
+      $(window).resize(function() {
+        $(".bg > .ibg-bg").css({
+          width: $(window).outerWidth(),
+          height: $(window).outerHeight()
+        });
+
+        $(".wrapper").css({
+          width: $(window).outerWidth(),
+          height: $(window).outerHeight()
+        });
+      });
+
+    </script>
+  </div>
+
+
+<script type="text/javascript" src="inline.js"></script><script type="text/javascript" src="styles.0442a146c0f19d5a41e8.bundle.js"></script><script type="text/javascript" src="scripts.95dfed13542401a78ee7.bundle.js"></script><script type="text/javascript" src="main.e969c3a93f1e29e7e603.bundle.js"></script></body>
 
 </html>

@@ -1,13 +1,25 @@
 /* You can add global styles to this file, and also import other style files */
 
-html,
-body{
-  z-index: -100;
-  height: 100%;
-  width: 100%;
-  background: url("/assets/pictures/background.jpg") no-repeat center center fixed;
-  background-size: cover;
+//html,
+//body{
+//  z-index: -100;
+//  height: 100%;
+//  width: 100%;
+//  background: url("/assets/pictures/background.jpg") no-repeat center center fixed;
+//  background-size: cover;
+//}
+
+
+.bg{
+  max-height: 100%;
+  max-width: 100%;
 }
+.bg .ibg-bg{
+  position: fixed;
+}
+
+
+
 
 .cover{
   position: fixed;

@@ -12,14 +12,59 @@
 
   <link href="https://fonts.googleapis.com/css?family=Fjalla+One" rel="stylesheet">
 
+  <script src="assets/js/jquery.min.js"></script>
+  <script src="assets/js/interactive_background.js"></script>
   <script src="assets/js/safari.js"></script>
   <script src="assets/polyfill/main.polyfill.js"></script>
 </head>
 
 
 <body>
-  <div class="cover"></div>
-  <app-root>Loading...</app-root>
+
+
+  <div class="bg" data-ibg-bg="./assets/pictures/background.jpg">
+    <div class="cover"></div>
+    <app-root>Loading...</app-root>
+
+    <script>
+      $(document).ready(function(){
+        $(".bg").interactive_bg({
+          strength: 30,
+          scale: 1.10,
+          animationSpeed: "100ms",
+          contain: true,
+          wrapContent: false
+        });
+        $(".bg > .ibg-bg").css({
+          width: $(window).outerWidth(),
+          height: $(window).outerHeight()
+        });
+        $(".wrapper").css({
+          width: $(window).outerWidth(),
+          height: $(window).outerHeight()
+        });
+      });
+
+
+
+
+      //    // change background size on window resize
+      $(window).resize(function() {
+        $(".bg > .ibg-bg").css({
+          width: $(window).outerWidth(),
+          height: $(window).outerHeight()
+        });
+
+        $(".wrapper").css({
+          width: $(window).outerWidth(),
+          height: $(window).outerHeight()
+        });
+      });
+
+    </script>
+  </div>
+
+
 </body>
 
 </html>
