@@ -13,9 +13,7 @@ module.exports = function(io){
             createPlayer(client.id, client , client.name);
             client.emit('get player credential' , {id: client.id , name: client.name});
 
-            client.clientOnline = setInterval(function(){
-                client.emit('online');
-            } , 2000);
+            client.emit('online');
 
             emitter();
         });
@@ -110,6 +108,8 @@ module.exports = function(io){
                     emitter();
                 }
             }, 5000);
+
+            client.emit('online');
         });
 
         function disconnection(){

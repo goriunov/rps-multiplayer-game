@@ -17,6 +17,7 @@ export class SocketService{
 
   constructor(private router: Router){}
 
+
   runSocket(){
     this.socket = io.connect();
     this.socket.emit('create user' , this.myNameInGame);
@@ -28,8 +29,19 @@ export class SocketService{
     if(this.offlineTimer){
       clearTimeout(this.offlineTimer);
     }
-  }
 
+    this.socket.on('online' , ()=>{
+      console.log('Works? :(');
+      if(this.offlineTimer){
+        clearTimeout(this.offlineTimer);
+      }
+      this.offlineTimer = setTimeout(()=>{
+        this.router.navigate(['/']);
+      }, 5000);
+
+      this.socket.emit('online');
+    });
+  }
 
   setMyNameInGame(name){
     this.myNameInGame = name;

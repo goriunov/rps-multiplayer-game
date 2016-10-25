@@ -11,19 +11,19 @@
 </section>
 
 
-<section class="col-xs-4 col-sm-4 chose" [@flyIn]="'left'">
+<section class="col-xs-4 col-sm-4 chocie" [@flyIn]="'left'">
   <div (click)="onDecision('Rock'); " class="pictures forAllPictures">
     <img  src="/assets/pictures/rock.png">
   </div>
 </section>
 
-<section class="col-xs-4 col-sm-4 chose" [@flyIn]="'bottom'">
+<section class="col-xs-4 col-sm-4 choice" [@flyIn]="'bottom'">
   <div (click)="onDecision('Paper'); " class="pictures forAllPictures">
     <img   src ="/assets/pictures/paper.png">
   </div>
 </section>
 
-<section class="col-xs-4 col-sm-4 chose" [@flyIn]="'right'">
+<section class="col-xs-4 col-sm-4 choice" [@flyIn]="'right'">
   <div (click)="onDecision('Scissors');" class="pictures forAllPictures">
     <img  src="/assets/pictures/scissors.png">
   </div>
@@ -32,14 +32,14 @@
 <div class="col-xs-12 divider">
 </div>
 
-<section *ngIf="waitingForOpponent" class="col-xs-12 chose">
+<section *ngIf="waitingForOpponent" class="col-xs-12 choice">
   <div class="mainResult">
-    <h1>Waiting for opponent chose </h1>
+    <h1>Waiting for opponent choice </h1>
     <i class="fa fa-spinner fa-pulse fa-3x fa-fw"></i>
   </div>
 </section>
 
-<section *ngIf="opponentIsWaiting" class="col-xs-12 chose">
+<section *ngIf="opponentIsWaiting" class="col-xs-12 choice">
   <div class="mainResult">
     <h1>Choose within {{timing}} sec</h1>
   </div>
