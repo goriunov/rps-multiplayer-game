@@ -15,7 +15,7 @@ module.exports = function(io){
 
             client.clientOnline = setInterval(function(){
                 client.emit('online');
-            } , 1000);
+            } , 2000);
 
             emitter();
         });

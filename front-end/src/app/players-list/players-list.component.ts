@@ -31,6 +31,7 @@ export class PlayersListComponent implements OnInit, OnDestroy{
   myID: number;
   myName: string;
   opponentID: number;
+  offlineTimer:any;
 
   socket: any;
   invitedInterval;
@@ -61,6 +62,17 @@ export class PlayersListComponent implements OnInit, OnDestroy{
     });
     this.socket.on('can play' , ()=>{
       this.router.navigate(['/game']);
+    });
+
+    this.socket.on('online' , ()=>{
+      this.socket.emit('online');
+      console.log('works');
+      if(this.offlineTimer){
+        clearTimeout(this.offlineTimer);
+      }
+      this.offlineTimer = setTimeout(()=>{
+        this.router.navigate(['/']);
+      }, 6000);
     });
 
     this.socket.on('called on duel' , (opponent) =>{
@@ -145,7 +157,9 @@ export class PlayersListComponent implements OnInit, OnDestroy{
   ngOnDestroy(){
     this.socket.emit('unavailable' , this.myID);
     clearInterval(this.invitedInterval);
+    clearTimeout(this.offlineTimer);
     this.blink = false;
+
   }
 
 

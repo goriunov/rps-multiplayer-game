@@ -42,6 +42,8 @@ export class GameBoardComponent implements OnInit,OnDestroy{
   timer: any;
   interval: any;
 
+  offlineTimer:any;
+
   constructor(private socketService: SocketService,
               private zone:NgZone,
               private router:Router){}
@@ -57,6 +59,18 @@ export class GameBoardComponent implements OnInit,OnDestroy{
     this.socket.on('disconnect', ()=>{
       console.log('You are not online !');
       this.router.navigate(['/']);
+    });
+
+    this.socket.on('online' , ()=>{
+      console.log('Works');
+      this.socket.emit('online');
+      if(this.offlineTimer){
+        clearTimeout(this.offlineTimer);
+      }
+      this.offlineTimer = setTimeout(()=>{
+        clearTimeout(this.offlineTimer);
+        this.router.navigate(['/']);
+      }, 6000);
     });
 
     this.socket.on('final decision' , (result) =>{
@@ -165,6 +179,7 @@ export class GameBoardComponent implements OnInit,OnDestroy{
   }
 
   ngOnDestroy(){
+    clearTimeout(this.offlineTimer);
     this.socket.emit('left' , {opponentID: this.opponentId});
     this.socket.emit('unavailable' , this.myID);
   }
