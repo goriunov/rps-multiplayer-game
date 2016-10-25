@@ -32,7 +32,9 @@ export class SocketService{
 
     this.socket.on('online' , ()=>{
       this.socket.emit('online');
+      console.log('Got');
       if(this.offlineTimer){
+        console.log('Renew');
         clearTimeout(this.offlineTimer);
       }
       this.offlineTimer = setTimeout(()=>{
