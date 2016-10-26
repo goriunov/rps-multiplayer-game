@@ -100,16 +100,21 @@ module.exports = function(io){
             if(client.timerOnOffline){
                 clearTimeout(client.timerOnOffline);
             }
+
+            if(client.clientOnline) {
+                clearInterval(client.clientOnline)
+            }
+
+            client.clientOnline = setTimeout(function(){
+                client.emit('online');
+            } , 1000);
+
             client.timerOnOffline = setTimeout(function(){
                 if(client) {
                     disconnection();
                     emitter();
                 }
             }, 5000);
-            setTimeout(function(){
-                client.emit('online');
-            } , 1000);
-
         });
 
         function disconnection(){
