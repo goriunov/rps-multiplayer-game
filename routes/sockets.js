@@ -2,7 +2,6 @@ module.exports = function(io){
 
     var connectedPlayers = [];
     var playersAvailableForGame = [];
-    var timerOnOffline;
 
     io.on('connection', function (client) {
         client.on('create user' , function(name){
@@ -98,10 +97,10 @@ module.exports = function(io){
         });
 
         client.on('online' , function(){
-            if(timerOnOffline){
-                clearTimeout(timerOnOffline);
+            if(client.timerOnOffline){
+                clearTimeout(client.timerOnOffline);
             }
-            timerOnOffline = setTimeout(function(){
+            client.timerOnOffline = setTimeout(function(){
                 if(client) {
                     disconnection();
                     emitter();
