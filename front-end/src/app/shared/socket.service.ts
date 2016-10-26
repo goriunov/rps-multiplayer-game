@@ -13,34 +13,39 @@ export class SocketService{
   myID: EventEmitter<any> = new EventEmitter();
   myName: EventEmitter<any> = new EventEmitter();
   myNameInGame: string;
-  offlineTimer;
+  offlineTimer:any;
+  userIsOnline: any;
 
   constructor(private router: Router){}
 
 
   runSocket(){
-    this.socket = io.connect();
-    this.socket.emit('create user' , this.myNameInGame);
-    this.socket.on('get player credential' , (userInformation) => {
-      this.myID.emit(userInformation.id);
-      this.myName.emit(userInformation.name);
-    });
+    if(!this.socket) {
+      this.socket = io.connect();
+      this.socket.emit('create user', this.myNameInGame);
+      this.socket.on('get player credential', (userInformation) => {
+        this.myID.emit(userInformation.id);
+        this.myName.emit(userInformation.name);
+      });
 
-    if(this.offlineTimer){
-      clearTimeout(this.offlineTimer);
-    }
-
-    this.socket.on('online' , ()=>{
-      console.log('Works? :(');
-      if(this.offlineTimer){
+      if (this.offlineTimer) {
         clearTimeout(this.offlineTimer);
       }
-      this.offlineTimer = setTimeout(()=>{
-        this.router.navigate(['/']);
-      }, 5000);
 
-      this.socket.emit('online');
-    });
+      this.socket.on('online', ()=> {
+        console.log('Works? :(');
+        if (this.offlineTimer) {
+          clearTimeout(this.offlineTimer);
+        }
+        this.offlineTimer = setTimeout(()=> {
+          this.router.navigate(['/']);
+        }, 5000);
+        this.userIsOnline = setTimeout(()=>{
+          this.socket.emit('online');
+        } ,1000);
+
+      });
+    }
   }
 
   setMyNameInGame(name){
@@ -70,7 +75,9 @@ export class SocketService{
 
   disconnection(){
     if(this.socket){
+      clearTimeout(this.userIsOnline);
       this.socket.disconnect();
+      this.socket = null;
     }
   }
 }

@@ -100,15 +100,7 @@ module.exports = function(io){
             if(client.timerOnOffline){
                 clearTimeout(client.timerOnOffline);
             }
-
-            if(client.clientOnline) {
-                clearInterval(client.clientOnline)
-            }
-
-            client.clientOnline = setTimeout(function(){
-                client.emit('online');
-            } , 1000);
-
+            client.emit('online');
             client.timerOnOffline = setTimeout(function(){
                 if(client) {
                     disconnection();
@@ -118,9 +110,6 @@ module.exports = function(io){
         });
 
         function disconnection(){
-            if(client.clientOnline) {
-                clearInterval(client.clientOnline)
-            }
             if (connectedPlayers[client.id]) {
                 if (connectedPlayers[client.id].opponentID > 0 && connectedPlayers[connectedPlayers[client.id].opponentID]) {
 

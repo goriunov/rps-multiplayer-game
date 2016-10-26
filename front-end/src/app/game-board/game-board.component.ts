@@ -120,6 +120,13 @@ export class GameBoardComponent implements OnInit,OnDestroy{
       if (!this.final){
         this.waitingForOpponent = false;
         this.opponentIsWaiting = true;
+        if(this.timer){
+          clearTimeout(this.timer);
+        }
+        if(this.interval){
+          clearInterval(this.interval);
+          this.timing = 30;
+        }
         this.timer = setTimeout(()=> {
           if (this.opponentIsWaiting == true) {
             this.router.navigate(['/']);
