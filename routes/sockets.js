@@ -97,7 +97,6 @@ module.exports = function(io){
             }
         });
 
-
         client.on('online' , function(){
             if(timerOnOffline){
                 clearTimeout(timerOnOffline);
@@ -108,8 +107,10 @@ module.exports = function(io){
                     emitter();
                 }
             }, 5000);
+            setTimeout(function(){
+                client.emit('online');
+            } , 1000);
 
-            client.emit('online');
         });
 
         function disconnection(){
@@ -129,15 +130,11 @@ module.exports = function(io){
                     }
                 }
             }
-
-
             delete connectedPlayers[client.id];
             if (myIndexOf({name: client.name, id: client.id}) != -1) {
                 playersAvailableForGame.splice(myIndexOf({name: client.name, id: client.id}), 1);
             }
-
         }
-
     });
 
 

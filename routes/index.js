@@ -16,7 +16,7 @@ router.get('/game/' , function(req ,res ,next){
 });
 
 router.get('/*' , function(req ,res ,next){
-  res.status(404).send('No such a page 404 :}');
+  res.status(404).send('No such a page 404 :{0}');
   res.end();
 });
 
