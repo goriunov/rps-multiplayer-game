@@ -1,7 +1,8 @@
 import {Component, OnInit , trigger, state, animate, transition, style} from "@angular/core";
 import { FormGroup, FormControl, Validators } from "@angular/forms";
 import { SocketService } from "../shared/socket.service";
-import { Router } from "@angular/router";
+import {Router, ActivatedRoute} from "@angular/router";
+import {Observable} from "rxjs";
 
 @Component({
   selector: 'my-input-name',
@@ -21,9 +22,15 @@ import { Router } from "@angular/router";
 
 export class InputNameComponent implements OnInit{
   myForm: FormGroup;
+  label: string;
 
   constructor( private socketService: SocketService,
-               private router: Router){}
+               private router: Router,
+               private activatedRouter: ActivatedRoute){
+    this.activatedRouter.params.subscribe(
+      (param:any)=> this.label = param['label']
+    );
+  }
 
   ngOnInit(){
     this.myForm = new FormGroup({

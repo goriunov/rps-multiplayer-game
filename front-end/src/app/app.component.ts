@@ -14,7 +14,4 @@ export class AppComponent {
   beforeUnloadHander(event) {
     this.socketService.disconnection();
   }
-
-
-
 }

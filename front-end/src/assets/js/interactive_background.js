@@ -49,11 +49,34 @@
 
 
       // Set background to the newly added container.
+      var pictureUrl = "";
+      var data = Math.random();
+      if(data < 0.10){
+        pictureUrl="./assets/pictures/background1.jpg"
+      }else if (data < 0.20 && data > 0.10){
+        pictureUrl = "./assets/pictures/background2.jpg"
+      }else if (data < 0.30 && data > 0.20){
+        pictureUrl = "./assets/pictures/background3.jpg"
+      }else if (data < 0.40 && data > 0.30){
+        pictureUrl = "./assets/pictures/background4.jpg"
+      }else if (data < 0.50 && data > 0.40){
+        pictureUrl = "./assets/pictures/background5.jpg"
+      }else if (data < 0.60 && data > 0.50){
+        pictureUrl = "./assets/pictures/background6.jpg"
+      }else if (data < 0.70 && data > 0.60){
+        pictureUrl = "./assets/pictures/background7.jpg"
+      }else if (data < 0.80 && data > 0.70){
+        pictureUrl = "./assets/pictures/background8.jpg"
+      }else if (data < 0.90 && data > 0.80){
+        pictureUrl = "./assets/pictures/background9.jpg"
+      }else{
+        pictureUrl = "./assets/pictures/background10.jpg"
+      }
 
       if (el.data("ibg-bg") !== undefined) {
         el.find("> .ibg-bg").css({
-          background: "url('" + el.data("ibg-bg") + "') no-repeat center center",
-          "background-size": "cover",
+          background: "url('" + pictureUrl + "') no-repeat center center",
+          "background-size": "cover"
         });
       }
 

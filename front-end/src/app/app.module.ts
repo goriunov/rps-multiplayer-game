@@ -9,6 +9,7 @@ import { PlayersListComponent } from "./players-list/players-list.component";
 import { GameBoardComponent } from "./game-board/game-board.component";
 import { SocketService } from "./shared/socket.service";
 import { InputNameComponent } from "./input-name/input-name.component";
+import {MultiSingleComponent} from "./multi-single/multi-single.component";
 
 
 @NgModule({
@@ -16,7 +17,8 @@ import { InputNameComponent } from "./input-name/input-name.component";
     AppComponent,
     PlayersListComponent,
     GameBoardComponent,
-    InputNameComponent
+    InputNameComponent,
+    MultiSingleComponent
   ],
   imports: [
     BrowserModule,

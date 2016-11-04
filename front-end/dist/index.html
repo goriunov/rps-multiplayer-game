@@ -1,70 +1,66 @@
 <!doctype html>
 <html lang="en">
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <meta http-equiv="x-ua-compatible" content="ie=edge">
-  <link rel="icon" type="image/x-icon" href="assets/icons/favicon.ico">
+    <head>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+      <meta http-equiv="x-ua-compatible" content="ie=edge">
+      <link rel="icon" type="image/x-icon" href="assets/icons/favicon.ico">
 
-  <title>RSP-Game</title>
+      <title>RSP-Game</title>
 
-  <base href="/">
+      <base href="/">
 
-  <link href="https://fonts.googleapis.com/css?family=Fjalla+One" rel="stylesheet">
+      <link href="https://fonts.googleapis.com/css?family=Fjalla+One" rel="stylesheet">
 
-  <script src="assets/js/jquery.min.js"></script>
-  <script src="assets/js/interactive_background.js"></script>
-  <script src="assets/js/safari.js"></script>
-  <script src="assets/polyfill/main.polyfill.js"></script>
-</head>
-
-
-<body>
+      <script src="assets/js/jquery.min.js"></script>
+      <script src="assets/js/interactive_background.js"></script>
+      <script src="assets/polyfill/main.polyfill.js"></script>
+    </head>
 
 
-  <div class="bg" data-ibg-bg="./assets/pictures/background.jpg">
-    <div class="cover"></div>
-    <app-root>Loading...</app-root>
+    <body>
 
-    <script>
-      $(document).ready(function(){
-        $(".bg").interactive_bg({
-          strength: 30,
-          scale: 1.10,
-          animationSpeed: "100ms",
-          contain: true,
-          wrapContent: false
-        });
-        $(".bg > .ibg-bg").css({
-          width: $(window).outerWidth(),
-          height: $(window).outerHeight()
-        });
-        $(".wrapper").css({
-          width: $(window).outerWidth(),
-          height: $(window).outerHeight()
-        });
-      });
 
+      <div class="bg" data-ibg-bg="./assets/pictures/background.jpg">
+        <div class="cover"></div>
+        <app-root>Loading...</app-root>
+
+        <script>
+          $(document).ready(function(){
+            $(".bg").interactive_bg({
+              strength: 30,
+              scale: 1.12,
+              animationSpeed: "100ms",
+              contain: true,
+              wrapContent: false
+            });
+            $(".bg > .ibg-bg").css({
+              width: $(window).outerWidth(),
+              height: $(window).outerHeight()
+            });
+            $(".wrapper").css({
+              width: $(window).outerWidth(),
+              height: $(window).outerHeight()
+            });
+          });
 
 
 
-      //    // change background size on window resize
-      $(window).resize(function() {
-        $(".bg > .ibg-bg").css({
-          width: $(window).outerWidth(),
-          height: $(window).outerHeight()
-        });
 
-        $(".wrapper").css({
-          width: $(window).outerWidth(),
-          height: $(window).outerHeight()
-        });
-      });
+          //    // change background size on window resize
+          $(window).resize(function() {
+            $(".bg > .ibg-bg").css({
+              width: $(window).outerWidth(),
+              height: $(window).outerHeight()
+            });
 
-    </script>
-  </div>
+            $(".wrapper").css({
+              width: $(window).outerWidth(),
+              height: $(window).outerHeight()
+            });
+          });
 
-
-<script type="text/javascript" src="inline.js"></script><script type="text/javascript" src="styles.0cfac11bfad334da1627.bundle.js"></script><script type="text/javascript" src="scripts.95dfed13542401a78ee7.bundle.js"></script><script type="text/javascript" src="main.5639e00c740dab8f7a05.bundle.js"></script></body>
-
+        </script>
+      </div>
+    <script type="text/javascript" src="inline.js"></script><script type="text/javascript" src="styles.9df064bf7c8286d480fd.bundle.js"></script><script type="text/javascript" src="scripts.0487294352d1e21edd77.bundle.js"></script><script type="text/javascript" src="main.e3e8b8c2dc90fefdbe28.bundle.js"></script></body>
 </html>

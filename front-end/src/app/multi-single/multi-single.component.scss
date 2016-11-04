@@ -1,0 +1,25 @@
+.box{
+  position: absolute;
+  top:30%;
+  bottom: 0;
+  right:0;
+  left:0;
+  text-align: center;
+  h1{
+    color:#BDBDBD;
+  }
+  a {
+    background: rgba(125, 125, 125, 0.8);
+    color: white;
+    margin: 10px;
+    height: 100px;
+    padding: 36px;
+    width: 296px;
+    border-radius: 15px;
+    display: inline-block;
+    &:hover{
+      background: rgba(125, 125, 125, 1);
+      text-decoration: none;
+    }
+  }
+}

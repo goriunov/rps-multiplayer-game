@@ -33,7 +33,6 @@ export class SocketService{
       }
 
       this.socket.on('online', ()=> {
-        console.log('Works? :(');
         if (this.offlineTimer) {
           clearTimeout(this.offlineTimer);
         }
