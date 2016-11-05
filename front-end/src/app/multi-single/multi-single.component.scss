@@ -8,18 +8,41 @@
   h1{
     color:#BDBDBD;
   }
-  a {
-    background: rgba(125, 125, 125, 0.8);
-    color: white;
-    margin: 10px;
-    height: 100px;
-    padding: 36px;
-    width: 296px;
-    border-radius: 15px;
-    display: inline-block;
+
+  .single-player{
+    background: rgba(0, 177, 204, 0.7);
     &:hover{
-      background: rgba(125, 125, 125, 1);
+      background: rgba(0, 177, 204, 1);
       text-decoration: none;
     }
   }
+  .multi-player{
+    background: rgba(238, 58, 148, 0.7);
+    &:hover{
+      background: rgba(238, 58, 148, 1);
+      text-decoration: none;
+    }
+  }
+  a {
+
+    color: white;
+    margin: 10px;
+    height: 100px;
+    width: 296px;
+    border-radius: 15px;
+    display: inline-block;
+
+  }
 }
+
+@media screen and(max-width: 640px){
+  .box{
+    top: 15%;
+  }
+}
+@media screen and(max-width: 370px){
+  .box{
+    top: 10%;
+  }
+}
+

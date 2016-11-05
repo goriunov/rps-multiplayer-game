@@ -33,15 +33,15 @@
 </div>
 
 <section *ngIf="waitingForOpponent" class="col-xs-12 choice">
-  <div class="mainResult">
-    <h1>Waiting for opponent choice </h1>
+  <div class="timer">
+    <h1 class="font-sizing">Waiting for opponent choice</h1>
     <i class="fa fa-spinner fa-pulse fa-3x fa-fw"></i>
   </div>
 </section>
 
 <section *ngIf="opponentIsWaiting" class="col-xs-12 choice">
-  <div class="mainResult">
-    <h1>Choose within {{timing}} sec</h1>
+  <div class="timer">
+    <h1 class="font-sizing">Choose within {{timing}} sec</h1>
   </div>
 </section>
 

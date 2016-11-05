@@ -56,7 +56,7 @@ a{
   z-index: 100;
 }
 
-.mainResult{
+.timer{
   text-align: center;
   padding-top: 5px;
 }
@@ -95,6 +95,11 @@ a{
 
 
 @media screen and(max-width: 480px){
+  .timer{
+    .font-sizing{
+      font-size: 25px;
+    }
+  }
   .forAllPictures{
     height: 100px;
     width: 100px;

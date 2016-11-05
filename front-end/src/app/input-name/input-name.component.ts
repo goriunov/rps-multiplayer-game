@@ -11,11 +11,11 @@ import {Observable} from "rxjs";
   animations: [
     trigger('flyIn' , [
       state('*' , style({transform: 'scale(1.0)'})),
-      transition('void => *' , [style({transform: 'scale(0.3)'}) , animate('0.3s ease-in')]),
+      transition('void => *' , [style({transform: 'scale(0.6)'}) , animate('0.3s ease-in')]),
     ]),
     trigger('drop' , [
       state('*' , style({transform: 'translateY(0)'})),
-      transition('void => *' , [style({transform: 'translateY(-80px)'}) , animate('0.3s ease-in')]),
+      transition('void => *' , [style({transform: 'translateY(-60px)'}) , animate('0.3s ease-in')]),
     ])
   ]
 })
@@ -41,13 +41,21 @@ export class InputNameComponent implements OnInit{
 
 
   onSubmit(){
-    this.socketService.setMyNameInGame(this.myForm.controls['name'].value);
-    this.router.navigate(['/players-list']);
+    if(this.label == "Multi-payer Game") {
+      this.socketService.setMyNameInGame(this.myForm.controls['name'].value);
+      this.router.navigate(['/players-list']);
+    }else{
+
+    }
   }
 
   randomName(){
-    this.socketService.setMyNameInGame('Player: '+Math.floor((Math.random() * 1000) + 1));
-    this.router.navigate(['/players-list']);
+    if(this.label == "Multi-payer Game") {
+      this.socketService.setMyNameInGame('Player: ' + Math.floor((Math.random() * 1000) + 1));
+      this.router.navigate(['/players-list']);
+    }else{
+
+    }
   }
 
 

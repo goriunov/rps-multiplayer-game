@@ -1,6 +1,5 @@
 var express = require('express');
 var bodyParser = require('body-parser');
-var cookieParser = require('cookie-parser');
 var compression = require('compression');
 var path = require('path');
 var http = require('http');
@@ -25,7 +24,6 @@ app.set('view engine', 'html');
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
-app.use(cookieParser());
 
 app.use(function (req, res, next) {
     // Website you wish to allow to connect
