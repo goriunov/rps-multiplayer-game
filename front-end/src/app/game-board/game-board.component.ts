@@ -219,8 +219,6 @@ export class GameBoardComponent implements OnInit,OnDestroy{
       this.final = true;
       this.finalResult = 'You won';
     }
-    this.zone.run(()=> {
-      console.log('DOne')
-    });
+    this.zone.run(()=> {});
   }
 }
