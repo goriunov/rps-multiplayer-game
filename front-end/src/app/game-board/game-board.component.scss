@@ -91,6 +91,15 @@ a{
   top: 20px;
 }
 
+a{
+  small:hover{
+    cursor: pointer;
+    text-decoration: underline;
+  }
+}
+a.btn{
+  color: white;
+}
 
 
 

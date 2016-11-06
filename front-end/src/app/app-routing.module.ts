@@ -9,7 +9,7 @@ const routes: Routes = [
   {path: '' , component: MultiSingleComponent},
   {path: 'name/:label' , component: InputNameComponent},
   {path: 'players-list' , component: PlayersListComponent},
-  {path: 'game' , component: GameBoardComponent},
+  {path: 'game/:game-type' , component: GameBoardComponent},
 
 ];
 

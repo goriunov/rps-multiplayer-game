@@ -23,12 +23,20 @@ import {Observable} from "rxjs";
 export class InputNameComponent implements OnInit{
   myForm: FormGroup;
   label: string;
+  subTitle: string;
 
   constructor( private socketService: SocketService,
                private router: Router,
                private activatedRouter: ActivatedRoute){
     this.activatedRouter.params.subscribe(
-      (param:any)=> this.label = param['label']
+      (param:any)=> {
+        this.label = param['label'];
+        if(this.label == "multi-player"){
+          this.subTitle = "Multi-player Game";
+        }else{
+          this.subTitle = "Single-player Game";
+        }
+      }
     );
   }
 
@@ -41,20 +49,20 @@ export class InputNameComponent implements OnInit{
 
 
   onSubmit(){
-    if(this.label == "Multi-payer Game") {
-      this.socketService.setMyNameInGame(this.myForm.controls['name'].value);
+    this.socketService.setMyNameInGame(this.myForm.controls['name'].value);
+    if(this.label == "multi-player") {
       this.router.navigate(['/players-list']);
     }else{
-
+      this.router.navigate(['/game' , 'single-player']);
     }
   }
 
   randomName(){
-    if(this.label == "Multi-payer Game") {
-      this.socketService.setMyNameInGame('Player: ' + Math.floor((Math.random() * 1000) + 1));
+    this.socketService.setMyNameInGame('Player: ' + Math.floor((Math.random() * 1000) + 1));
+    if(this.label == "multi-player") {
       this.router.navigate(['/players-list']);
     }else{
-
+      this.router.navigate(['/game' , 'single-player']);
     }
   }
 
