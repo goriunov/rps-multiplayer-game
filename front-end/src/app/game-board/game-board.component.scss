@@ -56,7 +56,7 @@ a{
   z-index: 100;
 }
 
-.mainResult{
+.timer{
   text-align: center;
   padding-top: 5px;
 }
@@ -91,10 +91,24 @@ a{
   top: 20px;
 }
 
+a{
+  small:hover{
+    cursor: pointer;
+    text-decoration: underline;
+  }
+}
+a.btn{
+  color: white;
+}
 
 
 
 @media screen and(max-width: 480px){
+  .timer{
+    .font-sizing{
+      font-size: 25px;
+    }
+  }
   .forAllPictures{
     height: 100px;
     width: 100px;

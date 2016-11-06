@@ -60,7 +60,7 @@ export class PlayersListComponent implements OnInit, OnDestroy{
       this.zone.run(()=>{});
     });
     this.socket.on('can play' , ()=>{
-      this.router.navigate(['/game']);
+      this.router.navigate(['/game' , 'multi-player']);
     });
 
     this.socket.on('called on duel' , (opponent) =>{

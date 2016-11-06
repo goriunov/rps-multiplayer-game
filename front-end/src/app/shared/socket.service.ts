@@ -75,6 +75,7 @@ export class SocketService{
   disconnection(){
     if(this.socket){
       clearTimeout(this.userIsOnline);
+      clearTimeout(this.offlineTimer);
       this.socket.disconnect();
       this.socket = null;
     }
